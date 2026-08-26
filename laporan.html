@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Laporan Kemajuan Fase 2 &mdash; Skrining Antivirus H9N2</title>
-<meta name="description" content="Laporan kemajuan Fase 2 penelitian BIMA 2026: capaian terhadap target proposal, hasil docking beserta validasinya, landasan matematis metode NDD, kendala, dan rencana berikutnya.">
+<meta name="description" content="Laporan kemajuan Fase 2 penelitian BIMA 2026: capaian terhadap target proposal, hasil docking beserta validasinya, landasan matematis metode NDD, jaringan interaksi protein, kendala, dan rencana berikutnya.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Laporan Kemajuan Fase 2">
-<meta property="og:description" content="Laporan kemajuan Fase 2 penelitian BIMA 2026: capaian terhadap target proposal, hasil docking beserta validasinya, landasan matematis metode NDD, kendala, dan rencana berikutnya.">
+<meta property="og:description" content="Laporan kemajuan Fase 2 penelitian BIMA 2026: capaian terhadap target proposal, hasil docking beserta validasinya, landasan matematis metode NDD, jaringan interaksi protein, kendala, dan rencana berikutnya.">
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body>
@@ -663,7 +663,63 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--border);
 </section>
 
 <section>
- <div class="sec-head"><span class="sec-num">8</span><h2>Docking, secara matematis</h2></div>
+ <div class="sec-head"><span class="sec-num">8</span><h2>Jaringan interaksi protein: memilih target</h2></div>
+ <p class="lede">Tahap ini paling sering terlewat padahal letaknya menentukan: ia menjawab pertanyaan yang tidak dijawab model maupun docking &mdash; dari beberapa protein yang mungkin disasar, mana yang layak dikejar lebih dulu.</p>
+
+ <h3>Letaknya dalam alur</h3>
+ <p>Model DNN&ndash;NDD memberi tahu senyawa mana yang tampak aktif, dan ADMET memberi tahu mana yang layak dijadikan obat. Keduanya belum menyebut satu pun protein. Pertanyaan &ldquo;menempel di mana?&rdquo; dijawab terpisah, lewat SwissTargetPrediction dan GeneCards, dan hasilnya empat protein manusia: <strong>DPP4, MMP9, MMP2, MIF</strong>.</p>
+ <p>Di situlah persoalan baru muncul. Mendocking keempatnya terhadap seluruh kandidat itu mahal, dan hasilnya belum tentu bermakna sama: menghambat protein yang jadi simpul penting akan mengguncang sistem jauh lebih besar daripada menghambat protein yang berdiri di pinggir. Analisis jaringan interaksi protein dipakai untuk memutuskan urutannya &mdash; setelah target diketahui, sebelum docking dijalankan.</p>
+
+ <h3>Dasar teorinya, beserta batasnya</h3>
+ <p>Landasannya adalah <em>centrality&ndash;lethality hypothesis</em>: protein yang berperan sebagai simpul padat dalam jaringan interaksi cenderung lebih esensial bagi selnya, sehingga gangguan padanya berdampak lebih luas. Hipotesis ini berguna, tetapi memang hipotesis &mdash; korelasi statistik pada jaringan berskala genom, bukan hukum yang berlaku pada tiap protein.</p>
+
+ <h3>Jaringan sebagai objek matematika</h3>
+ <p>Protein menjadi simpul, interaksi menjadi sisi, dan keyakinan atas interaksi itu menjadi bobot:</p>
+ <div class="eq"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mi>G</mi><mo>=</mo><mo>(</mo><mi>V</mi><mo>,</mo><mi>E</mi><mo>,</mo><mi>w</mi><mo>)</mo><mo>,</mo><mspace width="1.6em"/><mi>w</mi><mo>:</mo><mi>E</mi><mo>&#x2192;</mo><mo>(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>]</mo><mo>,</mo><mspace width="1.6em"/><msub><mi>A</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><mrow><mo>{</mo><mtable columnalign="left left" columnspacing="1.4em"><mtr><mtd><mi>w</mi><mo>(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo>)</mo></mtd><mtd><mo>(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo>)</mo><mo>&#x2208;</mo><mi>E</mi></mtd></mtr><mtr><mtd><mn>0</mn></mtd><mtd><mtext>selainnya</mtext></mtd></mtr></mtable></mrow></math><p class="eqket">Bobotnya adalah <em>combined score</em> STRING, dan ini yang paling sering disalahpahami: angka itu menyatakan <strong>keyakinan bahwa interaksinya nyata</strong>, bukan kekuatan ikatannya. Pada jaringan kita nilainya berkisar 0,403 sampai 0,999.</p></div>
+ <p>Jaringannya dibangun dari empat target tadi ditambah satu lapis ketetanggaan &mdash; setiap protein yang berinteraksi kuat dengan salah satu dari keempatnya ikut ditarik masuk. Hasilnya sembilan simpul dan 18 sisi.</p>
+ <div class="fig">
+  <h4>Jaringan yang terbentuk</h4>
+  <p class="sub">Ukuran lingkaran sebanding dengan akar derajat terbobot; ketebalan garis sebanding dengan keyakinan STRING. Angka di bawah nama adalah derajat terbobotnya.</p>
+  <svg viewBox="0 0 760 430" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Jaringan interaksi protein: empat target dan satu lapis tetangganya"><line x1="386.3" y1="266.1" x2="698.0" y2="179.5" stroke="var(--border-strong)" stroke-width="1.89" opacity="0.43"/><line x1="187.0" y1="312.4" x2="75.2" y2="255.0" stroke="var(--border-strong)" stroke-width="2.04" opacity="0.45"/><line x1="320.7" y1="190.0" x2="597.0" y2="342.0" stroke="var(--border-strong)" stroke-width="2.10" opacity="0.46"/><line x1="320.7" y1="190.0" x2="698.0" y2="179.5" stroke="var(--border-strong)" stroke-width="2.17" opacity="0.47"/><line x1="386.3" y1="266.1" x2="187.0" y2="312.4" stroke="var(--border-strong)" stroke-width="2.32" opacity="0.49"/><line x1="386.3" y1="266.1" x2="75.2" y2="255.0" stroke="var(--border-strong)" stroke-width="2.44" opacity="0.51"/><line x1="62.0" y1="88.2" x2="175.7" y2="183.7" stroke="var(--border-strong)" stroke-width="2.47" opacity="0.51"/><line x1="597.0" y1="342.0" x2="386.3" y2="266.1" stroke="var(--border-strong)" stroke-width="2.54" opacity="0.52"/><line x1="320.7" y1="190.0" x2="187.0" y2="312.4" stroke="var(--border-strong)" stroke-width="3.03" opacity="0.59"/><line x1="175.7" y1="183.7" x2="187.0" y2="312.4" stroke="var(--border-strong)" stroke-width="3.11" opacity="0.60"/><line x1="175.7" y1="183.7" x2="313.4" y2="62.0" stroke="var(--border-strong)" stroke-width="3.26" opacity="0.62"/><line x1="320.7" y1="190.0" x2="313.4" y2="62.0" stroke="var(--border-strong)" stroke-width="3.30" opacity="0.63"/><line x1="320.7" y1="190.0" x2="75.2" y2="255.0" stroke="var(--border-strong)" stroke-width="3.48" opacity="0.65"/><line x1="175.7" y1="183.7" x2="320.7" y2="190.0" stroke="var(--border-strong)" stroke-width="3.54" opacity="0.66"/><line x1="175.7" y1="183.7" x2="75.2" y2="255.0" stroke="var(--border-strong)" stroke-width="3.68" opacity="0.68"/><line x1="62.0" y1="88.2" x2="320.7" y2="190.0" stroke="var(--border-strong)" stroke-width="3.74" opacity="0.69"/><line x1="175.7" y1="183.7" x2="386.3" y2="266.1" stroke="var(--border-strong)" stroke-width="3.79" opacity="0.70"/><line x1="320.7" y1="190.0" x2="386.3" y2="266.1" stroke="var(--border-strong)" stroke-width="3.80" opacity="0.70"/><circle cx="698.0" cy="179.5" r="14.9" fill="var(--accent)" stroke="var(--accent)" stroke-width="2"/><text x="698.0" y="209.4" class="anot" text-anchor="middle" font-size="12.5" fill="var(--ink)">MIF</text><text x="698.0" y="222.4" class="anot2" text-anchor="middle" fill="var(--muted)">0.90</text><circle cx="597.0" cy="342.0" r="15.4" fill="var(--accent)" stroke="var(--accent)" stroke-width="2"/><text x="597.0" y="372.4" class="anot" text-anchor="middle" font-size="12.5" fill="var(--ink)">DPP4</text><text x="597.0" y="385.4" class="anot2" text-anchor="middle" fill="var(--muted)">1.07</text><circle cx="62.0" cy="88.2" r="16.8" fill="var(--surface-2)" stroke="var(--border-strong)" stroke-width="2"/><text x="62.0" y="119.9" class="anot" text-anchor="middle" font-size="12.5" fill="var(--ink)">DMP1</text><text x="62.0" y="132.9" class="anot2" text-anchor="middle" fill="var(--muted)">1.56</text><circle cx="313.4" cy="62.0" r="17.0" fill="var(--surface-2)" stroke="var(--border-strong)" stroke-width="2"/><text x="313.4" y="94.0" class="anot" text-anchor="middle" font-size="12.5" fill="var(--ink)">SCUBE3</text><text x="313.4" y="107.0" class="anot2" text-anchor="middle" fill="var(--muted)">1.67</text><circle cx="187.0" cy="312.4" r="18.9" fill="var(--surface-2)" stroke="var(--border-strong)" stroke-width="2"/><text x="187.0" y="346.3" class="anot" text-anchor="middle" font-size="12.5" fill="var(--ink)">RECK</text><text x="187.0" y="359.3" class="anot2" text-anchor="middle" fill="var(--muted)">2.53</text><circle cx="75.2" cy="255.0" r="19.5" fill="var(--surface-2)" stroke="var(--border-strong)" stroke-width="2"/><text x="75.2" y="289.6" class="anot" text-anchor="middle" font-size="12.5" fill="var(--ink)">TIMP4</text><text x="75.2" y="302.6" class="anot2" text-anchor="middle" fill="var(--muted)">2.89</text><circle cx="386.3" cy="266.1" r="21.6" fill="var(--surface-2)" stroke="var(--border-strong)" stroke-width="2"/><text x="386.3" y="302.7" class="anot" text-anchor="middle" font-size="12.5" fill="var(--ink)">TIMP1</text><text x="386.3" y="315.7" class="anot2" text-anchor="middle" fill="var(--muted)">4.12</text><circle cx="175.7" cy="183.7" r="23.0" fill="var(--accent)" stroke="var(--accent)" stroke-width="2"/><text x="175.7" y="221.7" class="anot" text-anchor="middle" font-size="12.5" fill="var(--ink)">MMP2</text><text x="175.7" y="234.7" class="anot2" text-anchor="middle" fill="var(--muted)">5.07</text><circle cx="320.7" cy="190.0" r="24.6" fill="var(--accent)" stroke="var(--accent)" stroke-width="2"/><text x="320.7" y="229.7" class="anot" text-anchor="middle" font-size="12.5" fill="var(--ink)">MMP9</text><text x="320.7" y="242.7" class="anot2" text-anchor="middle" fill="var(--muted)">6.36</text><circle cx="38" cy="416" r="7" fill="var(--accent)"/><text x="50" y="420" class="anot2" fill="var(--muted)">target hasil irisan SwissTargetPrediction &#215; GeneCards</text><circle cx="414" cy="416" r="7" fill="var(--surface-2)" stroke="var(--border-strong)" stroke-width="2"/><text x="426" y="420" class="anot2" fill="var(--muted)">tetangga yang ikut tertarik dari STRING</text></svg>
+ </div>
+
+ <h3>Empat ukuran, empat pertanyaan berbeda</h3>
+ <p>Yang disebut &ldquo;penting&rdquo; ternyata bukan satu hal. Ukuran paling sederhana menghitung tetangga:</p>
+ <div class="eq"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>k</mi><mi>i</mi></msub><mo>=</mo><mo>|</mo><mi>N</mi><mo>(</mo><mi>i</mi><mo>)</mo><mo>|</mo><mo>,</mo><mspace width="2.4em"/><msub><mi>s</mi><mi>i</mi></msub><mo>=</mo><munder><mo>&#x2211;</mo><mrow><mi>j</mi><mo>&#x2208;</mo><mi>N</mi><mo>(</mo><mi>i</mi><mo>)</mo></mrow></munder><msub><mi>A</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></math><p class="eqket">Derajat menghitung berapa banyak tetangganya; derajat terbobot menjumlahkan keyakinannya. Yang kedua lebih jujur: sepuluh interaksi meragukan tidak sepadan dengan lima yang mapan.</p></div>
+ <p>Tetapi banyak tetangga tidak sama dengan berperan penting. Sebuah protein bisa punya sedikit tetangga namun menjadi satu-satunya penghubung antar-kelompok:</p>
+ <div class="eq"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>C</mi><mi>B</mi></msub><mo>(</mo><mi>v</mi><mo>)</mo><mo>=</mo><munder><mo>&#x2211;</mo><mrow><mi>s</mi><mo>&#x2260;</mo><mi>v</mi><mo>&#x2260;</mo><mi>t</mi></mrow></munder><mfrac><mrow><msub><mi>&#x03C3;</mi><mrow><mi>s</mi><mi>t</mi></mrow></msub><mo>(</mo><mi>v</mi><mo>)</mo></mrow><msub><mi>&#x03C3;</mi><mrow><mi>s</mi><mi>t</mi></mrow></msub></mfrac></math><p class="eqket"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>&#x03C3;</mi><mrow><mi>s</mi><mi>t</mi></mrow></msub></math> adalah banyaknya lintasan terpendek dari <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>s</mi></math> ke <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>t</mi></math>, dan pembilangnya yang melewati <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>v</mi></math>. Mengukur seberapa sering sebuah protein menjadi jembatan &mdash; dihitung dengan algoritme Brandes.</p></div>
+ <p>Dan dua ukuran terakhir menyangkut jaringan secara keseluruhan &mdash; seberapa dekat sebuah simpul ke semua simpul lain, serta seberapa padat jaringannya:</p>
+ <div class="eq"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>C</mi><mi>C</mi></msub><mo>(</mo><mi>v</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mo>|</mo><mi>V</mi><mo>|</mo><mo>&#x2212;</mo><mn>1</mn></mrow><mrow><munder><mo>&#x2211;</mo><mrow><mi>u</mi><mo>&#x2260;</mo><mi>v</mi></mrow></munder><mi>d</mi><mo>(</mo><mi>v</mi><mo>,</mo><mi>u</mi><mo>)</mo></mrow></mfrac><mo>,</mo><mspace width="2em"/><mi>&#x03C1;</mi><mo>=</mo><mfrac><mrow><mn>2</mn><mo>|</mo><mi>E</mi><mo>|</mo></mrow><mrow><mo>|</mo><mi>V</mi><mo>|</mo><mo>(</mo><mo>|</mo><mi>V</mi><mo>|</mo><mo>&#x2212;</mo><mn>1</mn><mo>)</mo></mrow></mfrac></math><p class="eqket">Kedekatan adalah kebalikan rata-rata jarak ke seluruh simpul lain; kerapatan <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>&#x03C1;</mi></math> adalah bagian dari pasangan yang benar-benar terhubung. Pada jaringan kita <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>&#x03C1;</mi><mo>=</mo><mn>2</mn><mo>&#x00D7;</mo><mn>18</mn><mo>/</mo><mo>(</mo><mn>9</mn><mo>&#x00D7;</mo><mn>8</mn><mo>)</mo><mo>=</mo><mn>0,5</mn></math> &mdash; separuh pasangan yang mungkin memang terhubung.</p></div>
+ <div class="scroll"><table>
+  <caption>Hasil perhitungan pada jaringan sembilan simpul. Baris bertanda adalah keempat target hasil irisan; sisanya tetangga yang ikut tertarik.</caption>
+  <thead><tr><th>Protein</th><th class="num">Derajat</th><th class="num">Terbobot</th><th class="num">Keantaraan</th><th class="num">Kedekatan</th><th class="num">Pengelompokan</th></tr></thead>
+  <tbody><tr><td><strong>MMP9</strong> <span class="tag t-good">target</span></td><td class="num">8</td><td class="num">6.36</td><td class="num">0.393</td><td class="num">1.00</td><td class="num">0.28</td></tr><tr><td><strong>MMP2</strong> <span class="tag t-good">target</span></td><td class="num">6</td><td class="num">5.07</td><td class="num">0.125</td><td class="num">0.80</td><td class="num">0.44</td></tr><tr><td>TIMP1</td><td class="num">6</td><td class="num">4.12</td><td class="num">0.125</td><td class="num">0.80</td><td class="num">0.39</td></tr><tr><td>TIMP4</td><td class="num">4</td><td class="num">2.89</td><td class="num">0.000</td><td class="num">0.67</td><td class="num">0.74</td></tr><tr><td>RECK</td><td class="num">4</td><td class="num">2.53</td><td class="num">0.000</td><td class="num">0.67</td><td class="num">0.70</td></tr><tr><td>SCUBE3</td><td class="num">2</td><td class="num">1.68</td><td class="num">0.000</td><td class="num">0.57</td><td class="num">0.86</td></tr><tr><td>DMP1</td><td class="num">2</td><td class="num">1.56</td><td class="num">0.000</td><td class="num">0.57</td><td class="num">0.81</td></tr><tr><td><strong>DPP4</strong> <span class="tag t-good">target</span></td><td class="num">2</td><td class="num">1.07</td><td class="num">0.000</td><td class="num">0.57</td><td class="num">0.66</td></tr><tr><td><strong>MIF</strong> <span class="tag t-good">target</span></td><td class="num">2</td><td class="num">0.90</td><td class="num">0.000</td><td class="num">0.57</td><td class="num">0.58</td></tr></tbody></table></div>
+ <p>MMP9 unggul pada seluruh ukuran: terhubung ke <em>kedelapan</em> simpul lain, sehingga kedekatannya tepat 1,00, dan memikul keantaraan tertinggi. Urutan keempat target menjadi <strong>MMP9 &gt; MMP2 &gt; DPP4 &gt; MIF</strong>, dengan MIF di posisi paling buncit.</p>
+
+ <h3>Dua hal yang membuat urutan itu tidak boleh dipercaya bulat-bulat</h3>
+ <p>Yang pertama menyangkut ukuran jaringannya. Sembilan simpul terlalu sedikit untuk membuat sentralitas bermakna &mdash; kedekatan 1,00 milik MMP9 bukan temuan biologis, melainkan akibat langsung dari kecilnya jaringan. Sentralitas pada subgraf sembilan simpul bukan sentralitas pada interaktom manusia.</p>
+ <div class="note bad">
+  <div class="nh">Yang kedua lebih serius: tetangganya tidak netral</div>
+  <p>Lima tetangga yang ikut tertarik adalah TIMP1, TIMP4, RECK, SCUBE3, dan DMP1. Kelimanya berkaitan dengan metaloproteinase &mdash; TIMP adalah penghambat alaminya, RECK pengaturnya. Tidak satu pun ditarik masuk karena berinteraksi dengan MIF atau DPP4; keduanya justru hanya tersambung ke jaringan lewat MMP9 dan TIMP1.</p>
+  <p>Artinya jaringan ini sebagian mengukur <strong>seberapa rapi sebuah protein sudah dianotasi</strong>, bukan semata seberapa penting ia secara biologis. MMP dipelajari jauh lebih lama dan lebih dalam daripada MIF, dan keunggulannya di tabel sebagian mencerminkan hal itu.</p>
+ </div>
+
+ <h3>Dan docking membalik urutannya</h3>
+ <p>Bagian ini layak dicatat karena bukan hasil yang kita harapkan. Setelah 210 run docking beserta validasi posenya, protein yang paling banyak menghasilkan pasangan bertahan justru <strong>MIF</strong> &mdash; enam dari sebelas pasangan &mdash; dengan efisiensi ligan tertinggi di seluruh studi (asam <i>p</i>-kumarat, 0,639) dan kecocokan kantong 0,92. MMP9, sang simpul terpadat, hanya menyumbang satu.</p>
+ <div class="scroll"><table>
+  <thead><tr><th>Target</th><th class="num">Peringkat jaringan</th><th class="num">Pasangan bertahan</th><th class="num">LE terbaik</th></tr></thead>
+  <tbody>
+   <tr><td>MMP9</td><td class="num">1</td><td class="num">1</td><td class="num">0,284</td></tr>
+   <tr><td>MMP2</td><td class="num">2</td><td class="num">1</td><td class="num">0,275</td></tr>
+   <tr><td>DPP4</td><td class="num">3</td><td class="num">1</td><td class="num">0,446</td></tr>
+   <tr><td><strong>MIF</strong></td><td class="num">4</td><td class="num"><strong>6</strong></td><td class="num"><strong>0,639</strong></td></tr>
+  </tbody></table></div>
+ <p>Pembalikan ini bukan kegagalan salah satunya, melainkan tanda bahwa keduanya menjawab pertanyaan yang berbeda. Sentralitas menjawab <em>seberapa besar akibatnya bila protein ini terganggu</em>; docking menjawab <em>seberapa mungkin ia benar-benar bisa diganggu oleh molekul kecil</em>. Protein bisa sangat sentral namun kantongnya dangkal dan tidak mengikat apa pun, dan sebaliknya.</p>
+ <p>Karena itu keduanya dipakai berurutan, bukan salah satu: jaringan menyusun antrean, docking yang memutuskan. Dan pada naskah nanti, urutan jaringan sebaiknya dilaporkan apa adanya beserta pembalikannya &mdash; sebab justru di situ letak temuannya.</p>
+</section>
+
+<section>
+ <div class="sec-head"><span class="sec-num">9</span><h2>Docking, secara matematis</h2></div>
  <p class="lede">Tahap yang sudah selesai, dijelaskan lewat kerangka optimasi. Beberapa hal yang kita temui &mdash; bias terhadap ukuran molekul, batas 32 torsi, sebaran antar-seed &mdash; paling jelas dipahami dari sisi ini.</p>
 
  <h3>Ruang pencarian</h3>
@@ -723,7 +779,7 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--border);
 </section>
 
 <section>
- <div class="sec-head"><span class="sec-num">9</span><h2>Kenapa dinamika molekuler diperlukan</h2></div>
+ <div class="sec-head"><span class="sec-num">10</span><h2>Kenapa dinamika molekuler diperlukan</h2></div>
  <p class="lede">Dinamika molekuler dijelaskan di sini lewat kerangka sistem dinamik &mdash; yang memang persis seperti itulah wujud matematisnya.</p>
 
  <h3>Pertanyaan yang tidak dapat dijawab docking</h3>
@@ -813,7 +869,7 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--border);
 </section>
 
 <section>
- <div class="sec-head"><span class="sec-num">10</span><h2>Yang sedang berjalan, dan berapa lama</h2></div>
+ <div class="sec-head"><span class="sec-num">11</span><h2>Yang sedang berjalan, dan berapa lama</h2></div>
  <p class="lede">Simulasi untuk tiga kompleks yang lolos validasi pose, dijalankan di Kaggle memakai GPU Tesla T4. Di komputer kerja, satu kompleks memerlukan satu sampai tiga minggu.</p>
  <div class="scroll"><table>
   <caption>Sistem dibangun lokal dengan AmberTools; ukurannya sudah pasti. Perkiraan waktu diskalakan dari ukuran sistem dan akan dikoreksi setelah laju sebenarnya terukur.</caption>
@@ -840,7 +896,7 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--border);
 
 <!-- 6 -->
 <section>
- <div class="sec-head"><span class="sec-num">11</span><h2>Kendala pelaksanaan</h2></div>
+ <div class="sec-head"><span class="sec-num">12</span><h2>Kendala pelaksanaan</h2></div>
  <p class="lede">Empat kendala yang berpengaruh pada capaian, beserta penanganannya. Tiga sudah tertangani; satu masih berjalan.</p>
  <div class="scroll"><table>
   <thead><tr><th>Kendala</th><th>Dampak</th><th>Penanganan</th><th>Status</th></tr></thead>
@@ -883,7 +939,7 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--border);
 </section>
 
 <section>
- <div class="sec-head"><span class="sec-num">12</span><h2>Yang dikerjakan berikutnya</h2></div>
+ <div class="sec-head"><span class="sec-num">13</span><h2>Yang dikerjakan berikutnya</h2></div>
  <p class="lede">Diurutkan menurut apa yang paling menentukan nasib naskah. Butir 1 tidak menunggu komputasi apa pun dan memblokir penulisan.</p>
  <div class="scroll"><table>
   <thead><tr><th class="num">#</th><th>Pekerjaan</th><th>Kenapa sekarang</th><th class="num">Perkiraan</th><th>Penanggung jawab</th></tr></thead>
@@ -902,7 +958,7 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--border);
 
 <!-- 7 -->
 <section>
- <div class="sec-head"><span class="sec-num">13</span><h2>Akses data &mdash; silakan diperiksa sendiri</h2></div>
+ <div class="sec-head"><span class="sec-num">14</span><h2>Akses data &mdash; silakan diperiksa sendiri</h2></div>
  <p class="lede">Seluruh berkas hasil beserta skrip yang menghasilkannya tersimpan di GitHub, sehingga setiap angka pada laporan ini dapat ditelusuri sumbernya dan setiap tahap dapat dijalankan ulang.</p>
  <div class="scroll"><table>
   <thead><tr><th>Repositori</th><th>Isi</th></tr></thead>
@@ -931,7 +987,7 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--border);
 </section>
 
 <section>
- <div class="sec-head"><span class="sec-num">14</span><h2>Cakupan laporan ini</h2></div>
+ <div class="sec-head"><span class="sec-num">15</span><h2>Cakupan laporan ini</h2></div>
  <p>Dokumen ini memuat bagian substansi ilmiah dari laporan kemajuan: ringkasan, status luaran, capaian terhadap target, hasil pelaksanaan, kendala, dan rencana tahapan berikutnya. Bagian tersebut dapat langsung dipindahkan ke berkas laporan kemajuan.</p>
  <p>Tiga hal berikut <strong>tidak</strong> tercakup di sini dan perlu disiapkan terpisah:</p>
  <ul>
