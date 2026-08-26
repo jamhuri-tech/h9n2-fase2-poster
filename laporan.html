@@ -501,6 +501,35 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--border);
  <div class="sec-head"><span class="sec-num">5</span><h2 id="bmenambatkan-dan-menyaringnya">Menambatkan dan menyaringnya</h2></div>
  <p class="lede">Dengan senyawa dan protein sama-sama di tangan, tinggal dipasangkan. Tahap ini memakan 231 run dan menghasilkan seluruh angka yang biasa dikutip dari penelitian docking &mdash; sekaligus memperlihatkan mengapa angka itu tidak boleh dibaca mentah-mentah.</p>
 
+ <h3>Dari mana angka 35 datang</h3>
+ <p>Angka ini sering dikutip tanpa asalnya, padahal ia hasil dua penyaringan yang berbeda dan masing-masing punya alasan yang perlu diketahui. <strong>35 = 7 ligan &times; 5 reseptor.</strong></p>
+ <p><strong>Tujuh ligan</strong> berasal dari sembilan yang lolos ADMET, dikurangi dua gingerglikolipid. Keduanya dikeluarkan bukan karena hasilnya buruk, melainkan karena torsinya 32 dan 33 &mdash; melampaui batas AutoDock Vina, sehingga ruang pencariannya berdimensi 38 dan 39 dan pencuplikannya tidak lagi bermakna.</p>
+ <p><strong>Lima reseptor</strong> berasal dari sembilan yang masuk daftar pendek, disaring oleh status kendali redocking:</p>
+ <div class="scroll"><table>
+  <caption>Kenapa empat reseptor tidak ikut dinilai. Perhatikan baris PA endonuklease.</caption>
+  <thead><tr><th>Status kendali</th><th>Reseptor</th><th class="num">RMSD terbaik</th><th>Ikut dinilai</th></tr></thead>
+  <tbody>
+   <tr><td>Tervalidasi</td><td>MIF, DPP4, MMP9</td><td class="num">0,25&ndash;0,95 &Aring;</td><td><span class="tag t-good">ya</span></td></tr>
+   <tr><td>Diselamatkan</td><td>MMP2 &mdash; lewat uji pengganti koordinasi seng<br>NA-N2 &mdash; lewat penilaian ulang Vinardo</td><td class="num">2,08 &Aring;<br>0,21 &Aring;</td><td><span class="tag t-good">ya</span></td></tr>
+   <tr><td>Pencarian saja</td><td><strong>PA endonuklease</strong></td><td class="num">0,30 &Aring;</td><td><span class="tag t-bad">tidak</span></td></tr>
+   <tr><td>Tidak tervalidasi</td><td>Nukleoprotein</td><td class="num">5,84 &Aring;</td><td><span class="tag t-bad">tidak</span></td></tr>
+   <tr><td>Tanpa kendali</td><td>Hemaglutinin (dua situs)</td><td class="num">&mdash;</td><td><span class="tag t-bad">tidak</span></td></tr>
+  </tbody></table></div>
+ <div class="note bad"><div class="nh">Ketimpangan yang perlu dinyatakan terbuka</div>
+  <p>PA endonuklease berstatus kendali <strong>sama persis dengan NA</strong> &mdash; sama-sama &ldquo;pencarian saja&rdquo;, bahkan RMSD-nya sedikit lebih baik (0,30 &Aring; lawan 0,39 &Aring;). Namun NA diselamatkan dan PA tidak.</p>
+  <p>Sebabnya <strong>prosedural, bukan ilmiah</strong>. NA mendapat jalan ulang penuh dengan Vinardo &mdash; 21 run &mdash; sehingga kendali redockingnya ikut dihitung ulang dan turun ke 0,21 &Aring;. PA hanya mendapat penilaian ulang atas pose lama, tanpa kendali baru, sehingga statusnya tidak berubah.</p>
+  <p>Artinya PA tersingkir karena kekurangan sekitar 21 run docking, bukan karena hasilnya lemah. Ini penting karena PA adalah <strong>satu-satunya target virus lain yang layak</strong> &mdash; dan target antivirus yang sudah mapan, sebab baloxavir bekerja di situ.</p></div>
+ <p>Adapun 231 jalan perhitungan yang sering dikutip terdiri atas:</p>
+ <div class="scroll"><table>
+  <thead><tr><th>Bagian</th><th>Rinciannya</th><th class="num">Jumlah</th></tr></thead>
+  <tbody>
+   <tr><td>Kampanye utama</td><td>7 ligan &times; 9 reseptor &times; 3 seed, fungsi skor Vina</td><td class="num">189</td></tr>
+   <tr><td>Penilaian ulang NA</td><td>7 ligan &times; 3 seed, fungsi skor Vinardo</td><td class="num">21</td></tr>
+   <tr><td>Kendali redocking</td><td>9 reseptor, dua fungsi skor</td><td class="num">18</td></tr>
+   <tr><td>Kendali pengganti MMP2</td><td>uji koordinasi seng</td><td class="num">3</td></tr>
+   <tr><td><strong>Jumlah</strong></td><td></td><td class="num"><strong>231</strong></td></tr>
+  </tbody></table></div>
+
  <h3>Ruang pencarian</h3>
  <p>Protein diperlakukan kaku; yang dicari adalah kedudukan dan bentuk ligan. Sebuah <em>pose</em> ditentukan oleh pergeseran, rotasi, dan sudut puntir tiap ikatan yang dapat berputar:</p>
  <div class="eq"><math display="block"><mrow><mi>Q</mi><mo>=</mo><msup><mi>&#x211D;</mi><mn>3</mn></msup><mo>&#xD7;</mo><mtext>SO</mtext><mo stretchy="true">(</mo><mn>3</mn><mo stretchy="true">)</mo><mo>&#xD7;</mo><msup><mi>&#x1D54B;</mi><msub><mi>n</mi><mtext>tor</mtext></msub></msup><mo>,</mo><mspace width='1.2em'/><mtext>dim</mtext><mspace width='0.2em'/><mi>Q</mi><mo>=</mo><mn>6</mn><mo>+</mo><msub><mi>n</mi><mtext>tor</mtext></msub></mrow></math><p class="eqket"><math><mi>&#x1D54B;</mi></math> adalah torus &mdash; tiap sudut puntir hidup pada lingkaran, bukan pada garis. Untuk ligan kita: asam p-kumarat <math><msub><mi>n</mi><mtext>tor</mtext></msub></math> = 3 sehingga dim <math><mi>Q</mi></math> = 9; Forsythoside D <math><msub><mi>n</mi><mtext>tor</mtext></msub></math> = 16 sehingga dim <math><mi>Q</mi></math> = 22.</p></div>
@@ -894,6 +923,22 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--border);
    <tr><td>Forsythoside D</td><td>MMP9 &mdash; 4XCT</td><td class="num">28.043 atom</td><td class="num">8&ndash;15 jam</td></tr>
    <tr><td>Adoxosidic acid</td><td>Neuraminidase &mdash; 4K1K</td><td class="num">101.042 atom</td><td class="num">30&ndash;55 jam</td></tr>
   </tbody></table></div>
+ 
+ <h3>Kenapa ketiga kompleks ini yang dipilih</h3>
+ <p>Menjalankan kesebelas pasangan yang lolos memerlukan sekitar <strong>218 jam GPU</strong> &mdash; delapan minggu pada kuota 30 jam per minggu. Proposal sendiri menjanjikan minimal tiga kandidat, sehingga tiga yang dipilih. Kriterianya bukan tiga teratas dari satu peringkat, melainkan <strong>pose terbaik pada tiap jenis target</strong>, supaya ketiganya mewakili persoalan yang berbeda:</p>
+ <div class="scroll"><table>
+  <caption>Alasan yang tercatat di dalam berkas penyiapan, bukan disusun belakangan.</caption>
+  <thead><tr><th>Kompleks</th><th>Jenis target</th><th>Alasan pemilihan</th></tr></thead>
+  <tbody>
+   <tr><td><strong>Adoxosidic &ndash; NA</strong></td><td>protein virus</td><td>Pose terbaik pada target virus: 11 dari 13 kontak kanonik ditiru, termasuk triad arginin</td></tr>
+   <tr><td>Forsythoside D &ndash; MMP9</td><td>metaloprotein inang</td><td>Pose terbaik di seluruh studi: recall 0,94 dan seng terkunci pada 2,21 &Aring;</td></tr>
+   <tr><td><i>p</i>-Coumaric &ndash; MIF</td><td>protein inang non-logam</td><td>Kecocokan kantong tertinggi (Jaccard 0,92) sekaligus efisiensi ligan tertinggi</td></tr>
+  </tbody></table></div>
+ <p>Perlu ditegaskan bahwa dasar pemilihannya adalah <strong>hasil validasi pose, bukan skor mentah</strong>. Kalau skor yang dipakai, ketiganya akan didominasi molekul terbesar &mdash; persis bias yang sudah dibahas sebelumnya.</p>
+ <div class="note warn"><div class="nh">Dua hal yang perlu diketahui tentang pemilihan ini</div>
+  <p><strong>Ketiganya ditulis langsung pada skrip penyiapan</strong>, bukan dipilih oleh aturan yang dijalankan program. Alasannya tercatat, tetapi tidak ada algoritma yang dapat diulang. Untuk naskah, alasan itu perlu dinyatakan apa adanya sebagai pertimbangan, bukan disamarkan sebagai kaidah otomatis.</p>
+  <p><strong>Pemilihan ini dilakukan sebelum jalur virus diputuskan.</strong> Akibatnya dua dari tiga kompleks adalah protein inang, dan hanya satu yang virus &mdash; susunan yang sekarang terbalik terhadap kerangka naskah. Susunannya perlu ditinjau ulang sebelum kuota terpakai.</p></div>
+
  <div class="note warn">
   <div class="nh">Belum ada lintasan produksi yang selesai</div>
   <p>Empat protokol ekuilibrasi berturut-turut berakhir dengan divergensi numerik, dua di antaranya setelah berjam-jam berjalan. Penyebab yang sudah disingkirkan lewat pemeriksaan langsung: tumbukan antar-atom, ikatan cacat, muatan ligan, konvergensi parameterisasi, dan gaya berlebih pada langkah pertama.</p>
