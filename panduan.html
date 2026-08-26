@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panduan Skrining Virtual &mdash; Kandidat Antivirus H9N2</title>
+<meta name="description" content="Panduan alur skrining virtual untuk menentukan kandidat antivirus, ditulis tanpa mengandaikan latar belakang kimia atau biologi.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Panduan Skrining Virtual &mdash; Kandidat Antivirus H9N2">
+<meta property="og:description" content="Panduan alur skrining virtual untuk menentukan kandidat antivirus, ditulis tanpa mengandaikan latar belakang kimia atau biologi.">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+<style>
+:root{
+  --ground:#F3F4F8; --surface:#FFFFFF; --surface-2:#EBEDF4;
+  --ink:#161A26; --ink-soft:#3D4457; --muted:#5A6076;
+  --border:#DCDFEA; --border-strong:#C3C8D9;
+  --accent:#274CA8; --accent-soft:#E4E9F7;
+  --s1:#274CA8; --s2:#B3651A;
+  --bad:#B3402C; --bad-soft:#F8E7E3;
+  --good:#3F7A4F; --good-soft:#E5F0E7;
+  --warn:#8F6314; --warn-soft:#F6EDDB;
+  --shadow:0 1px 2px rgba(22,26,38,.05), 0 8px 24px -12px rgba(22,26,38,.16);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --ground:#101219; --surface:#181B25; --surface-2:#1F2330;
+  --ink:#E8EAF3; --ink-soft:#C3C8DA; --muted:#959BB1;
+  --border:#2A2F3E; --border-strong:#3A4054;
+  --accent:#8AA4F0; --accent-soft:#1E2740;
+  --s1:#6E8BE0; --s2:#C4813C;
+  --bad:#E58A74; --bad-soft:#33201C;
+  --good:#79C08D; --good-soft:#1B2A20;
+  --warn:#D6A648; --warn-soft:#2B2417;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+}}
+:root[data-theme="dark"]{
+  --ground:#101219; --surface:#181B25; --surface-2:#1F2330;
+  --ink:#E8EAF3; --ink-soft:#C3C8DA; --muted:#959BB1;
+  --border:#2A2F3E; --border-strong:#3A4054;
+  --accent:#8AA4F0; --accent-soft:#1E2740;
+  --s1:#6E8BE0; --s2:#C4813C;
+  --bad:#E58A74; --bad-soft:#33201C;
+  --good:#79C08D; --good-soft:#1B2A20;
+  --warn:#D6A648; --warn-soft:#2B2417;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);
+  font-family:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1020px;margin:0 auto;padding:0 24px 96px}
+.masthead{padding:56px 0 32px;border-bottom:1px solid var(--border);
+  display:flex;flex-direction:column;gap:16px}
+.eyebrow{font-family:"JetBrains Mono",monospace;font-size:11.5px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  display:flex;flex-wrap:wrap;gap:8px 16px}
+.eyebrow b{color:var(--accent);font-weight:700}
+h1{font-family:"Fraunces",Georgia,serif;font-optical-sizing:auto;font-weight:600;
+  font-size:clamp(2rem,5vw,3rem);line-height:1.08;letter-spacing:-.018em;
+  text-wrap:balance;margin:0}
+.standfirst{max-width:62ch;margin:0;font-size:1.075rem;color:var(--ink-soft)}
+.byline{font-size:13.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 18px}
+section{padding-top:54px}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:10px}
+.sec-num{font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;
+  letter-spacing:.08em;color:var(--accent);padding-top:.45em;flex:none}
+h2{font-family:"Fraunces",Georgia,serif;font-weight:600;
+  font-size:clamp(1.4rem,3vw,1.8rem);line-height:1.18;letter-spacing:-.014em;
+  margin:0;text-wrap:balance}
+h3{font-weight:600;font-size:1.04rem;margin:34px 0 8px}
+p{max-width:66ch;margin:0 0 14px}
+ul,ol{max-width:66ch;padding-left:1.15em;margin:0 0 14px}
+li{margin-bottom:7px}
+a{color:var(--accent);text-underline-offset:2px}
+strong{font-weight:600}
+.sp{font-style:italic}
+code{font-family:"JetBrains Mono",monospace;font-size:.855em;
+  background:var(--surface-2);border:1px solid var(--border);
+  border-radius:4px;padding:.1em .34em;word-break:break-all}
+.kecil{font-size:13.6px;line-height:1.5;color:var(--muted)}
+.lede{font-size:1.03rem;color:var(--ink-soft);max-width:64ch}
+.verdict{display:grid;grid-template-columns:repeat(auto-fit,minmax(172px,1fr));
+  gap:1px;background:var(--border);border:1px solid var(--border);
+  border-radius:10px;overflow:hidden;margin:34px 0 8px;box-shadow:var(--shadow)}
+.stat{background:var(--surface);padding:18px 20px;display:flex;flex-direction:column;gap:5px}
+.stat .k{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--muted)}
+.stat .v{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums;
+  font-size:1.55rem;font-weight:700;line-height:1.1;letter-spacing:-.02em}
+.stat .n{font-size:13px;color:var(--muted);line-height:1.4}
+.v-acc{color:var(--accent)} .v-good{color:var(--good)} .v-warn{color:var(--warn)}
+.isi{margin:40px 0 0;padding:26px 28px 24px;background:var(--surface);border:1px solid var(--border);
+  border-radius:11px;box-shadow:var(--shadow)}
+.isi>h2{font-family:"JetBrains Mono",monospace;font-size:10.5px;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);margin:0 0 18px}
+.isikol{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:22px 30px}
+.isi h3{font-family:"JetBrains Mono",monospace;font-size:10.5px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--accent);margin:0 0 9px;display:flex;flex-direction:column;gap:3px}
+.isi h3 em{font-family:"Fraunces",Georgia,serif;font-style:normal;font-size:1.02rem;font-weight:600;
+  letter-spacing:-.01em;text-transform:none;color:var(--ink)}
+.isi ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px}
+.isi li{margin:0}
+.isi a{display:flex;gap:9px;font-size:14.4px;line-height:1.42;color:var(--ink-soft);text-decoration:none}
+.isi a:hover,.isi a:focus-visible{color:var(--accent)}
+.isi a span{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--muted);padding-top:.25em;flex:none}
+.babak{margin:74px 0 6px;padding:26px 0 22px;border-top:2px solid var(--ink);
+  border-bottom:1px solid var(--border)}
+.bnum{display:block;font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:9px}
+h2.bjud{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:clamp(1.7rem,4vw,2.3rem);
+  line-height:1.1;letter-spacing:-.018em;margin:0 0 10px}
+.babak p{margin:0;max-width:58ch;color:var(--ink-soft);font-size:1.02rem}
+.babak + section{padding-top:34px}
+.scroll{overflow-x:auto;margin:20px 0 22px;border:1px solid var(--border);
+  border-radius:9px;background:var(--surface);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:14.2px}
+caption{caption-side:top;text-align:left;padding:13px 16px 12px;font-size:12.5px;
+  color:var(--muted);border-bottom:1px solid var(--border);background:var(--surface-2)}
+th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+thead th{font-family:"JetBrains Mono",monospace;font-size:10.5px;font-weight:700;
+  letter-spacing:.075em;text-transform:uppercase;color:var(--muted);
+  white-space:nowrap;background:var(--surface-2)}
+tbody tr:last-child td{border-bottom:none}
+td.num,th.num{text-align:right;font-family:"JetBrains Mono",monospace;
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+.tag{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:10.5px;
+  font-weight:700;letter-spacing:.06em;padding:2px 7px;border-radius:4px;white-space:nowrap}
+.t-good{background:var(--good-soft);color:var(--good)}
+.t-warn{background:var(--warn-soft);color:var(--warn)}
+.t-bad{background:var(--bad-soft);color:var(--bad)}
+.t-mut{background:var(--surface-2);color:var(--muted)}
+.note{border-left:3px solid var(--accent);background:var(--accent-soft);
+  padding:16px 20px;border-radius:0 8px 8px 0;margin:22px 0}
+.note.bad{border-left-color:var(--bad);background:var(--bad-soft)}
+.note.warn{border-left-color:var(--warn);background:var(--warn-soft)}
+.note .nh{font-family:"JetBrains Mono",monospace;font-size:10.5px;font-weight:700;
+  letter-spacing:.11em;text-transform:uppercase;color:var(--accent);margin-bottom:7px}
+.note.bad .nh{color:var(--bad)} .note.warn .nh{color:var(--warn)}
+.note p{margin:0 0 9px;max-width:64ch} .note p:last-child{margin-bottom:0}
+.fig{background:var(--surface);border:1px solid var(--border);border-radius:10px;
+  padding:22px 20px 16px;margin:24px 0;box-shadow:var(--shadow);overflow-x:auto}
+.fig h4{margin:0 0 4px;font-size:.98rem;font-weight:600}
+.fig .sub{margin:0 0 16px;font-size:13.5px;color:var(--muted);max-width:70ch}
+svg{display:block;min-width:640px}
+.hx{font-family:"JetBrains Mono",monospace;font-size:10.5px;font-weight:700;
+  fill:var(--muted);text-anchor:middle;letter-spacing:.04em}
+.hs{font-size:11px;text-anchor:middle}
+.hy{font-size:12.5px;fill:var(--ink-soft);text-anchor:end}
+.cellv{font-family:"JetBrains Mono",monospace;font-size:11px;
+  fill:var(--ink);text-anchor:middle;font-variant-numeric:tabular-nums}
+.cellv.strong{fill:#fff;font-weight:700}
+.cap{font-size:11.5px;fill:var(--muted)}
+.grid{stroke:var(--border);stroke-width:1}
+.thr{stroke:var(--good);stroke-width:1.5;stroke-dasharray:4 3}
+.thrl{font-size:11px;fill:var(--good);font-weight:600}
+.ax{font-family:"JetBrains Mono",monospace;font-size:10.5px;fill:var(--muted);text-anchor:middle}
+.conn{stroke:var(--border-strong);stroke-width:2}
+.d1{fill:var(--s1);stroke:var(--surface);stroke-width:2}
+.d2{fill:var(--s2);stroke:var(--surface);stroke-width:2}
+.val{font-family:"JetBrains Mono",monospace;font-size:11.5px;font-weight:700;
+  font-variant-numeric:tabular-nums}
+.val.good{fill:var(--good)} .val.bad{fill:var(--bad)}
+.lg{font-size:12px;fill:var(--ink-soft)}
+.anot{font-family:"Instrument Sans",sans-serif;font-size:11.5px;font-weight:600}
+.anot2{font-family:"Instrument Sans",sans-serif;font-size:10.5px}
+.axl{font-family:"JetBrains Mono",monospace;font-size:10.5px;fill:var(--muted)}
+.eq{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;
+  padding:16px 20px;margin:18px 0;overflow-x:auto}
+.eq math{font-size:1.12rem;color:var(--ink)}
+.eq math[display="block"]{margin:0 auto}
+.eqket{margin:12px 0 0;font-size:12.8px;color:var(--muted);line-height:1.6;
+  max-width:70ch;text-align:left}
+.eqket math{font-size:1em}
+p math, td math, dd math{font-size:1.04em}
+mtable{border-spacing:0.35em 0.25em}
+footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--border);
+  font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 20px}
+@media (max-width:620px){.wrap{padding:0 18px 72px}.masthead{padding:40px 0 26px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap">
+<header class="masthead">
+  <div class="eyebrow"><span>Penelitian BIMA 2026</span><span>Bahan bacaan</span><span><b>Panduan</b></span></div>
+  <h1>Bagaimana skrining virtual menemukan kandidat antivirus</h1>
+  <p class="standfirst">Ditulis untuk dibaca berurutan, dari pertanyaan biologisnya sampai ke angka yang keluar &mdash; dengan penjelasan kimia dan biologi yang tidak mengandaikan latar belakang di keduanya, tetapi memakai cara berpikir matematis di mana itu memang membantu.</p>
+  <div class="byline"><span><a href="./">&larr; Poster A2</a></span><span>Pendamping laporan kemajuan Fase 2</span><span><a href="laporan.html">laporan &rarr;</a></span><span>26 Agustus 2026</span></div>
+</header>
+
+<div class="babak"><span class="bnum">Bagian satu</span><h2 class="bjud">Apa yang sebenarnya dicari</h2><p>Sebelum bicara algoritma, perlu jelas dulu benda apa yang sedang diburu dan apa artinya &ldquo;berhasil&rdquo;.</p></div>
+
+<section>
+ <div class="sec-head"><span class="sec-num">1</span><h2 id="p-virus">Virus, protein, dan tempat obat bekerja</h2></div>
+ <p class="lede">Satu paragraf biologi yang tidak bisa dilewati, karena seluruh sisa alurnya bergantung padanya.</p>
+ <p>Virus influenza bukan sel. Ia tidak makan, tidak membelah diri, dan tidak melakukan apa pun sendiri. Isinya hanya materi genetik yang dibungkus protein. Untuk memperbanyak diri, ia harus masuk ke dalam sel inang dan meminjam mesin sel itu.</p>
+ <p>Seluruh langkah dalam peminjaman itu dikerjakan oleh <strong>protein</strong> &mdash; molekul besar yang melipat menjadi bentuk tiga dimensi tertentu, dan bentuk itulah yang menentukan fungsinya. Ada protein yang tugasnya menempel pada permukaan sel, ada yang menggunting, ada yang menyalin materi genetik.</p>
+ <p>Dan di sinilah celah yang dimanfaatkan obat. Protein yang melipat hampir selalu meninggalkan <strong>kantong</strong> &mdash; cekungan di permukaannya, tempat molekul kecil bisa menyelip masuk. Kalau sebuah molekul kecil menyumbat kantong yang menjadi bagian penting dari kerja protein itu, proteinnya berhenti bekerja. Kalau protein itu milik virus, virusnya berhenti memperbanyak diri.</p>
+ <div class="note"><div class="nh">Itulah definisi kerja &ldquo;antivirus&rdquo; di sini</div>
+  <p>Menemukan molekul kecil yang menyumbat kantong pada protein virus. Oseltamivir &mdash; Tamiflu &mdash; bekerja persis begitu: ia menyumbat kantong pada neuraminidase, protein yang dipakai virus influenza untuk melepaskan diri dari sel yang sudah dipakainya.</p></div>
+ <p>Perhatikan konsekuensinya, karena nanti akan menentukan keputusan penting: kalau protein yang disumbat adalah <em>protein manusia</em>, yang terjadi bukan penghambatan virus melainkan pengubahan respons tubuh. Itu terapi yang sah, tetapi bukan antivirus. Perbedaan ini bukan soal istilah; ia menentukan klaim apa yang boleh ditulis pada naskah.</p>
+</section>
+
+<section>
+ <div class="sec-head"><span class="sec-num">2</span><h2 id="p-ikat">Apa artinya &ldquo;mengikat&rdquo;, secara terukur</h2></div>
+ <p class="lede">Kata &ldquo;menempel&rdquo; terdengar kualitatif. Sebenarnya ia besaran fisika dengan satuan.</p>
+ <p>Protein dan ligan di dalam air terus-menerus bertumbukan. Kadang ligan menyelip ke kantong, kadang terlepas lagi. Yang berlangsung adalah kesetimbangan, dan kekuatan ikatannya dinyatakan oleh energi bebas pengikatan:</p>
+ <div class="eq"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mi>&#x0394;</mi><msup><mi>G</mi><mo>&#x25E6;</mo></msup><mo>=</mo><mi>R</mi><mi>T</mi><mi>ln</mi><mo>&#x2061;</mo><msub><mi>K</mi><mi>d</mi></msub><mo>,</mo><mspace width="2em"/><msub><mi>K</mi><mi>d</mi></msub><mo>=</mo><mfrac><mrow><mo>[</mo><mi>P</mi><mo>]</mo><mo>[</mo><mi>L</mi><mo>]</mo></mrow><mrow><mo>[</mo><mi>PL</mi><mo>]</mo></mrow></mfrac></math><p class="eqket"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>K</mi><mi>d</mi></msub></math> adalah kadar ligan bebas ketika separuh protein sudah terisi &mdash; makin kecil makin kuat. Pada 310 K, <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>R</mi><mi>T</mi></math> &asymp; 0,616 kcal/mol, sehingga tiap 1,4 kcal/mol setara dengan satu lipatan sepuluh pada kekuatan ikatan.</p></div>
+ <p>Jadi skor docking bukan angka tanpa satuan. Ia taksiran kasar terhadap besaran yang dapat diukur di laboratorium. Untuk memberi rasa besarannya:</p>
+ <div class="scroll"><table>
+  <caption>Padanan pendekatan pada suhu tubuh. Perlu ditekankan: skor docking <em>bukan</em> hasil pengukuran &mdash; padanan ini hanya untuk memberi rasa skala.</caption>
+  <thead><tr><th class="num">&Delta;G (kcal/mol)</th><th class="num">Kira-kira K<sub>d</sub></th><th>Tafsirnya</th></tr></thead>
+  <tbody>
+   <tr><td class="num">&minus;9,4</td><td class="num">140 nM</td><td>Kuat &mdash; setara obat sungguhan</td></tr>
+   <tr><td class="num">&minus;7,7</td><td class="num">2,4 &micro;M</td><td>Sedang &mdash; layak dikejar</td></tr>
+   <tr><td class="num">&minus;6,5</td><td class="num">17 &micro;M</td><td>Ambang yang dipakai proposal</td></tr>
+   <tr><td class="num">&minus;5,4</td><td class="num">110 &micro;M</td><td>Lemah &mdash; perlu pembanding</td></tr>
+  </tbody></table></div>
+ <p>Tiap 1,4 kcal/mol setara satu lipatan sepuluh. Selisih dua kandidat sebesar 3 kcal/mol karena itu bukan &ldquo;sedikit lebih baik&rdquo;, melainkan seribu kali lebih kuat &mdash; yang menjelaskan mengapa ketelitian skor jadi soal serius.</p>
+</section>
+
+<div class="babak"><span class="bnum">Bagian dua</span><h2 class="bjud">Kenapa penyaringannya bertingkat</h2><p>Struktur berjenjang itu bukan kebiasaan, melainkan konsekuensi aritmetika yang cukup tajam.</p></div>
+
+<section>
+ <div class="sec-head"><span class="sec-num">3</span><h2 id="p-kaskade">Aritmetika yang menentukan urutannya</h2></div>
+ <p class="lede">Bagian ini paling dekat dengan cara berpikir matematis, dan begitu terlihat, seluruh alur skrining virtual jadi masuk akal dengan sendirinya.</p>
+ <p>Persoalan dasarnya soal ukuran. Jumlah molekul mirip-obat yang mungkin ada ditaksir sekitar 10<sup>60</sup>. Bahkan pustaka yang sudah dipersempit ke enam tanaman pun memuat 625 senyawa, dan tiap senyawa perlu diuji terhadap beberapa protein.</p>
+ <p>Kalau setiap pasangan langsung diuji dengan metode paling teliti, ongkosnya tidak masuk akal. Simulasi dinamika molekuler untuk <em>satu</em> kompleks memakan puluhan jam GPU. Untuk 625 senyawa &times; 5 protein, itu ratusan tahun.</p>
+ <div class="fig">
+  <h4>Jumlah turun, ongkos naik &mdash; keduanya pada skala logaritmik</h4>
+  <p class="sub">Garis penuh: berapa satuan yang tersisa pada tiap tahap. Garis putus-putus: berapa detik yang dihabiskan per satuan. Perhatikan bahwa keduanya bergerak berlawanan, dan hasil kalinya tetap terkendali.</p>
+  <svg viewBox="0 0 820 400" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Jumlah kandidat turun sementara ongkos per kandidat naik, keduanya pada skala logaritmik"><defs><marker id="p1" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="var(--s1)"/></marker><marker id="p2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="var(--s2)"/></marker></defs><line x1="92" y1="300.0" x2="748" y2="300.0" class="grid"/><text x="80" y="304.0" class="hy">1</text><line x1="92" y1="217.3" x2="748" y2="217.3" class="grid"/><text x="80" y="221.3" class="hy">10</text><line x1="92" y1="134.7" x2="748" y2="134.7" class="grid"/><text x="80" y="138.7" class="hy">100</text><line x1="92" y1="52.0" x2="748" y2="52.0" class="grid"/><text x="80" y="56.0" class="hy">1.000</text><text x="760" y="304.0" class="axl" text-anchor="start">10<tspan font-size="8" dy="-5">-2</tspan></text><text x="760" y="242.0" class="axl" text-anchor="start">1</text><text x="760" y="180.0" class="axl" text-anchor="start">10<tspan font-size="8" dy="-5">2</tspan></text><text x="760" y="118.0" class="axl" text-anchor="start">10<tspan font-size="8" dy="-5">4</tspan></text><text x="760" y="56.0" class="axl" text-anchor="start">10<tspan font-size="8" dy="-5">6</tspan></text><text x="80" y="36" class="hx" text-anchor="end" fill="var(--s1)">JUMLAH</text><text x="760" y="36" class="hx" text-anchor="start" fill="var(--s2)">DETIK / SATUAN</text><path d="M92.0 68.9 L310.7 133.3 L529.3 172.4 L748.0 260.6" fill="none" stroke="var(--s1)" stroke-width="2.6" marker-end="url(#p1)"/><path d="M92.0 278.3 L310.7 213.9 L529.3 162.6 L748.0 75.1" fill="none" stroke="var(--s2)" stroke-width="2.6" stroke-dasharray="7 4" marker-end="url(#p2)"/><circle cx="92.0" cy="68.9" r="5.5" fill="var(--s1)" stroke="var(--surface)" stroke-width="2"/><circle cx="92.0" cy="278.3" r="5.5" fill="var(--s2)" stroke="var(--surface)" stroke-width="2"/><text x="92.0" y="326" class="anot" text-anchor="middle" fill="var(--ink)">Skrining</text><text x="92.0" y="341" class="anot" text-anchor="middle" fill="var(--ink)">ligan</text><text x="92.0" y="358" class="anot2" text-anchor="middle" fill="var(--muted)">625 satuan</text><circle cx="310.7" cy="133.3" r="5.5" fill="var(--s1)" stroke="var(--surface)" stroke-width="2"/><circle cx="310.7" cy="213.9" r="5.5" fill="var(--s2)" stroke="var(--surface)" stroke-width="2"/><text x="310.7" y="326" class="anot" text-anchor="middle" fill="var(--ink)">ADMET</text><text x="310.7" y="343" class="anot2" text-anchor="middle" fill="var(--muted)">104 satuan</text><circle cx="529.3" cy="172.4" r="5.5" fill="var(--s1)" stroke="var(--surface)" stroke-width="2"/><circle cx="529.3" cy="162.6" r="5.5" fill="var(--s2)" stroke="var(--surface)" stroke-width="2"/><text x="529.3" y="326" class="anot" text-anchor="middle" fill="var(--ink)">Docking</text><text x="529.3" y="343" class="anot2" text-anchor="middle" fill="var(--muted)">35 satuan</text><circle cx="748.0" cy="260.6" r="5.5" fill="var(--s1)" stroke="var(--surface)" stroke-width="2"/><circle cx="748.0" cy="75.1" r="5.5" fill="var(--s2)" stroke="var(--surface)" stroke-width="2"/><text x="748.0" y="326" class="anot" text-anchor="middle" fill="var(--ink)">Dinamika</text><text x="748.0" y="341" class="anot" text-anchor="middle" fill="var(--ink)">molekuler</text><text x="748.0" y="358" class="anot2" text-anchor="middle" fill="var(--muted)">3 satuan</text><text x="420.0" y="386" class="cap" text-anchor="middle">Ongkos naik 3,6 juta kali dari tahap pertama ke tahap terakhir. Karena itu urutannya tidak boleh dibalik.</text></svg>
+ </div>
+ <p>Inilah alasan urutannya seperti itu. Tiap tahap adalah pengklasifikasi dengan dua sifat: <strong>ongkos per satuan</strong> dan <strong>ketelitian</strong>. Keduanya naik bersama-sama. Strategi yang benar karena itu jelas: <em>letakkan pengklasifikasi yang murah dan kasar di depan, yang mahal dan teliti di belakang</em> &mdash; supaya yang mahal hanya menangani sedikit kandidat.</p>
+ <div class="note"><div class="nh">Yang harus disadari tentang galatnya</div>
+  <p>Tahap awal sengaja dipilih supaya <strong>galat jenis kedua kecil</strong>: lebih baik meloloskan senyawa yang sebenarnya tidak aktif daripada membuang yang aktif. Kandidat palsu masih bisa digugurkan tahap berikutnya; kandidat sejati yang terbuang di tahap pertama <strong>hilang selamanya</strong> &mdash; tidak ada tahap berikutnya yang bisa mengembalikannya.</p>
+  <p>Asimetri itulah yang menjelaskan mengapa ambang pada tahap awal dibuat longgar, dan mengapa penyaring ADMET kita sengaja tidak memakai endpoint yang menghasilkan positif palsu pada polifenol.</p></div>
+</section>
+
+<div class="babak"><span class="bnum">Bagian tiga</span><h2 class="bjud">Tahap demi tahap</h2><p>Enam tahap, masing-masing menjawab pertanyaan yang berbeda &mdash; dan masing-masing punya batas yang perlu diketahui sebelum hasilnya dipercaya.</p></div>
+
+<section>
+ <div class="sec-head"><span class="sec-num">4</span><h2 id="p-peta">Peta seluruh alurnya</h2></div>
+ <p class="lede">Sebagai pegangan sebelum masuk satu per satu.</p>
+ <div class="scroll"><table>
+  <thead><tr><th>Tahap</th><th class="num">Penyusutan</th><th>Yang dijawabnya</th><th>Yang tidak diketahuinya</th></tr></thead>
+  <tbody><tr><td><strong>Skrining berbasis ligan</strong><br><span class="sp">Model DNN&ndash;NDD, tiga fingerprint, ambang 0,9</span></td><td class="num">625 &rarr; 104</td><td>Belajar dari senyawa yang sudah diketahui aktif. <strong>Tidak memerlukan struktur protein sama sekali.</strong></td><td class="kecil">Ia tidak tahu protein apa pun. Yang dinilainya kemiripan struktur dengan kandidat anti-H9N2 yang sudah dikenal.</td></tr><tr><td><strong>Penyaringan ADMET</strong><br><span class="sp">Ramalan Deep-PK, enam gerbang keselamatan</span></td><td class="num">104 &rarr; 9</td><td>Menyingkirkan senyawa yang mengikat tetapi tak pernah sampai ke paru, atau sampai tetapi meracuni.</td><td class="kecil">Ramalan, bukan pengukuran. Modelnya sendiri punya galat, dan pada polifenol beberapa endpoint memberi positif palsu.</td></tr><tr><td><strong>Penentuan target</strong><br><span class="sp">PDB, STRING, analisis sentralitas</span></td><td class="num">9 senyawa &times; 5 reseptor</td><td>Menetapkan protein mana yang disasar &mdash; dan di sinilah &ldquo;antivirus&rdquo; ditentukan.</td><td class="kecil">Alat penentu target hanya memuat protein manusia, sehingga protein virus harus dicari terpisah.</td></tr><tr><td><strong>Docking</strong><br><span class="sp">AutoDock Vina 1.2.7, tiga seed, exhaustiveness 32</span></td><td class="num">35 &rarr; 20 lolos ambang</td><td>Mencari bentuk dan kedudukan ligan yang paling pas pada kantong protein.</td><td class="kecil">Proteinnya diperlakukan kaku, pelarutnya tersirat, dan fungsi skornya hanya pendekatan kasar.</td></tr><tr><td><strong>Validasi pose</strong><br><span class="sp">RMSD sadar-simetri, irisan residu kontak</span></td><td class="num">35 &rarr; 11</td><td>Menguji apakah posenya masuk akal, bukan sekadar skornya bagus.</td><td class="kecil">Hanya dapat dilakukan pada reseptor yang punya ligan rujukan berstruktur.</td></tr><tr><td><strong>Dinamika molekuler</strong><br><span class="sp">OpenMM, ff14SB + GAFF2, 50 ns</span></td><td class="num">3 kompleks</td><td>Menguji apakah pose itu bertahan pada 37&nbsp;&deg;C di dalam air, ketika segalanya bergerak.</td><td class="kecil">Puluhan nanodetik; peristiwa yang lebih lambat dari itu tak akan terlihat.</td></tr></tbody></table></div>
+</section>
+
+<section>
+ <div class="sec-head"><span class="sec-num">5</span><h2 id="p-ligan">Tahap satu: menyaring tanpa melihat proteinnya</h2></div>
+ <p class="lede">Tahap pertama ini janggal kalau baru pertama kali mendengarnya: bagaimana mungkin menilai kandidat antivirus tanpa memakai protein virusnya sama sekali?</p>
+ <p>Jawabannya terletak pada <strong>hipotesis kemiripan</strong>: molekul yang strukturnya mirip cenderung berperilaku hayati mirip. Kalau sudah dikenal sejumlah senyawa yang aktif terhadap H9N2, maka senyawa baru yang strukturnya menyerupai mereka patut dicurigai aktif juga &mdash; tanpa perlu tahu protein mana yang disasar.</p>
+ <p>Supaya bisa dihitung, molekul harus lebih dulu diubah menjadi vektor:</p>
+ <div class="eq"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mi>&#x03C6;</mi><mo>:</mo><mi>&#x2133;</mi><mo>&#x2192;</mo><msup><mrow><mo>{</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>}</mo></mrow><mi>p</mi></msup><mo>,</mo><mspace width="2em"/><mi>p</mi><mo>&#x2208;</mo><mo>{</mo><mn>79</mn><mo>,</mo><mn>881</mn><mo>,</mo><mn>4860</mn><mo>}</mo></math><p class="eqket">Tiap bit menjawab satu pertanyaan tetap: &ldquo;apakah molekul ini memuat potongan struktur nomor <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>j</mi></math>?&rdquo; Molekul yang rumit dan berdimensi tak tentu berubah menjadi titik pada kubus biner.</p></div>
+ <p>Setelah pemetaan itu, kemiripan menjadi soal himpunan belaka:</p>
+ <div class="eq"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mi>T</mi><mo>(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mo>|</mo><msub><mi>S</mi><mi>a</mi></msub><mo>&#x2229;</mo><msub><mi>S</mi><mi>b</mi></msub><mo>|</mo></mrow><mrow><mo>|</mo><msub><mi>S</mi><mi>a</mi></msub><mo>&#x222A;</mo><msub><mi>S</mi><mi>b</mi></msub><mo>|</mo></mrow></mfrac></math><p class="eqket">Indeks Jaccard pada himpunan bit yang menyala &mdash; ukuran kemiripan baku dalam kemoinformatika.</p></div>
+ <p>Dan begitu molekul menjadi titik pada kubus biner, seluruh perkakas pembelajaran mesin bisa dipakai. Model DNN&ndash;NDD kita dilatih pada kumpulan senyawa berlabel &mdash; positifnya dari studi skrining berorientasi H9N2, negatifnya dari <i>decoy</i> yang dibangkitkan &mdash; lalu dipakai untuk menyekor 625 senyawa herbal.</p>
+ <div class="eq"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mover><mi>y</mi><mo>&#x005E;</mo></mover><mo>=</mo><mi>P</mi><mo>(</mo><mi>aktif</mi><mo>&#x2223;</mo><mi>&#x03C6;</mi><mo>(</mo><mi>m</mi><mo>)</mo><mo>)</mo><mo>,</mo><mspace width="1.6em"/><mi>lolos</mi><mo>&#x21D4;</mo><munder><mo>&#x2227;</mo><mrow><mi>r</mi><mo>&#x2208;</mo><mo>{</mo><mi>E</mi><mo>,</mo><mi>P</mi><mo>,</mo><mi>K</mi><mo>}</mo></mrow></munder><msup><mover><mi>y</mi><mo>&#x005E;</mo></mover><mrow><mo>(</mo><mi>r</mi><mo>)</mo></mrow></msup><mo>&gt;</mo><mn>0,9</mn></math><p class="eqket">Bukan rata-rata ketiganya, melainkan <em>konjungsi</em>: sebuah senyawa harus melewati ambang pada ketiga representasi sekaligus. Syarat yang jauh lebih ketat, dan sengaja.</p></div>
+ <div class="note warn"><div class="nh">Batas yang paling sering dilupakan</div>
+  <p>Model ini <strong>tidak tahu protein apa pun</strong>. Ia tidak pernah melihat neuraminidase. Yang dinilainya semata kemiripan struktur dengan senyawa yang sudah diketahui aktif.</p>
+  <p>Konsekuensinya: keluaran tahap ini menjawab <em>&ldquo;senyawa ini mirip kandidat anti-H9N2 yang dikenal&rdquo;</em>, bukan <em>&ldquo;senyawa ini menghambat protein X&rdquo;</em>. Untuk menjawab yang kedua, diperlukan struktur protein &mdash; dan itu tahap keempat.</p></div>
+</section>
+
+<section>
+ <div class="sec-head"><span class="sec-num">6</span><h2 id="p-admet">Tahap dua: mengikat saja tidak cukup</h2></div>
+ <p class="lede">Sebagian besar kandidat gugur bukan karena tidak mengikat, melainkan karena tidak pernah sampai ke tempatnya mengikat.</p>
+ <p>Sebuah molekul bisa sempurna menyumbat kantong neuraminidase di dalam tabung reaksi, tetapi gagal total sebagai obat karena hancur di lambung, tidak terserap usus, langsung dirombak hati, atau meracuni jantung. Sifat-sifat inilah yang disingkat <strong>ADMET</strong> &mdash; penyerapan, penyebaran, perombakan, pembuangan, dan ketoksikan.</p>
+ <p>Yang menarik secara logika: <strong>kriterianya bergantung pada cara obat diberikan.</strong> Obat telan harus tahan asam lambung dan terserap usus. Obat hirup memintas keduanya &mdash; ia langsung mendarat di paru.</p>
+ <p>Karena itu penyaring kita dibuat dua rancangan terpisah. Untuk jalur inhalasi, syarat ketersediaan hayati oral sengaja <strong>tidak</strong> dipakai: memakainya berarti membuang kandidat yang sah hanya karena gagal pada ujian yang tidak akan pernah ditempuhnya. Dari 104 kandidat, sembilan lolos jalur inhalasi &mdash; dua di antaranya sekaligus memenuhi syarat jalur oral.</p>
+</section>
+
+<section>
+ <div class="sec-head"><span class="sec-num">7</span><h2 id="p-target">Tahap tiga: memilih protein, dan di situlah &ldquo;antivirus&rdquo; ditentukan</h2></div>
+ <p class="lede">Tahap yang paling menentukan makna seluruh penelitian, dan paling sering dianggap teknis belaka.</p>
+ <p>Sampai di sini kita punya sembilan senyawa yang tampak menjanjikan dan layak jadi obat. Tetapi belum satu pun protein disebut. Pertanyaan berikutnya: <strong>disumbat di mana?</strong></p>
+ <p>Ada dua jawaban yang sama-sama mungkin, dan pilihannya menentukan jenis penelitian yang sedang dikerjakan:</p>
+ <div class="scroll"><table>
+  <thead><tr><th>Jalur</th><th>Protein yang disasar</th><th>Mekanismenya</th><th>Klaim yang sah</th></tr></thead>
+  <tbody>
+   <tr><td><strong>Virus</strong></td><td>Neuraminidase, PA endonuklease &mdash; milik virus</td><td>Menghentikan virus memperbanyak diri</td><td><strong>Antivirus</strong></td></tr>
+   <tr><td><strong>Inang</strong></td><td>MIF, MMP9, MMP2, DPP4 &mdash; milik manusia</td><td>Mengubah respons tubuh terhadap infeksi</td><td>Terapi pendamping berbasis inang</td></tr>
+  </tbody></table></div>
+ <p>Keduanya sah sebagai penelitian. Yang tidak sah adalah mengerjakan yang kedua lalu menamainya yang pertama.</p>
+ <div class="note"><div class="nh">Kenapa jalur virus yang benar untuk penelitian ini</div>
+  <p>Alasannya bukan selera, melainkan keruntutan. Model pada tahap satu dilatih memakai label <em>aktivitas terhadap H9N2</em>. Kalau keluarannya lalu ditambatkan ke protein manusia, rantai penalarannya putus di tengah &mdash; modelnya bicara tentang virus, dockingnya bicara tentang peradangan inang.</p>
+  <p>Dengan jalur virus, seluruh rantai membicarakan hal yang sama: label anti-H9N2 &rarr; ramalan anti-H9N2 &rarr; docking ke protein H9N2 &rarr; validasi &rarr; simulasi.</p></div>
+ <p>Satu catatan jujur mengenai bagaimana keempat protein inang itu muncul. Alat penentu target yang lazim dipakai &mdash; SwissTargetPrediction dan GeneCards &mdash; <strong>hanya memuat protein manusia</strong>. Mustahil protein virus keluar dari sana. Jadi keempat target inang bukan hasil pemilihan; merekalah yang tersisa. Protein virus harus dicari terpisah, langsung ke Protein Data Bank.</p>
+ <p>Setelah beberapa protein terkumpul, muncul pertanyaan lanjutan: mana yang dikejar lebih dulu? Untuk protein inang, jaringan interaksi protein dapat membantu memeringkatnya &mdash; protein yang menjadi simpul padat cenderung lebih esensial, sehingga gangguan padanya berdampak lebih luas. Itu hipotesis yang berguna, meski bukan hukum.</p>
+</section>
+
+<section>
+ <div class="sec-head"><span class="sec-num">8</span><h2 id="p-docking">Tahap empat: mencocokkan bentuk</h2></div>
+ <p class="lede">Baru di sini struktur tiga dimensi protein benar-benar dipakai.</p>
+ <p>Persoalannya dapat dinyatakan langsung sebagai optimasi. Protein dianggap kaku; yang dicari adalah kedudukan, arah hadap, dan bentuk lekukan ligan yang membuat energi interaksinya sekecil mungkin. Ruang pencariannya berdimensi 6 ditambah jumlah ikatan yang dapat berputar &mdash; untuk kandidat kita, antara 9 dan 22.</p>
+ <p>Rincian matematisnya sudah dibahas pada laporan kemajuan; yang penting dipahami di sini tiga hal:</p>
+ <ul>
+  <li><strong>Fungsi skornya bukan fisika sejati.</strong> Ia rumus pendekatan yang bobotnya dilatih terhadap data afinitas terukur. Jadi ia mewarisi keterbatasan data pelatihannya.</li>
+  <li><strong>Pencariannya stokastik.</strong> Dua jalannya dengan benih acak berbeda tidak wajib menghasilkan angka yang persis sama &mdash; karena itu tiap pasangan dijalankan tiga kali dan simpangannya dilaporkan.</li>
+  <li><strong>Skornya tumbuh sebanding ukuran molekul.</strong> Molekul besar unggul secara sistematis tanpa harus lebih baik. Koreksinya membagi dengan jumlah atom berat.</li>
+ </ul>
+</section>
+
+<section>
+ <div class="sec-head"><span class="sec-num">9</span><h2 id="p-validasi">Tahap lima: menguji alat ukurnya sendiri</h2></div>
+ <p class="lede">Tahap yang paling sering dilewatkan pada penelitian docking &mdash; dan justru yang membuat hasilnya bisa dipercaya.</p>
+ <p>Kalau fungsi skornya hanya pendekatan, dari mana kita tahu ia bekerja pada protein yang sedang kita pakai? Jawabannya: diuji lebih dulu pada kasus yang jawabannya sudah diketahui.</p>
+ <p>Banyak struktur protein di Protein Data Bank sudah memuat ligan yang posisinya dipastikan kristalografi. Ligan itu dikeluarkan, lalu program diminta menemukannya kembali. Kalau berhasil, alatnya boleh dipercaya pada protein tersebut. Kalau gagal, hasil apa pun darinya tidak bermakna &mdash; sebagus apa pun angkanya.</p>
+ <div class="note"><div class="nh">Dua cara gagal yang berbeda</div>
+  <p>Kegagalan ternyata ada dua jenis, dan membedakannya penting. <strong>Pencarian gagal</strong> berarti pose yang benar tidak pernah ditemukan &mdash; itu fatal. <strong>Penilaian gagal</strong> berarti pose yang benar ditemukan, tetapi tidak diperingkat teratas oleh fungsi skornya.</p>
+  <p>Yang kedua tidak fatal, tetapi mengubah cara membaca hasilnya: skornya lalu hanya sah sebagai pembanding relatif terhadap ligan rujukan pada struktur yang sama, bukan sebagai nilai mutlak. Kedua target virus kita berada pada keadaan ini.</p></div>
+ <p>Lapis terakhir memeriksa <em>posenya</em>, bukan skornya. Tiap pose diringkas menjadi himpunan residu yang disentuhnya, lalu dibandingkan dengan himpunan kontak pose kristalografi.</p>
+ <div class="note warn"><div class="nh">Kedua penyaring ini saling bebas, bukan bertingkat</div>
+  <p>Mudah mengira alurnya bersarang &mdash; lolos skor dulu, baru diperiksa posenya. Kenyataannya tidak. Pemeriksaan pose sama sekali tidak melihat skor; syaratnya hanya <em>recall</em> &ge; 0,60 ditambah koordinasi logam pada metaloprotein.</p>
+  <p>Dari 35 pasangan: <strong>20</strong> memenuhi ambang &minus;6,5, <strong>11</strong> lolos pemeriksaan pose, dan hanya <strong>7</strong> memenuhi keduanya. Ada 13 pasangan berskor baik yang posenya tidak sahih &mdash; dan empat pasangan berpose sahih yang skornya di bawah ambang, satu di antaranya karena dinilai pada skala Vinardo tempat ambang itu memang tidak berlaku.</p>
+  <p>Menyebut sebelas pasangan itu &ldquo;lolos skor sekaligus pose&rdquo; karena itu tidak tepat. Yang benar: <strong>sebelas pasangan berpose sahih</strong>, tujuh di antaranya sekaligus memenuhi ambang skor.</p></div>
+</section>
+
+<section>
+ <div class="sec-head"><span class="sec-num">10</span><h2 id="p-md">Tahap enam: dari satu titik ke sebaran</h2></div>
+ <p class="lede">Pergeseran cara pandang yang paling tajam di seluruh alur, dan yang paling mudah dipahami dari sisi matematika.</p>
+ <p>Seluruh tahap sebelumnya menghasilkan <strong>satu titik</strong>: satu pose terbaik, satu angka. Tetapi molekul di dalam tubuh tidak diam pada satu titik. Ia bergetar, berputar, dan dihantam molekul air dari segala arah, pada suhu 37&nbsp;&deg;C.</p>
+ <p>Pertanyaan yang sebenarnya kita perlukan bukan &ldquo;di mana kedudukan terbaiknya&rdquo;, melainkan &ldquo;berapa lama ia bertahan di sana&rdquo;. Itu pertanyaan tentang sebaran peluang, bukan tentang minimum:</p>
+ <div class="eq"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mi>&#x03C1;</mi><mo>(</mo><mi mathvariant="bold">x</mi><mo>)</mo><mo>&#x221D;</mo><mi>exp</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mo>&#x2212;</mo><mfrac><mrow><mi>U</mi><mo>(</mo><mi mathvariant="bold">x</mi><mo>)</mo></mrow><mrow><msub><mi>k</mi><mi>B</mi></msub><mi>T</mi></mrow></mfrac><mo>)</mo></mrow><mo>,</mo><mspace width="1.8em"/><mo>&#x27E8;</mo><mi>A</mi><mo>&#x27E9;</mo><mo>=</mo><mo>&#x222B;</mo><mi>A</mi><mo>(</mo><mi mathvariant="bold">x</mi><mo>)</mo><mi>&#x03C1;</mi><mo>(</mo><mi mathvariant="bold">x</mi><mo>)</mo><mspace width="0.2em"/><mi>d</mi><mi mathvariant="bold">x</mi></math><p class="eqket">Inilah pergeseran pandangannya: docking mencari satu titik yang meminimumkan <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>U</mi></math>, sedangkan dinamika molekuler mencuplik dari sebaran <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>&#x03C1;</mi></math>. Yang ditanya bukan lagi &ldquo;di mana minimumnya&rdquo;, melainkan &ldquo;berapa besar peluang sistem berada di sana&rdquo;.</p></div>
+ <p>Dinamika molekuler menjawabnya dengan menyelesaikan persamaan gerak Newton bagi puluhan ribu atom sekaligus, langkah demi langkah, lalu mengamati apakah ligannya tetap di kantong atau melayang pergi. Yang dihasilkan bukan angka tunggal melainkan lintasan &mdash; film, bukan foto.</p>
+ <p>Dan karena itulah ongkosnya melonjak ribuan kali lipat: satu titik cukup dihitung sekali, sedangkan sebaran harus dicuplik jutaan kali.</p>
+</section>
+
+<div class="babak"><span class="bnum">Bagian empat</span><h2 class="bjud">Membacanya dengan jujur</h2><p>Apa yang boleh diklaim setelah seluruh alur ini dijalani &mdash; dan apa yang tidak.</p></div>
+
+<section>
+ <div class="sec-head"><span class="sec-num">11</span><h2 id="p-klaim">Kenapa kata &ldquo;kandidat&rdquo; itu penting</h2></div>
+ <p class="lede">Judul penelitian ini berbunyi &ldquo;kandidat antivirus&rdquo;, bukan &ldquo;antivirus&rdquo;. Kata itu dipilih dengan sengaja.</p>
+ <p>Seluruh alur di atas berlangsung di dalam komputer. Tidak satu pun senyawa pernah bertemu virus sungguhan. Yang dihasilkan adalah <strong>daftar prioritas</strong>: dari 625 senyawa, inilah sebelas pasangan yang paling layak diuji lebih dulu di laboratorium.</p>
+ <p>Nilai skrining virtual terletak persis di situ. Ia tidak menggantikan percobaan; ia <strong>mengurutkan</strong> percobaan. Menguji 625 senyawa di laboratorium mahal dan lama; menguji sebelas pasangan yang sudah tersaring jauh lebih masuk akal.</p>
+ <div class="scroll"><table>
+  <caption>Ringkasan yang paling penting dari seluruh dokumen ini.</caption>
+  <thead><tr><th>Boleh dikatakan</th><th>Tidak boleh dikatakan</th></tr></thead>
+  <tbody>
+   <tr><td>Senyawa ini diramalkan mengikat kantong aktif neuraminidase</td><td>Senyawa ini menghambat neuraminidase</td></tr>
+   <tr><td>Posenya bertahan sepanjang simulasi 50 ns</td><td>Senyawa ini bekerja di dalam tubuh</td></tr>
+   <tr><td>Kandidat prioritas untuk pengujian hayati</td><td>Kandidat obat</td></tr>
+   <tr><td>Situs aktifnya lestari pada 59 dari 60 galur</td><td>Efektif terhadap seluruh galur H9N2</td></tr>
+  </tbody></table></div>
+ <p>Kolom kanan bukan sikap merendah. Ia batas yang memang melekat pada metodenya &mdash; dan menuliskannya lebih dulu jauh lebih baik daripada menunggu penelaah yang menemukannya.</p>
+</section>
+
+<section>
+ <div class="sec-head"><span class="sec-num">12</span><h2 id="p-lanjut">Yang berada di luar jangkauan komputer</h2></div>
+ <p class="lede">Supaya jelas di mana penelitian ini berhenti dan apa yang menyusul.</p>
+ <p>Langkah berikutnya setelah skrining virtual adalah <strong>uji penghambatan enzim</strong>: neuraminidase sungguhan disiapkan, kandidat ditambahkan pada beberapa kadar, lalu diukur berapa kadar yang diperlukan untuk menekan aktivitasnya separuh. Hasilnya satu angka, dan angka itu dapat langsung dibandingkan dengan ramalan kita.</p>
+ <p>Uji semacam itu ruang lingkupnya kecil dan tidak memerlukan hewan coba, tetapi dampaknya besar: ia mengubah pernyataan &ldquo;seluruhnya komputasi&rdquo; menjadi &ldquo;komputasi dengan konfirmasi awal&rdquo; &mdash; dan perbedaan itu terasa langsung pada penerimaan naskah.</p>
+ <p>Setelah itu barulah uji pada biakan sel, lalu hewan, lalu manusia &mdash; jalur bertahun-tahun yang berada jauh di luar lingkup penelitian ini. Tetapi seluruh jalur panjang itu dimulai dari satu hal: daftar prioritas yang tersusun rapi, dengan alasan yang dapat diperiksa untuk tiap nama di dalamnya.</p>
+</section>
+
+<div class="sp"></div>
+</div>
+</body>
+</html>
