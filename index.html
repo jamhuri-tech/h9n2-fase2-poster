@@ -118,6 +118,8 @@ figure.f svg{display:block;width:100%;height:auto}
 
 #alat{position:fixed;left:50%;transform:translateX(-50%);bottom:6mm;display:flex;gap:2px;
   background:#171C1A;border:1px solid #3A4144;border-radius:9px;padding:4px;z-index:9}
+#alat a{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.05em;color:#C9D2CE;text-decoration:none;padding:6px 11px;border-radius:6px}
+#alat a:hover,#alat a:focus-visible{background:#2E3538;color:#fff;outline:none}
 #alat button{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.05em;color:#C9D2CE;
   background:transparent;border:0;padding:6px 11px;border-radius:6px;cursor:pointer}
 #alat button:hover,#alat button:focus-visible{background:#2E3538;color:#fff;outline:none}
@@ -2104,7 +2106,7 @@ Q 48.8 29.0, 49.8 29.0
 
 </div></div>
 
-<div id="alat"><button id="cetak">Cetak A2</button><button id="zoom">Ukuran asli</button><span id="ket">&mdash;</span></div>
+<div id="alat"><a href="laporan.html">Laporan lengkap</a><button id="cetak">Cetak A2</button><button id="zoom">Ukuran asli</button><span id="ket">&mdash;</span></div>
 <script>
 (function(){
   var p=document.getElementById('poster'),s=document.getElementById('panggung'),
