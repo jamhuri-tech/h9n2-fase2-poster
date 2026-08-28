@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monev H9N2</title>
+<meta name="description" content="Slide presentasi laporan kemajuan penelitian BIMA 2026, 16 slide, dapat dijalankan layar penuh.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Monev H9N2">
+<meta property="og:description" content="Slide presentasi laporan kemajuan penelitian BIMA 2026, 16 slide, dapat dijalankan layar penuh.">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --meja:#0E1117; --lembar:#FFFFFF; --lembar2:#F3F5F9;
+  --tinta:#14171F; --tinta2:#3F4658; --samar:#6E7587;
+  --garis:#DBDFE7; --garis2:#B4BAC8;
+  --institusi:#1E3A6B; --institusi-samar:#E7ECF6;
+  --capai:#2C6543; --capai-samar:#E4EEE8;
+  --proses:#8A5A12; --proses-samar:#F6EEDD;
+  --belum:#6E7587; --belum-samar:#EDEFF3;
+  --tegas:#A63D2B;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--meja);color:var(--tinta);overflow:hidden;
+  font-family:"Libre Franklin",-apple-system,"Segoe UI",sans-serif;
+  -webkit-font-smoothing:antialiased}
+
+/* ---------- panggung berskala ---------- */
+#panggung{position:fixed;inset:0;display:grid;place-items:center}
+#dek{position:relative;width:1280px;height:720px;transform-origin:center center;
+  background:var(--lembar);box-shadow:0 30px 90px -30px rgba(0,0,0,.7)}
+.slide{position:absolute;inset:0;padding:62px 76px 74px;
+  display:flex;flex-direction:column;
+  opacity:0;visibility:hidden;transition:opacity .22s ease}
+.slide.aktif{opacity:1;visibility:visible}
+@media (prefers-reduced-motion:reduce){.slide{transition:none}}
+
+/* ---------- tipografi slide ---------- */
+.mata{margin:0 0 26px;font-size:14px;font-weight:700;letter-spacing:.17em;
+  text-transform:uppercase;color:var(--institusi);
+  padding-bottom:12px;border-bottom:2px solid var(--institusi)}
+h1{font-size:52px;line-height:1.14;letter-spacing:-.022em;font-weight:800;
+  margin:0 0 22px;max-width:22ch;text-wrap:balance}
+h1 .tekan{color:var(--institusi)}
+h2{font-size:40px;line-height:1.18;letter-spacing:-.018em;font-weight:700;
+  margin:0 0 26px;max-width:26ch;text-wrap:balance}
+h3{font-size:21px;font-weight:700;margin:0 0 9px;letter-spacing:-.006em}
+p{margin:0 0 14px;font-size:19px;line-height:1.55;color:var(--tinta2)}
+ul{margin:0;padding-left:1.15em;font-size:19px;line-height:1.5;color:var(--tinta2)}
+li{margin-bottom:10px}
+b.baik{color:var(--capai)} b.buruk{color:var(--tegas)}
+i{font-style:italic}
+
+/* ---------- slide judul ---------- */
+.judul{justify-content:center;background:
+  linear-gradient(180deg,var(--lembar) 0%,var(--lembar2) 100%)}
+.judul .sub{font-family:"Source Serif 4",Georgia,serif;font-size:21px;
+  max-width:64ch;color:var(--tinta2);margin-bottom:38px}
+.tim{border-top:1px solid var(--garis);padding-top:20px;margin-bottom:14px}
+.tim p{margin:0 0 5px;font-size:17px;color:var(--tinta2)}
+.tim p:first-child{color:var(--tinta)}
+.tgl{font-family:"IBM Plex Mono",monospace;font-size:14px;color:var(--samar);margin:0}
+
+/* ---------- kartu angka ---------- */
+.kartu{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:6px 0 26px}
+.kartu>div{background:var(--lembar2);border:1px solid var(--garis);
+  border-radius:5px;padding:26px 26px 24px;display:flex;flex-direction:column;gap:7px}
+.kartu b{font-family:"IBM Plex Mono",monospace;font-size:58px;font-weight:600;
+  line-height:1;letter-spacing:-.03em;color:var(--institusi);font-variant-numeric:tabular-nums}
+.kartu b.baik{color:var(--capai)}
+.kartu span{font-size:18px;font-weight:600;color:var(--tinta)}
+.kartu em{font-style:normal;font-size:15px;color:var(--samar);line-height:1.45}
+
+/* ---------- tiga kolom bernomor ---------- */
+.tigakolom{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;margin-top:8px}
+.tigakolom .ang{font-family:"IBM Plex Mono",monospace;font-size:15px;font-weight:700;
+  color:var(--institusi);display:block;margin-bottom:14px;
+  border-top:2px solid var(--institusi);padding-top:12px}
+.tigakolom p{font-size:17px}
+
+/* ---------- dua kolom ---------- */
+.duakolom{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:4px}
+.duakolom.rapat{gap:34px;margin-top:18px}
+.duakolom.rapat p{font-size:17px}
+.kotak{background:var(--lembar2);border:1px solid var(--garis);
+  border-left:4px solid var(--institusi);border-radius:0 5px 5px 0;padding:24px 26px}
+.kotak p{font-size:17px}
+.mata2{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--institusi);margin-bottom:6px}
+.nilai{margin-bottom:0!important;padding-top:12px;border-top:1px solid var(--garis);
+  font-size:16px!important}
+
+/* ---------- sorot ---------- */
+.sorot{background:var(--proses-samar);border-left:4px solid var(--proses);
+  border-radius:0 5px 5px 0;padding:24px 28px;margin-bottom:4px}
+.sorot .besar{font-size:26px;font-weight:700;color:var(--tinta);margin-bottom:10px}
+.sorot p{font-size:18px}
+.sorot p:last-child{margin-bottom:0}
+
+/* ---------- kalimat penegas ---------- */
+.tegas{margin-top:auto;margin-bottom:0;padding-top:20px;
+  border-top:1px solid var(--garis);font-size:20px;color:var(--tinta)}
+
+/* ---------- tabel ---------- */
+table.tbl{border-collapse:collapse;width:100%;font-size:17px}
+table.tbl thead th{font-size:12px;font-weight:700;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--samar);text-align:left;padding:9px 14px;
+  border-top:2px solid var(--tinta);border-bottom:1px solid var(--garis2);white-space:nowrap}
+table.tbl tbody td{padding:13px 14px;border-bottom:1px solid var(--garis);
+  color:var(--tinta2);vertical-align:top}
+table.tbl tbody tr:last-child td{border-bottom:2px solid var(--tinta)}
+table.tbl td.n,table.tbl th.n{text-align:right;font-family:"IBM Plex Mono",monospace;
+  font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--tinta)}
+.pil{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:11.5px;
+  font-weight:700;letter-spacing:.06em;padding:3px 9px;border-radius:3px;white-space:nowrap}
+.pil.baik{background:var(--capai-samar);color:var(--capai)}
+.pil.jalan{background:var(--proses-samar);color:var(--proses)}
+.pil.sepi{background:var(--belum-samar);color:var(--belum)}
+
+/* ---------- gambar ---------- */
+.gbr{flex:1;display:flex;align-items:center;justify-content:center;min-height:0}
+.gbr svg{display:block;width:100%;height:auto;max-height:100%}
+.gket{margin:16px 0 0;font-size:16px;color:var(--samar);font-style:italic;max-width:96ch}
+.g-t{font-family:"Libre Franklin",sans-serif;font-size:11px;fill:var(--tinta)}
+.g-s{font-family:"Libre Franklin",sans-serif;font-size:9.5px;fill:var(--samar)}
+.g-l{font-family:"Libre Franklin",sans-serif;font-size:9px;font-weight:700;
+  letter-spacing:.1em;fill:var(--samar)}
+.g-n{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;fill:var(--tinta)}
+.g-p{font-family:"IBM Plex Mono",monospace;font-size:8px;font-weight:600;letter-spacing:.07em}
+.g-x{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600}
+.g-b{font-family:"IBM Plex Mono",monospace;font-size:19px;font-weight:600;fill:var(--tinta);
+  font-variant-numeric:tabular-nums}
+
+/* ---------- penutup ---------- */
+.tutup{justify-content:center}
+.poin{font-size:20px;margin-bottom:34px}
+.tautan{border-top:1px solid var(--garis);padding-top:20px}
+.tautan p{margin:0 0 5px;font-family:"IBM Plex Mono",monospace;font-size:17px;color:var(--institusi)}
+
+/* ---------- kendali ---------- */
+#maju{position:fixed;left:0;top:0;bottom:0;width:100%;border:0;background:transparent;
+  cursor:default;z-index:1}
+#kendali{position:fixed;right:18px;bottom:16px;display:flex;align-items:center;gap:4px;
+  background:rgba(255,255,255,.09);backdrop-filter:blur(6px);border-radius:9px;
+  padding:5px;z-index:5;transition:opacity .3s}
+#kendali.sepi{opacity:.12}
+#kendali button{font-family:"IBM Plex Mono",monospace;font-size:13px;color:#D3D8E4;
+  background:transparent;border:0;padding:7px 11px;border-radius:6px;cursor:pointer;line-height:1}
+#kendali button:hover,#kendali button:focus-visible{background:rgba(255,255,255,.16);
+  color:#fff;outline:none}
+#hitung{font-family:"IBM Plex Mono",monospace;font-size:13px;color:#9AA2B4;
+  padding:0 10px;font-variant-numeric:tabular-nums}
+#lajur{position:fixed;left:0;top:0;height:3px;background:#5C7FC7;z-index:6;
+  transition:width .22s ease}
+#daftar{position:fixed;inset:0;background:rgba(10,13,19,.94);z-index:9;
+  display:none;padding:56px 60px;overflow:auto}
+#daftar.buka{display:block}
+#daftar h4{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.15em;
+  text-transform:uppercase;color:#8B93A6;margin:0 0 22px;font-weight:600}
+#daftar ol{list-style:none;padding:0;margin:0;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:2px}
+#daftar li{margin:0}
+#daftar button{width:100%;text-align:left;background:transparent;border:0;cursor:pointer;
+  color:#D8DCE6;font-family:"Libre Franklin",sans-serif;font-size:16px;
+  padding:11px 14px;border-radius:6px;display:flex;gap:14px;align-items:baseline}
+#daftar button:hover,#daftar button:focus-visible{background:rgba(255,255,255,.09);
+  color:#fff;outline:none}
+#daftar button span{font-family:"IBM Plex Mono",monospace;font-size:12px;color:#7C8496;min-width:22px}
+#daftar button.kini{background:rgba(92,127,199,.22);color:#fff}
+
+@media print{
+  @page{size:A4 landscape;margin:0}
+  body{overflow:visible;background:#fff}
+  #panggung{position:static;display:block}
+  #dek{width:100%;height:auto;transform:none!important;box-shadow:none}
+  .slide{position:relative;inset:auto;opacity:1;visibility:visible;
+    width:297mm;height:209mm;padding:16mm 18mm;break-after:page}
+  #kendali,#lajur,#daftar,#maju{display:none}
+}
+</style>
+
+<div id="panggung"><div id="dek">
+<section class="slide judul" data-judul="Judul">
+ <p class="mata">Laporan Kemajuan &middot; Skema BIMA 2026</p>
+ <h1>Skrining <i>in silico</i> senyawa herbal sebagai kandidat antivirus terhadap <span class="tekan">Avian Influenza A/H9N2</span></h1>
+ <p class="sub">Model <i>deep neural network</i> dengan optimasi <i>Newton Divided Difference</i>, dilanjutkan validasi komputasional melalui <i>molecular docking</i> dan simulasi dinamika molekuler.</p>
+ <div class="tim">
+  <p><b>Dr. Siti Amiroch, S.Si., M.Si.</b> &mdash; ketua</p>
+  <p>Awawin Mustana Rohmah &middot; Moh. Hamim Zajuli Al Faroby &middot; Prof. Chairul Anwar Nidom &middot; Dr. Reviany Vibrianita Nidom</p>
+ </div>
+ <p class="tgl">Tahun pertama dari dua tahun pelaksanaan &middot; 28 Agustus 2026</p>
+</section>
+<section class="slide" data-judul="Kenapa penelitian ini dikerjakan">
+<p class="mata">Latar</p><h2>Kenapa penelitian ini dikerjakan</h2>
+
+<div class="tigakolom">
+ <div><span class="ang">1</span><h3>H9N2 belum tertangani tuntas</h3><p>Beredar luas pada unggas dengan potensi zoonosis. Vaksin dan antivirus sintetis tidak selalu melindungi jangka panjang karena mutasi dan resistensi.</p></div>
+ <div><span class="ang">2</span><h3>Senyawa herbal belum terjelajahi</h3><p>Penelitian sebelumnya berhenti pada senyawa sintetik. Pustaka herbal Indonesia belum pernah disaring secara sistematis terhadap sasaran H9N2.</p></div>
+ <div><span class="ang">3</span><h3>Kebaruan ada di sisi metode</h3><p>Optimasi pelatihan model dan cara memeringkat protein sasaran &mdash; dua hal yang kita usulkan, bukan sekadar memakai perangkat yang sudah ada.</p></div>
+</div>
+</section>
+<section class="slide" data-judul="Dua tahun, dua belas tahap">
+<p class="mata">Rencana dan keadaan</p><h2>Dua tahun, dua belas tahap</h2>
+<div class="gbr"><svg viewBox="0 0 760 426" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dua belas tahap penelitian beserta keadaannya, masing-masing tahun dua baris">
+<text x="10" y="28" style="text-anchor:start" class="g-l">TAHUN PERTAMA &#183; TAHAP 1&#8211;6</text>
+<text x="222" y="28" style="text-anchor:start" class="g-s">&#183; Berakhir pada analisis graf sampai diperoleh protein inti</text>
+<rect x="10" y="44" width="237" height="58" rx="3" fill="var(--capai-samar)" stroke="var(--capai)" stroke-width="1.2"/>
+<rect x="10" y="44" width="3.5" height="58" rx="1.5" fill="var(--capai)"/>
+<text x="23" y="67" style="text-anchor:start" class="g-n" fill="var(--capai)">1</text>
+<text x="46" y="67" style="text-anchor:start" class="g-t">Koleksi senyawa herbal</text>
+<text x="23" y="86" style="text-anchor:start" class="g-s">832 entri &#8594; 625 struktur valid</text>
+<rect x="190.3" y="53" width="47.7" height="14" rx="3" fill="var(--capai)" opacity=".16"/>
+<text x="214.2" y="63.5" style="text-anchor:middle" class="g-p" fill="var(--capai)">SELESAI</text>
+<path d="M251.4 69.0 l3.4 4 l-3.4 4" fill="none" stroke="var(--garis2)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="261" y="44" width="237" height="58" rx="3" fill="var(--capai-samar)" stroke="var(--capai)" stroke-width="1.2"/>
+<rect x="261" y="44" width="3.5" height="58" rx="1.5" fill="var(--capai)"/>
+<text x="274" y="67" style="text-anchor:start" class="g-n" fill="var(--capai)">2</text>
+<text x="297" y="67" style="text-anchor:start" class="g-t">Prediksi model DNN&#8211;NDD</text>
+<text x="274" y="86" style="text-anchor:start" class="g-s">104 lolos ambang 0,9</text>
+<rect x="441.3" y="53" width="47.7" height="14" rx="3" fill="var(--capai)" opacity=".16"/>
+<text x="465.1" y="63.5" style="text-anchor:middle" class="g-p" fill="var(--capai)">SELESAI</text>
+<path d="M502.4 69.0 l3.4 4 l-3.4 4" fill="none" stroke="var(--garis2)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="512" y="44" width="237" height="58" rx="3" fill="var(--capai-samar)" stroke="var(--capai)" stroke-width="1.2"/>
+<rect x="512" y="44" width="3.5" height="58" rx="1.5" fill="var(--capai)"/>
+<text x="525" y="67" style="text-anchor:start" class="g-n" fill="var(--capai)">3</text>
+<text x="548" y="67" style="text-anchor:start" class="g-t">Skrining ADMET</text>
+<text x="525" y="86" style="text-anchor:start" class="g-s">9 kandidat inhalasi, 2 juga oral</text>
+<rect x="692.3" y="53" width="47.7" height="14" rx="3" fill="var(--capai)" opacity=".16"/>
+<text x="716.1" y="63.5" style="text-anchor:middle" class="g-p" fill="var(--capai)">SELESAI</text>
+<rect x="10" y="118" width="237" height="58" rx="3" fill="var(--capai-samar)" stroke="var(--capai)" stroke-width="1.2"/>
+<rect x="10" y="118" width="3.5" height="58" rx="1.5" fill="var(--capai)"/>
+<text x="23" y="141" style="text-anchor:start" class="g-n" fill="var(--capai)">4</text>
+<text x="46" y="141" style="text-anchor:start" class="g-t">Koleksi target protein</text>
+<text x="23" y="160" style="text-anchor:start" class="g-s">DPP4, MMP9, MMP2, MIF</text>
+<rect x="190.3" y="127" width="47.7" height="14" rx="3" fill="var(--capai)" opacity=".16"/>
+<text x="214.2" y="137.5" style="text-anchor:middle" class="g-p" fill="var(--capai)">SELESAI</text>
+<path d="M251.4 143.0 l3.4 4 l-3.4 4" fill="none" stroke="var(--garis2)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="261" y="118" width="237" height="58" rx="3" fill="var(--capai-samar)" stroke="var(--capai)" stroke-width="1.2"/>
+<rect x="261" y="118" width="3.5" height="58" rx="1.5" fill="var(--capai)"/>
+<text x="274" y="141" style="text-anchor:start" class="g-n" fill="var(--capai)">5</text>
+<text x="297" y="141" style="text-anchor:start" class="g-t">Visualisasi jaringan PPI</text>
+<text x="274" y="160" style="text-anchor:start" class="g-s">STRING, sembilan simpul</text>
+<rect x="441.3" y="127" width="47.7" height="14" rx="3" fill="var(--capai)" opacity=".16"/>
+<text x="465.1" y="137.5" style="text-anchor:middle" class="g-p" fill="var(--capai)">SELESAI</text>
+<path d="M502.4 143.0 l3.4 4 l-3.4 4" fill="none" stroke="var(--garis2)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="512" y="118" width="237" height="58" rx="3" fill="var(--proses-samar)" stroke="var(--proses)" stroke-width="1.2"/>
+<rect x="512" y="118" width="3.5" height="58" rx="1.5" fill="var(--proses)"/>
+<text x="525" y="141" style="text-anchor:start" class="g-n" fill="var(--proses)">6</text>
+<text x="548" y="141" style="text-anchor:start" class="g-t">Analisis graf</text>
+<text x="525" y="160" style="text-anchor:start" class="g-s">metode perangkingan belum dikerjakan</text>
+<rect x="687.2" y="127" width="52.8" height="14" rx="3" fill="var(--proses)" opacity=".16"/>
+<text x="713.6" y="137.5" style="text-anchor:middle" class="g-p" fill="var(--proses)">BERJALAN</text>
+<path d="M709 103 L709 110.0 L50 110.0 L50 117" fill="none" stroke="var(--garis2)" stroke-width="1.1" stroke-dasharray="3 3"/>
+<path d="M46.6 113.5 l3.4 4 l3.4 -4" fill="none" stroke="var(--garis2)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="10" y="212" style="text-anchor:start" class="g-l">TAHUN KEDUA &#183; TAHAP 7&#8211;12</text>
+<text x="222" y="212" style="text-anchor:start" class="g-s">&#183; Docking, metaheuristik, dan dinamika molekuler</text>
+<rect x="10" y="228" width="237" height="58" rx="3" fill="var(--capai-samar)" stroke="var(--capai)" stroke-width="1.2"/>
+<rect x="10" y="228" width="3.5" height="58" rx="1.5" fill="var(--capai)"/>
+<text x="23" y="251" style="text-anchor:start" class="g-n" fill="var(--capai)">7</text>
+<text x="46" y="251" style="text-anchor:start" class="g-t">Optimasi struktur ligan</text>
+<text x="23" y="270" style="text-anchor:start" class="g-s">stereokimia dan protonasi pH 7,4</text>
+<rect x="190.3" y="237" width="47.7" height="14" rx="3" fill="var(--capai)" opacity=".16"/>
+<text x="214.2" y="247.5" style="text-anchor:middle" class="g-p" fill="var(--capai)">SELESAI</text>
+<path d="M251.4 253.0 l3.4 4 l-3.4 4" fill="none" stroke="var(--garis2)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="261" y="228" width="237" height="58" rx="3" fill="var(--capai-samar)" stroke="var(--capai)" stroke-width="1.2"/>
+<rect x="261" y="228" width="3.5" height="58" rx="1.5" fill="var(--capai)"/>
+<text x="274" y="251" style="text-anchor:start" class="g-n" fill="var(--capai)">8</text>
+<text x="297" y="251" style="text-anchor:start" class="g-t">Molecular docking</text>
+<text x="274" y="270" style="text-anchor:start" class="g-s">231 run, 5 reseptor lolos kendali</text>
+<rect x="441.3" y="237" width="47.7" height="14" rx="3" fill="var(--capai)" opacity=".16"/>
+<text x="465.1" y="247.5" style="text-anchor:middle" class="g-p" fill="var(--capai)">SELESAI</text>
+<path d="M502.4 253.0 l3.4 4 l-3.4 4" fill="none" stroke="var(--garis2)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="512" y="228" width="237" height="58" rx="3" fill="var(--capai-samar)" stroke="var(--capai)" stroke-width="1.2"/>
+<rect x="512" y="228" width="3.5" height="58" rx="1.5" fill="var(--capai)"/>
+<text x="525" y="251" style="text-anchor:start" class="g-n" fill="var(--capai)">9</text>
+<text x="548" y="251" style="text-anchor:start" class="g-t">Afinitas dan validasi pose</text>
+<text x="525" y="270" style="text-anchor:start" class="g-s">11 lolos pose, 7 sekaligus berskor</text>
+<rect x="692.3" y="237" width="47.7" height="14" rx="3" fill="var(--capai)" opacity=".16"/>
+<text x="716.1" y="247.5" style="text-anchor:middle" class="g-p" fill="var(--capai)">SELESAI</text>
+<rect x="10" y="302" width="237" height="58" rx="3" fill="var(--belum-samar)" stroke="var(--belum)" stroke-width="1.2"/>
+<rect x="10" y="302" width="3.5" height="58" rx="1.5" fill="var(--belum)"/>
+<text x="23" y="325" style="text-anchor:start" class="g-n" fill="var(--belum)">10</text>
+<text x="46" y="325" style="text-anchor:start" class="g-t">Optimasi metaheuristik</text>
+<text x="23" y="344" style="text-anchor:start" class="g-s">belum dimulai</text>
+<rect x="200.5" y="311" width="37.5" height="14" rx="3" fill="var(--belum)" opacity=".16"/>
+<text x="219.2" y="321.5" style="text-anchor:middle" class="g-p" fill="var(--belum)">BELUM</text>
+<path d="M251.4 327.0 l3.4 4 l-3.4 4" fill="none" stroke="var(--garis2)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="261" y="302" width="237" height="58" rx="3" fill="var(--proses-samar)" stroke="var(--proses)" stroke-width="1.2"/>
+<rect x="261" y="302" width="3.5" height="58" rx="1.5" fill="var(--proses)"/>
+<text x="274" y="325" style="text-anchor:start" class="g-n" fill="var(--proses)">11</text>
+<text x="297" y="325" style="text-anchor:start" class="g-t">Dinamika molekuler</text>
+<text x="274" y="344" style="text-anchor:start" class="g-s">lintasan produksi belum selesai</text>
+<rect x="436.2" y="311" width="52.8" height="14" rx="3" fill="var(--proses)" opacity=".16"/>
+<text x="462.6" y="321.5" style="text-anchor:middle" class="g-p" fill="var(--proses)">BERJALAN</text>
+<path d="M502.4 327.0 l3.4 4 l-3.4 4" fill="none" stroke="var(--garis2)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="512" y="302" width="237" height="58" rx="3" fill="var(--belum-samar)" stroke="var(--belum)" stroke-width="1.2"/>
+<rect x="512" y="302" width="3.5" height="58" rx="1.5" fill="var(--belum)"/>
+<text x="525" y="325" style="text-anchor:start" class="g-n" fill="var(--belum)">12</text>
+<text x="548" y="325" style="text-anchor:start" class="g-t">Analisis kestabilan</text>
+<text x="525" y="344" style="text-anchor:start" class="g-s">skrip siap, menunggu lintasan</text>
+<rect x="702.5" y="311" width="37.5" height="14" rx="3" fill="var(--belum)" opacity=".16"/>
+<text x="721.2" y="321.5" style="text-anchor:middle" class="g-p" fill="var(--belum)">BELUM</text>
+<path d="M709 287 L709 294.0 L50 294.0 L50 301" fill="none" stroke="var(--garis2)" stroke-width="1.1" stroke-dasharray="3 3"/>
+<path d="M46.6 297.5 l3.4 4 l3.4 -4" fill="none" stroke="var(--garis2)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="10" y="381" width="11" height="11" rx="2" fill="var(--capai-samar)" stroke="var(--capai)" stroke-width="1.2"/>
+<text x="27" y="390" style="text-anchor:start" class="g-s">Selesai</text>
+<rect x="138" y="381" width="11" height="11" rx="2" fill="var(--proses-samar)" stroke="var(--proses)" stroke-width="1.2"/>
+<text x="155" y="390" style="text-anchor:start" class="g-s">Berjalan</text>
+<rect x="266" y="381" width="11" height="11" rx="2" fill="var(--belum-samar)" stroke="var(--belum)" stroke-width="1.2"/>
+<text x="283" y="390" style="text-anchor:start" class="g-s">Belum dimulai</text>
+<text x="10" y="412" style="text-anchor:start" class="g-s">Tahun pertama: lima dari enam tahap selesai. Tahun kedua: tiga dari enam tahap selesai mendahului jadwal.</text>
+</svg></div>
+</section>
+<section class="slide" data-judul="Di mana kita sekarang">
+<p class="mata">Ringkas</p><h2>Di mana kita sekarang</h2>
+
+<div class="kartu">
+ <div><b class="baik">5 / 6</b><span>tahap tahun pertama selesai</span><em>tersisa tahap 6: metode perangkingan protein</em></div>
+ <div><b class="baik">3 / 6</b><span>tahap tahun kedua selesai</span><em>docking dan validasi pose, mendahului jadwal</em></div>
+ <div><b>74%</b><span>capaian terhadap keseluruhan</span><em>penahannya: lintasan dinamika molekuler</em></div>
+</div>
+<p class="tegas">Lingkupnya tidak melebar. Tahun pertama hampir tuntas, dan tahun kedua sudah mulai bergerak.</p>
+</section>
+<section class="slide" data-judul="Dari 832 entri menjadi tujuh pasangan">
+<p class="mata">Hasil &middot; penyaringan</p><h2>Dari 832 entri menjadi tujuh pasangan</h2>
+<div class="gbr"><svg viewBox="0 0 760 506" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Alur penyaringan dari 832 entri menjadi tujuh pasangan, beserta jumlah dan alasan yang gugur di tiap tahap">
+<text x="14" y="30" style="text-anchor:start" class="g-l">PENYARINGAN SENYAWA</text>
+<text x="14" y="44" style="text-anchor:start" class="g-s">satuan: senyawa</text>
+<line x1="14" y1="46" x2="350" y2="46" stroke="var(--garis2)" stroke-width="1"/>
+<rect x="14" y="58" width="176" height="46" rx="3" fill="var(--lembar)" stroke="var(--garis2)" stroke-width="1"/>
+<rect x="14" y="58" width="3" height="46" rx="1.5" fill="var(--institusi)" opacity="0.45"/>
+<text x="29" y="83" style="text-anchor:start" class="g-b" fill="var(--institusi)">832</text>
+<text x="29" y="97" style="text-anchor:start" class="g-s">entri terjaring dari KnapSack</text>
+<line x1="48" y1="104" x2="48" y2="137" stroke="var(--garis2)" stroke-width="1.3"/>
+<path d="M44 137 l4 6 l4 -6 z" fill="var(--garis2)"/>
+<line x1="48" y1="124.0" x2="184" y2="124.0" stroke="var(--tegas)" stroke-width="1.1" stroke-dasharray="3 2.5"/>
+<path d="M184 120.4 l6 3.6 l-6 3.6 z" fill="var(--tegas)"/>
+<text x="202" y="122.0" style="text-anchor:start" class="g-x" fill="var(--tegas)">&#8722;207</text>
+<text x="237.2" y="122.0" style="text-anchor:start" class="g-s">&#183; tersisa 75,1%</text>
+<text x="202" y="136.0" style="text-anchor:start" class="g-s">duplikat dan struktur tidak valid</text>
+<rect x="14" y="144" width="176" height="46" rx="3" fill="var(--lembar)" stroke="var(--garis2)" stroke-width="1"/>
+<rect x="14" y="144" width="3" height="46" rx="1.5" fill="var(--institusi)" opacity="0.45"/>
+<text x="29" y="169" style="text-anchor:start" class="g-b" fill="var(--institusi)">625</text>
+<text x="29" y="183" style="text-anchor:start" class="g-s">struktur unik dan valid</text>
+<line x1="48" y1="190" x2="48" y2="223" stroke="var(--garis2)" stroke-width="1.3"/>
+<path d="M44 223 l4 6 l4 -6 z" fill="var(--garis2)"/>
+<line x1="48" y1="210.0" x2="184" y2="210.0" stroke="var(--tegas)" stroke-width="1.1" stroke-dasharray="3 2.5"/>
+<path d="M184 206.4 l6 3.6 l-6 3.6 z" fill="var(--tegas)"/>
+<text x="202" y="208.0" style="text-anchor:start" class="g-x" fill="var(--tegas)">&#8722;521</text>
+<text x="237.2" y="208.0" style="text-anchor:start" class="g-s">&#183; tersisa 16,6%</text>
+<text x="202" y="222.0" style="text-anchor:start" class="g-s">probabilitas &lt; 0,9 pada satu fingerprint</text>
+<rect x="14" y="230" width="176" height="46" rx="3" fill="var(--lembar)" stroke="var(--garis2)" stroke-width="1"/>
+<rect x="14" y="230" width="3" height="46" rx="1.5" fill="var(--institusi)" opacity="0.45"/>
+<text x="29" y="255" style="text-anchor:start" class="g-b" fill="var(--institusi)">104</text>
+<text x="29" y="269" style="text-anchor:start" class="g-s">lolos ambang probabilitas 0,9</text>
+<line x1="48" y1="276" x2="48" y2="309" stroke="var(--garis2)" stroke-width="1.3"/>
+<path d="M44 309 l4 6 l4 -6 z" fill="var(--garis2)"/>
+<line x1="48" y1="296.0" x2="184" y2="296.0" stroke="var(--tegas)" stroke-width="1.1" stroke-dasharray="3 2.5"/>
+<path d="M184 292.4 l6 3.6 l-6 3.6 z" fill="var(--tegas)"/>
+<text x="202" y="294.0" style="text-anchor:start" class="g-x" fill="var(--tegas)">&#8722;95</text>
+<text x="228.8" y="294.0" style="text-anchor:start" class="g-s">&#183; tersisa 8,7%</text>
+<text x="202" y="308.0" style="text-anchor:start" class="g-s">gagal kriteria ADMET</text>
+<rect x="14" y="316" width="176" height="46" rx="3" fill="var(--lembar)" stroke="var(--garis2)" stroke-width="1"/>
+<rect x="14" y="316" width="3" height="46" rx="1.5" fill="var(--institusi)" opacity="0.45"/>
+<text x="29" y="341" style="text-anchor:start" class="g-b" fill="var(--institusi)">9</text>
+<text x="29" y="355" style="text-anchor:start" class="g-s">lolos kriteria ADMET inhalasi</text>
+<line x1="48" y1="362" x2="48" y2="395" stroke="var(--garis2)" stroke-width="1.3"/>
+<path d="M44 395 l4 6 l4 -6 z" fill="var(--garis2)"/>
+<line x1="48" y1="382.0" x2="184" y2="382.0" stroke="var(--tegas)" stroke-width="1.1" stroke-dasharray="3 2.5"/>
+<path d="M184 378.4 l6 3.6 l-6 3.6 z" fill="var(--tegas)"/>
+<text x="202" y="380.0" style="text-anchor:start" class="g-x" fill="var(--tegas)">&#8722;2</text>
+<text x="220.4" y="380.0" style="text-anchor:start" class="g-s">&#183; tersisa 77,8%</text>
+<text x="202" y="394.0" style="text-anchor:start" class="g-s">torsi 32 dan 33 melampaui batas Vina</text>
+<rect x="14" y="402" width="176" height="46" rx="3" fill="var(--institusi-samar)" stroke="var(--institusi)" stroke-width="1.8"/>
+<rect x="14" y="402" width="3" height="46" rx="1.5" fill="var(--institusi)" opacity="1"/>
+<text x="29" y="427" style="text-anchor:start" class="g-b" fill="var(--institusi)">7</text>
+<text x="29" y="441" style="text-anchor:start" class="g-s">ligan masuk kampanye docking</text>
+<text x="404" y="30" style="text-anchor:start" class="g-l">PENYARINGAN PASANGAN</text>
+<text x="404" y="44" style="text-anchor:start" class="g-s">satuan: pasangan senyawa&#8211;reseptor</text>
+<line x1="404" y1="46" x2="740" y2="46" stroke="var(--garis2)" stroke-width="1"/>
+<rect x="404" y="58" width="176" height="46" rx="3" fill="var(--lembar)" stroke="var(--garis2)" stroke-width="1"/>
+<rect x="404" y="58" width="3" height="46" rx="1.5" fill="var(--institusi)" opacity="0.45"/>
+<text x="419" y="83" style="text-anchor:start" class="g-b" fill="var(--institusi)">35</text>
+<text x="419" y="97" style="text-anchor:start" class="g-s">pasangan diuji</text>
+<line x1="438" y1="104" x2="438" y2="137" stroke="var(--garis2)" stroke-width="1.3"/>
+<path d="M434 137 l4 6 l4 -6 z" fill="var(--garis2)"/>
+<line x1="438" y1="124.0" x2="574" y2="124.0" stroke="var(--tegas)" stroke-width="1.1" stroke-dasharray="3 2.5"/>
+<path d="M574 120.4 l6 3.6 l-6 3.6 z" fill="var(--tegas)"/>
+<text x="592" y="122.0" style="text-anchor:start" class="g-x" fill="var(--tegas)">&#8722;24</text>
+<text x="618.8" y="122.0" style="text-anchor:start" class="g-s">&#183; tersisa 31,4%</text>
+<text x="592" y="136.0" style="text-anchor:start" class="g-s">pose meleset dari kantong rujukan</text>
+<rect x="404" y="144" width="176" height="46" rx="3" fill="var(--lembar)" stroke="var(--garis2)" stroke-width="1"/>
+<rect x="404" y="144" width="3" height="46" rx="1.5" fill="var(--institusi)" opacity="0.45"/>
+<text x="419" y="169" style="text-anchor:start" class="g-b" fill="var(--institusi)">11</text>
+<text x="419" y="183" style="text-anchor:start" class="g-s">pose sahih terhadap kantong rujukan</text>
+<line x1="438" y1="190" x2="438" y2="223" stroke="var(--garis2)" stroke-width="1.3"/>
+<path d="M434 223 l4 6 l4 -6 z" fill="var(--garis2)"/>
+<line x1="438" y1="210.0" x2="574" y2="210.0" stroke="var(--tegas)" stroke-width="1.1" stroke-dasharray="3 2.5"/>
+<path d="M574 206.4 l6 3.6 l-6 3.6 z" fill="var(--tegas)"/>
+<text x="592" y="208.0" style="text-anchor:start" class="g-x" fill="var(--tegas)">&#8722;4</text>
+<text x="610.4" y="208.0" style="text-anchor:start" class="g-s">&#183; tersisa 63,6%</text>
+<text x="592" y="222.0" style="text-anchor:start" class="g-s">&#916;G tidak memenuhi ambang &#8722;6,5</text>
+<rect x="404" y="230" width="176" height="46" rx="3" fill="var(--institusi-samar)" stroke="var(--institusi)" stroke-width="1.8"/>
+<rect x="404" y="230" width="3" height="46" rx="1.5" fill="var(--institusi)" opacity="1"/>
+<text x="419" y="255" style="text-anchor:start" class="g-b" fill="var(--institusi)">7</text>
+<text x="419" y="269" style="text-anchor:start" class="g-s">lolos pose sekaligus ambang afinitas</text>
+<path d="M190 425.0 L358 425.0 L358 81.0 L395 81.0" fill="none" stroke="var(--institusi)" stroke-width="1.5"/>
+<path d="M395 77.0 l6 4 l-6 4 z" fill="var(--institusi)"/>
+<text x="352" y="415.0" style="text-anchor:end" class="g-t" fill="var(--institusi)">&#215; 5 reseptor</text>
+<text x="352" y="429.0" style="text-anchor:end" class="g-s">yang lolos kendali</text>
+<text x="14" y="478" style="text-anchor:start" class="g-s">Angka merah di kanan setiap anak panah adalah banyaknya yang gugur pada tahap itu, beserta alasannya.</text>
+<text x="14" y="492" style="text-anchor:start" class="g-s">Persentase menyatakan bagian yang tersisa terhadap tahap sebelumnya.</text>
+</svg></div>
+</section>
+<section class="slide" data-judul="Kendali dulu, hasil kemudian">
+<p class="mata">Hasil &middot; validasi</p><h2>Kendali dulu, hasil kemudian</h2>
+<div class="gbr"><svg viewBox="0 0 760 352" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Simpangan kendali re-docking setiap reseptor terhadap ambang 2 angstrom">
+<line x1="196.0" y1="42" x2="196.0" y2="262" stroke="var(--garis)" stroke-width="1"/>
+<text x="196.0" y="276" style="text-anchor:middle" class="g-s">0</text>
+<line x1="310.5" y1="42" x2="310.5" y2="262" stroke="var(--garis)" stroke-width="1"/>
+<text x="310.5" y="276" style="text-anchor:middle" class="g-s">1</text>
+<line x1="425.1" y1="42" x2="425.1" y2="262" stroke="var(--garis)" stroke-width="1"/>
+<text x="425.1" y="276" style="text-anchor:middle" class="g-s">2</text>
+<line x1="539.6" y1="42" x2="539.6" y2="262" stroke="var(--garis)" stroke-width="1"/>
+<text x="539.6" y="276" style="text-anchor:middle" class="g-s">3</text>
+<line x1="654.2" y1="42" x2="654.2" y2="262" stroke="var(--garis)" stroke-width="1"/>
+<text x="654.2" y="276" style="text-anchor:middle" class="g-s">4</text>
+<text x="448.0" y="292" style="text-anchor:middle" class="g-s">simpangan pose terbaik terhadap struktur kristal (&#197;)</text>
+<line x1="425.1" y1="36" x2="425.1" y2="262" stroke="var(--bad-ax)" stroke-width="1.5" stroke-dasharray="5 3"/>
+<text x="432.1" y="32" style="text-anchor:start" class="g-l" fill="var(--bad-ax)">ambang 2 &#197;</text>
+<text x="188" y="66" style="text-anchor:end" class="g-t">MIF</text>
+<text x="188" y="78" style="text-anchor:end" class="g-s">6B1K &#183; Vina</text>
+<rect x="196" y="52" width="28.6" height="20" rx="2" fill="var(--capai)" opacity=".85"/>
+<text x="232.6" y="66" style="text-anchor:start" class="g-n" fill="var(--capai)">0,25 &#197;</text>
+<text x="188" y="112" style="text-anchor:end" class="g-t">Neuraminidase N2</text>
+<text x="188" y="124" style="text-anchor:end" class="g-s">4K1K &#183; Vinardo</text>
+<rect x="196" y="98" width="24.1" height="20" rx="2" fill="var(--proses)" opacity=".85"/>
+<text x="228.1" y="112" style="text-anchor:start" class="g-n" fill="var(--proses)">0,21 &#197;</text>
+<text x="188" y="158" style="text-anchor:end" class="g-t">DPP4</text>
+<text x="188" y="170" style="text-anchor:end" class="g-s">4A5S &#183; Vina</text>
+<rect x="196" y="144" width="95.1" height="20" rx="2" fill="var(--capai)" opacity=".85"/>
+<text x="299.1" y="158" style="text-anchor:start" class="g-n" fill="var(--capai)">0,83 &#197;</text>
+<text x="188" y="204" style="text-anchor:end" class="g-t">MMP9</text>
+<text x="188" y="216" style="text-anchor:end" class="g-s">4XCT &#183; Vina</text>
+<rect x="196" y="190" width="108.8" height="20" rx="2" fill="var(--capai)" opacity=".85"/>
+<text x="312.8" y="204" style="text-anchor:start" class="g-n" fill="var(--capai)">0,95 &#197;</text>
+<text x="188" y="250" style="text-anchor:end" class="g-t">MMP2</text>
+<text x="188" y="262" style="text-anchor:end" class="g-s">8H78 &#183; Vina</text>
+<rect x="196" y="236" width="453.6" height="20" rx="2" fill="var(--proses)" opacity=".85"/>
+<text x="657.6" y="250" style="text-anchor:start" class="g-n" fill="var(--proses)">3,96 &#197;</text>
+<text x="20" y="304" style="text-anchor:start" class="g-s">MMP2 gagal karena ligan rujukannya sendiri terlalu besar (64 atom berat);</text>
+<text x="20" y="318" style="text-anchor:start" class="g-s">situsnya diselamatkan lewat uji pengganti koordinasi seng pada 2,08 &#197;.</text>
+<text x="20" y="332" style="text-anchor:start" class="g-s">Neuraminidase gagal di bawah Vina lalu lolos setelah dijalankan ulang penuh</text>
+<text x="20" y="346" style="text-anchor:start" class="g-s">dengan Vinardo. Empat reseptor lain tidak lolos kendali dan tidak dilaporkan.</text>
+</svg></div><p class="gket">Setiap reseptor diuji dengan menambatkan ulang ligan rujukannya. Lima dari sembilan lolos &mdash; hanya kelimanya yang hasilnya kita laporkan.</p>
+</section>
+<section class="slide" data-judul="Skor bagus belum tentu pose benar">
+<p class="mata">Hasil &middot; validasi</p><h2>Skor bagus belum tentu pose benar</h2>
+
+<div class="kartu tiga">
+ <div><b>20</b><span>memenuhi ambang afinitas</span><em>&Delta;G &#8804; &minus;6,5 kkal/mol</em></div>
+ <div><b>11</b><span>pose sahih</span><em>menempati kantong pengikatan yang benar</em></div>
+ <div><b class="baik">7</b><span>lolos keduanya</span><em>inilah yang dibawa ke tahap berikutnya</em></div>
+</div>
+<p class="tegas"><b class="buruk">13 pasangan</b> berskor memenuhi ambang tetapi posenya meleset dari kantong &mdash; seluruhnya akan lolos bila hanya skor yang diperiksa.</p>
+</section>
+<section class="slide" data-judul="Molekul besar hampir selalu menang pada skor">
+<p class="mata">Hasil &middot; penilaian</p><h2>Molekul besar hampir selalu menang pada skor</h2>
+<div class="gbr"><svg viewBox="0 0 760 378" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Afinitas docking dibandingkan efisiensi ligan untuk sebelas pasangan yang bertahan">
+<line x1="102.9" y1="40" x2="102.9" y2="286" stroke="var(--garis)" stroke-width="1"/>
+<line x1="167.8" y1="40" x2="167.8" y2="286" stroke="var(--garis)" stroke-width="1"/>
+<text x="167.8" y="304" style="text-anchor:middle" class="g-s">&#8722;9</text>
+<line x1="232.7" y1="40" x2="232.7" y2="286" stroke="var(--garis)" stroke-width="1"/>
+<line x1="297.6" y1="40" x2="297.6" y2="286" stroke="var(--garis)" stroke-width="1"/>
+<text x="297.6" y="304" style="text-anchor:middle" class="g-s">&#8722;8</text>
+<line x1="362.5" y1="40" x2="362.5" y2="286" stroke="var(--garis)" stroke-width="1"/>
+<line x1="427.4" y1="40" x2="427.4" y2="286" stroke="var(--garis)" stroke-width="1"/>
+<text x="427.4" y="304" style="text-anchor:middle" class="g-s">&#8722;7</text>
+<line x1="492.3" y1="40" x2="492.3" y2="286" stroke="var(--garis)" stroke-width="1"/>
+<line x1="557.2" y1="40" x2="557.2" y2="286" stroke="var(--garis)" stroke-width="1"/>
+<text x="557.2" y="304" style="text-anchor:middle" class="g-s">&#8722;6</text>
+<line x1="622.1" y1="40" x2="622.1" y2="286" stroke="var(--garis)" stroke-width="1"/>
+<line x1="687.0" y1="40" x2="687.0" y2="286" stroke="var(--garis)" stroke-width="1"/>
+<text x="687.0" y="304" style="text-anchor:middle" class="g-s">&#8722;5</text>
+<line x1="64" y1="263.6" x2="700" y2="263.6" stroke="var(--garis)" stroke-width="1"/>
+<text x="54" y="267.6" style="text-anchor:end" class="g-s">0,2</text>
+<line x1="64" y1="218.9" x2="700" y2="218.9" stroke="var(--garis)" stroke-width="1"/>
+<text x="54" y="222.9" style="text-anchor:end" class="g-s">0,3</text>
+<line x1="64" y1="174.2" x2="700" y2="174.2" stroke="var(--garis)" stroke-width="1"/>
+<text x="54" y="178.2" style="text-anchor:end" class="g-s">0,4</text>
+<line x1="64" y1="129.5" x2="700" y2="129.5" stroke="var(--garis)" stroke-width="1"/>
+<text x="54" y="133.5" style="text-anchor:end" class="g-s">0,5</text>
+<line x1="64" y1="84.7" x2="700" y2="84.7" stroke="var(--garis)" stroke-width="1"/>
+<text x="54" y="88.7" style="text-anchor:end" class="g-s">0,6</text>
+<line x1="64" y1="40.0" x2="700" y2="40.0" stroke="var(--garis)" stroke-width="1"/>
+<text x="54" y="44.0" style="text-anchor:end" class="g-s">0,7</text>
+<text x="382.0" y="322" style="text-anchor:middle" class="g-s">afinitas &#916;G (kkal/mol) &#8212; makin ke kiri makin kuat</text>
+<text x="18" y="163.0" style="text-anchor:middle" class="g-s" transform="rotate(-90 18 163.0)">efisiensi ligan (kkal/mol per atom berat)</text>
+<line x1="492.3" y1="26" x2="492.3" y2="286" stroke="var(--bad-ax)" stroke-width="1.5" stroke-dasharray="5 3"/>
+<text x="485.3" y="22" style="text-anchor:end" class="g-l" fill="var(--bad-ax)">ambang &#8722;6,5 (terkalibrasi untuk Vina)</text>
+<circle cx="121.1" cy="226.1" r="7.8" fill="var(--institusi)" opacity=".75"/>
+<text x="121.1" y="212.1" style="text-anchor:middle" class="g-t">MMP9 &#183; Forsythoside D</text>
+<circle cx="157.5" cy="230.1" r="7.8" fill="var(--institusi)" opacity=".75"/>
+<text x="157.5" y="250.1" style="text-anchor:middle" class="g-t">MMP2 &#183; Forsythoside D</text>
+<circle cx="340.5" cy="67.3" r="4.9" fill="var(--institusi)" opacity=".75"/>
+<text x="350.5" y="55.3" style="text-anchor:start" class="g-t">MIF &#183; p-Coumaric acid</text>
+<circle cx="378.1" cy="252.9" r="7.8" fill="var(--institusi)" opacity=".75"/>
+<text x="378.1" y="272.9" style="text-anchor:middle" class="g-t">MIF &#183; Forsythoside D</text>
+<circle cx="382.0" cy="100.4" r="5.0" fill="var(--institusi)" opacity=".75"/>
+<text x="392.0" y="104.4" style="text-anchor:start" class="g-t">MIF &#183; Caffeic acid</text>
+<circle cx="420.9" cy="127.7" r="5.2" fill="var(--institusi)" opacity=".75"/>
+<text x="430.9" y="131.7" style="text-anchor:start" class="g-t">MIF &#183; Salvianic acid A</text>
+<circle cx="484.5" cy="264.1" r="7.8" fill="none" stroke="var(--institusi)" stroke-width="1.8" stroke-dasharray="2.5 2"/>
+<text x="484.5" y="250.1" style="text-anchor:middle" class="g-t">NA &#183; Forsythoside D</text>
+<circle cx="526.1" cy="153.6" r="5.2" fill="var(--institusi)" opacity=".75"/>
+<text x="516.1" y="157.6" style="text-anchor:end" class="g-t">DPP4 &#183; Salvianic acid A</text>
+<circle cx="549.4" cy="235.5" r="6.4" fill="var(--institusi)" opacity=".75"/>
+<text x="539.4" y="227.5" style="text-anchor:end" class="g-t">MIF &#183; Glucogallin</text>
+<circle cx="635.1" cy="260.1" r="6.8" fill="none" stroke="var(--institusi)" stroke-width="1.8" stroke-dasharray="2.5 2"/>
+<text x="635.1" y="280.1" style="text-anchor:middle" class="g-t">NA &#183; Adoxosidic acid</text>
+<circle cx="654.6" cy="157.2" r="4.9" fill="var(--institusi)" opacity=".75"/>
+<text x="644.6" y="161.2" style="text-anchor:end" class="g-t">MIF &#183; Ascorbic acid</text>
+<text x="64" y="354" style="text-anchor:start" class="g-s">Luas lingkaran sebanding dengan jumlah atom berat. Lingkaran putus-putus dinilai Vinardo, sehingga tidak setara dengan yang dinilai Vina.</text>
+<text x="64" y="369" style="text-anchor:start" class="g-s">Forsythoside D (33 atom) menang pada &#916;G di tiga reseptor namun kalah pada efisiensi ligan &#8212; inilah bias ukuran itu.</text>
+</svg></div>
+</section>
+<section class="slide" data-judul="Jaringan menyusun antrean, docking yang memutuskan">
+<p class="mata">Temuan</p><h2>Jaringan menyusun antrean, docking yang memutuskan</h2>
+<div class="gbr"><svg viewBox="0 0 760 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Peringkat sentralitas jaringan dibandingkan jumlah pasangan yang bertahan">
+<text x="24" y="26" style="text-anchor:start" class="g-l">PERINGKAT SENTRALITAS JARINGAN</text>
+<text x="740" y="26" style="text-anchor:end" class="g-l">PASANGAN YANG BERTAHAN</text>
+<path d="M170 58 C300 58 300 104 430 104" fill="none" stroke="var(--proses)" stroke-width="3.4"/>
+<circle cx="170" cy="58" r="5" fill="var(--proses)"/>
+<circle cx="430" cy="104" r="5" fill="var(--proses)"/>
+<text x="158" y="62" style="text-anchor:end" class="g-t">1. MMP9</text>
+<text x="442" y="108" style="text-anchor:start" class="g-t">MMP9 &#183; 1</text>
+<path d="M170 104 C300 104 300 150 430 150" fill="none" stroke="var(--garis2)" stroke-width="1.6"/>
+<circle cx="170" cy="104" r="3.6" fill="var(--garis2)"/>
+<circle cx="430" cy="150" r="3.6" fill="var(--garis2)"/>
+<text x="158" y="108" style="text-anchor:end" class="g-t">2. MMP2</text>
+<text x="442" y="154" style="text-anchor:start" class="g-t">MMP2 &#183; 1</text>
+<path d="M170 150 C300 150 300 196 430 196" fill="none" stroke="var(--garis2)" stroke-width="1.6"/>
+<circle cx="170" cy="150" r="3.6" fill="var(--garis2)"/>
+<circle cx="430" cy="196" r="3.6" fill="var(--garis2)"/>
+<text x="158" y="154" style="text-anchor:end" class="g-t">3. DPP4</text>
+<text x="442" y="200" style="text-anchor:start" class="g-t">DPP4 &#183; 1</text>
+<path d="M170 196 C300 196 300 58 430 58" fill="none" stroke="var(--institusi)" stroke-width="3.4"/>
+<circle cx="170" cy="196" r="5" fill="var(--institusi)"/>
+<circle cx="430" cy="58" r="5" fill="var(--institusi)"/>
+<text x="158" y="200" style="text-anchor:end" class="g-t">4. MIF</text>
+<text x="442" y="62" style="text-anchor:start" class="g-t">MIF &#183; 6</text>
+<line x1="540" y1="46" x2="540" y2="210" stroke="var(--garis)" stroke-width="1"/>
+<text x="556" y="72" style="text-anchor:start" class="g-t">MIF paling buncit pada jaringan,</text>
+<text x="556" y="88" style="text-anchor:start" class="g-t">tetapi menyumbang enam dari</text>
+<text x="556" y="104" style="text-anchor:start" class="g-t">sebelas pasangan yang bertahan,</text>
+<text x="556" y="120" style="text-anchor:start" class="g-t">dengan efisiensi ligan tertinggi</text>
+<text x="556" y="136" style="text-anchor:start" class="g-t">pada seluruh studi.</text>
+<text x="556" y="162" style="text-anchor:start" class="g-t" fill="var(--proses)">MMP9 simpul terpadat</text>
+<text x="556" y="178" style="text-anchor:start" class="g-t" fill="var(--proses)">hanya menyumbang satu.</text>
+<text x="24" y="236" style="text-anchor:start" class="g-s">Sentralitas menjawab seberapa besar akibatnya bila protein terganggu; docking menjawab seberapa mungkin ia benar-benar dapat diganggu molekul kecil.</text>
+</svg></div><p class="gket">Inilah alasan kuantitatif bahwa perangkingan berbasis sentralitas baku perlu diganti &mdash; dan itulah kebaruan yang dijanjikan usulan.</p>
+</section>
+<section class="slide" data-judul="Tiga kompleks dibawa ke dinamika molekuler">
+<p class="mata">Hasil &middot; simulasi</p><h2>Tiga kompleks dibawa ke dinamika molekuler</h2>
+
+<table class="tbl">
+ <thead><tr><th>Senyawa</th><th>Reseptor</th><th>Jenis sasaran</th><th class="n">&Delta;G</th><th class="n">LE</th><th>Dasar pemilihan</th></tr></thead>
+ <tbody>
+  <tr><td><i>p</i>-Coumaric acid</td><td>MIF</td><td>inang non-logam</td><td class="n">&minus;7,67</td><td class="n">0,639</td><td>efisiensi ligan tertinggi di seluruh studi</td></tr>
+  <tr><td>Forsythoside D</td><td>MMP9</td><td>metaloprotein inang</td><td class="n">&minus;9,36</td><td class="n">0,284</td><td>pose terbaik; seng terkunci pada 2,21 &Aring;</td></tr>
+  <tr><td>Adoxosidic acid</td><td>Neuraminidase</td><td>protein virus</td><td class="n">&minus;5,40</td><td class="n">0,208</td><td>11 dari 13 kontak kanonik ditiru</td></tr>
+ </tbody>
+</table>
+<p class="tegas">Dipilih menurut <b>hasil validasi pose</b>, bukan skor mentah &mdash; satu kompleks untuk tiap jenis sasaran.</p>
+</section>
+<section class="slide" data-judul="Simulasi belum menghasilkan lintasan">
+<p class="mata">Hasil &middot; simulasi</p><h2>Simulasi belum menghasilkan lintasan</h2>
+
+<div class="duakolom">
+ <div>
+  <h3>Yang sudah dikerjakan</h3>
+  <ul>
+   <li>Tiga sistem dibangun lokal dengan AmberTools</li>
+   <li>33 atom rantai samping yang hilang dilengkapi</li>
+   <li>Enam putaran perbaikan protokol terdokumentasi</li>
+   <li>Neuraminidase dipangkas dari 101.042 menjadi 35.000 atom</li>
+  </ul>
+ </div>
+ <div>
+  <h3>Yang menahan</h3>
+  <ul>
+   <li>Enam protokol penyetimbangan berakhir dengan divergensi numerik</li>
+   <li>Dua di antaranya gagal setelah lima dan tujuh jam berjalan</li>
+   <li>Penyebab terakhir justru pada rancangan mode latihannya sendiri</li>
+   <li>Protokol terbaru menunggu pengujian pertama</li>
+  </ul>
+ </div>
+</div>
+<p class="tegas">Inilah <b class="buruk">penghambat utama</b> luaran Scopus kedua, dan karena itu ditempatkan sebagai prioritas.</p>
+</section>
+<section class="slide" data-judul="Status luaran">
+<p class="mata">Luaran</p><h2>Status luaran</h2>
+
+<table class="tbl">
+ <thead><tr><th>Luaran</th><th>Rencana pada usulan</th><th>Keadaan sekarang</th><th>Status</th></tr></thead>
+ <tbody>
+  <tr><td>Scopus &mdash; pertama</td><td><i>System and Soft Computing</i> (Q3)</td><td>Terbit pada <i>Journal of Applied Data Sciences</i> Vol.&nbsp;7 No.&nbsp;3 (2026)</td><td><span class="pil baik">Tercapai</span></td></tr>
+  <tr><td>Scopus &mdash; kedua</td><td><i>IJIES</i> (Q2)</td><td>Menunggu penyelesaian dinamika molekuler</td><td><span class="pil jalan">Berproses</span></td></tr>
+  <tr><td>Sinta 2</td><td>CAUCHY</td><td>Belum diputuskan</td><td><span class="pil sepi">Belum</span></td></tr>
+  <tr><td>Sinta 1</td><td>Jambura</td><td>Direncanakan tahun kedua</td><td><span class="pil sepi">Belum</span></td></tr>
+  <tr><td>Kekayaan intelektual</td><td>Paten sederhana perangkat lunak</td><td>Direncanakan tahun kedua</td><td><span class="pil sepi">Belum</span></td></tr>
+ </tbody>
+</table>
+<p class="tegas">Jurnal sasaran pertama berubah karena biaya pemuatannya terlalu tinggi. <b>Substansinya tetap terpenuhi</b> &mdash; jurnal internasional terindeks Scopus.</p>
+</section>
+<section class="slide" data-judul="Satu pekerjaan tahun pertama yang tertunda">
+<p class="mata">Yang tertunda</p><h2>Satu pekerjaan tahun pertama yang tertunda</h2>
+
+<div class="sorot">
+ <p class="besar">Tahap 6 bagian <b>B</b> &mdash; pengembangan metode perangkingan protein</p>
+ <p>Bagian A, konstruksi jaringan, sudah selesai. Bagian C baru sebagian: protein inti yang diperoleh empat, bukan lima. <b>Bagian B belum dikerjakan sama sekali</b> &mdash; padahal justru di situ letak kebaruan yang dijanjikan usulan.</p>
+</div>
+<div class="duakolom rapat">
+ <div><h3>Kabar baiknya: bahannya sudah ada</h3><p>Kelima tetangga yang tertarik ke jaringan seluruhnya berkerabat metaloproteinase &mdash; sentralitas di sini sebagian mengukur kelengkapan anotasi, bukan kepentingan biologis.</p></div>
+ <div><h3>Dan docking membalikkannya</h3><p>MMP9 sang simpul terpadat hanya menyumbang satu pasangan; MIF yang paling buncit menyumbang enam. Keduanya bukti kuantitatif bahwa cara lama tidak memadai.</p></div>
+</div>
+</section>
+<section class="slide" data-judul="Rencana tahapan selanjutnya">
+<p class="mata">Rencana</p><h2>Rencana tahapan selanjutnya</h2>
+<div class="gbr"><svg viewBox="0 0 760 376" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Usulan jadwal sepuluh pekerjaan berikutnya selama enam minggu">
+<line x1="286.0" y1="38" x2="286.0" y2="304" stroke="var(--garis)" stroke-width="1"/>
+<text x="322.2" y="32" style="text-anchor:middle" class="g-l">MINGGU 1</text>
+<line x1="358.3" y1="38" x2="358.3" y2="304" stroke="var(--garis)" stroke-width="1"/>
+<text x="394.5" y="32" style="text-anchor:middle" class="g-l">MINGGU 2</text>
+<line x1="430.7" y1="38" x2="430.7" y2="304" stroke="var(--garis)" stroke-width="1"/>
+<text x="466.8" y="32" style="text-anchor:middle" class="g-l">MINGGU 3</text>
+<line x1="503.0" y1="38" x2="503.0" y2="304" stroke="var(--garis)" stroke-width="1"/>
+<text x="539.2" y="32" style="text-anchor:middle" class="g-l">MINGGU 4</text>
+<line x1="575.3" y1="38" x2="575.3" y2="304" stroke="var(--garis)" stroke-width="1"/>
+<text x="611.5" y="32" style="text-anchor:middle" class="g-l">MINGGU 5</text>
+<line x1="647.7" y1="38" x2="647.7" y2="304" stroke="var(--garis)" stroke-width="1"/>
+<text x="683.8" y="32" style="text-anchor:middle" class="g-l">MINGGU 6</text>
+<line x1="720.0" y1="38" x2="720.0" y2="304" stroke="var(--garis)" stroke-width="1"/>
+<rect x="286" y="51" width="434" height="23" fill="var(--lembar2)" opacity=".6"/>
+<text x="276" y="66" style="text-anchor:end" class="g-t">1. Metode perangkingan protein &#8212; tahap 6</text>
+<rect x="286.0" y="54" width="144.7" height="17" rx="2.5" fill="var(--institusi)" opacity=".82"/>
+<text x="276" y="91" style="text-anchor:end" class="g-t">2. Siapkan ulang sistem neuraminidase</text>
+<rect x="286.0" y="79" width="18.1" height="17" rx="2.5" fill="var(--institusi)" opacity=".82"/>
+<rect x="286" y="101" width="434" height="23" fill="var(--lembar2)" opacity=".6"/>
+<text x="276" y="116" style="text-anchor:end" class="g-t">3. Kendali Vinardo untuk endonuklease PA</text>
+<rect x="304.1" y="104" width="18.1" height="17" rx="2.5" fill="var(--institusi)" opacity=".82"/>
+<text x="276" y="141" style="text-anchor:end" class="g-t">4. Uji protokol penyetimbangan dengan mode latihan</text>
+<rect x="322.2" y="129" width="18.1" height="17" rx="2.5" fill="var(--institusi)" opacity=".82"/>
+<rect x="286" y="151" width="434" height="23" fill="var(--lembar2)" opacity=".6"/>
+<text x="276" y="166" style="text-anchor:end" class="g-t">5. Draf naskah tahun pertama sampai jaringan PPI</text>
+<rect x="358.3" y="154" width="144.7" height="17" rx="2.5" fill="var(--institusi)" opacity=".82"/>
+<text x="276" y="191" style="text-anchor:end" class="g-t">6. Lengkapi protein inti menjadi lima</text>
+<rect x="358.3" y="179" width="57.9" height="17" rx="2.5" fill="var(--institusi)" opacity=".82"/>
+<rect x="286" y="201" width="434" height="23" fill="var(--lembar2)" opacity=".6"/>
+<text x="276" y="216" style="text-anchor:end" class="g-t">7. Validasi kandidat terhadap literatur fitokimia</text>
+<rect x="430.7" y="204" width="72.3" height="17" rx="2.5" fill="var(--institusi)" opacity=".82"/>
+<text x="276" y="241" style="text-anchor:end" class="g-t">8. Lintasan produksi MD dan analisis kestabilan</text>
+<rect x="358.3" y="229" width="217.0" height="17" rx="2.5" fill="var(--institusi)" opacity=".82"/>
+<rect x="286" y="251" width="434" height="23" fill="var(--lembar2)" opacity=".6"/>
+<text x="276" y="266" style="text-anchor:end" class="g-t">9. Keputusan kelanjutan optimasi metaheuristik</text>
+<rect x="474.1" y="254" width="21.7" height="17" rx="2.5" fill="var(--institusi)" opacity=".82"/>
+<text x="276" y="291" style="text-anchor:end" class="g-t">10. Uji penghambatan enzim skala terbatas</text>
+<rect x="503.0" y="279" width="217.0" height="17" rx="2.5" fill="none" stroke="var(--samar)" stroke-width="1.4" stroke-dasharray="4 3"/>
+<line x1="286" y1="304" x2="720" y2="304" stroke="var(--garis2)" stroke-width="1"/>
+<path d="M575.3 320 L720.0 320" stroke="var(--capai)" stroke-width="2.4"/>
+<path d="M575.3 315 l0 10 M720.0 315 l0 10" stroke="var(--capai)" stroke-width="2.4"/>
+<text x="276" y="324" style="text-anchor:end" class="g-t" fill="var(--capai)">Naskah kedua siap dikirim</text>
+<text x="24" y="350" style="text-anchor:start" class="g-s">Jadwal ini bersifat usulan, dihitung sejak pekerjaan nomor satu dimulai. Butir 10 digambar putus-putus karena pelaksanaannya masih menunggu keputusan tim.</text>
+<text x="24" y="366" style="text-anchor:start" class="g-s">Butir 1 sampai 4 tidak menunggu komputasi panjang; butir 8 adalah penentu bagi luaran Scopus kedua.</text>
+</svg></div>
+</section>
+<section class="slide" data-judul="Dua naskah, dua pertanyaan berbeda">
+<p class="mata">Rencana luaran</p><h2>Dua naskah, dua pertanyaan berbeda</h2>
+
+<div class="duakolom">
+ <div class="kotak">
+  <p class="mata2">Naskah pertama</p><h3>Antivirus H9N2</h3>
+  <p>Sasaran: neuraminidase dan endonuklease PA &mdash; protein virus. Klaim: kandidat antivirus, sesuai judul penelitian.</p>
+  <p class="nilai">Kekuatan bukti <b>sedang</b> &mdash; efisiensi ligan 0,208; kedua sasaran berstatus pencarian saja.</p>
+ </div>
+ <div class="kotak">
+  <p class="mata2">Naskah kedua</p><h3>Imunomodulator berbasis inang</h3>
+  <p>Sasaran: MIF, MMP9, MMP2, DPP4 &mdash; protein manusia. Klaim: kandidat pendamping, bukan antivirus.</p>
+  <p class="nilai">Kekuatan bukti <b class="baik">kuat</b> &mdash; efisiensi ligan 0,639; MIF tervalidasi penuh pada 0,25 &Aring;.</p>
+ </div>
+</div>
+<p class="tegas">Bukan memecah satu hasil menjadi dua, melainkan <b>dua pertanyaan berbeda yang kebetulan dijawab satu kampanye komputasi</b>. Menempatkan protein inang di bawah kata &ldquo;antivirus&rdquo; akan ditanyakan penelaah pada paragraf pertama.</p>
+</section>
+<section class="slide tutup" data-judul="Penutup">
+ <p class="mata">Ringkasnya</p>
+ <h2>Tahun pertama hampir tuntas, tahun kedua sudah berjalan</h2>
+ <ul class="poin">
+  <li>Lima dari enam tahap tahun pertama selesai; tersisa metode perangkingan protein</li>
+  <li>Tiga tahap tahun kedua terselesaikan mendahului jadwal, seluruhnya berkendali</li>
+  <li>Satu dari dua luaran Scopus tercapai; yang kedua menunggu dinamika molekuler</li>
+  <li>Enam kendala tercatat &mdash; empat tertangani, dua sedang ditangani</li>
+ </ul>
+ <div class="tautan">
+  <p class="mata2">Laporan lengkap dan berkas hasil</p>
+  <p><span>jamhuri-tech.github.io/h9n2-fase2-poster</span></p>
+  <p><span>github.com/jamhuri-tech/h9n2-fase2-hasil</span></p>
+ </div>
+</section>
+
+</div></div>
+
+<button id="maju" aria-label="Slide berikutnya"></button>
+<div id="lajur"></div>
+<div id="kendali">
+  <button id="prev" title="Sebelumnya (&larr;)">&#8249;</button>
+  <span id="hitung">1 / 1</span>
+  <button id="next" title="Berikutnya (&rarr;)">&#8250;</button>
+  <button id="indeks" title="Daftar slide (D)">daftar</button>
+  <button id="penuh" title="Layar penuh (F)">layar penuh</button>
+</div>
+<div id="daftar" role="dialog" aria-label="Daftar slide"><h4>Daftar slide &mdash; tekan Esc untuk menutup</h4><ol id="daftarisi"></ol></div>
+
+<script>
+(function(){
+  var dek=document.getElementById('dek'),
+      slide=[].slice.call(dek.querySelectorAll('.slide')),
+      n=slide.length, i=0,
+      hitung=document.getElementById('hitung'),
+      lajur=document.getElementById('lajur'),
+      daftar=document.getElementById('daftar'),
+      daftarisi=document.getElementById('daftarisi'),
+      kendali=document.getElementById('kendali'),
+      jeda;
+
+  function skala(){
+    var m = document.fullscreenElement ? 0 : 28;
+    var k = Math.min((innerWidth-m)/1280, (innerHeight-m)/720);
+    dek.style.transform = 'scale('+k+')';
+  }
+  function tampil(k,sorot){
+    i = Math.max(0, Math.min(n-1, k));
+    slide.forEach(function(s,j){ s.classList.toggle('aktif', j===i); });
+    hitung.textContent = (i+1)+' / '+n;
+    lajur.style.width = ((i+1)/n*100)+'%';
+    if(location.hash!=='#'+(i+1)) history.replaceState(null,'','#'+(i+1));
+    [].forEach.call(daftarisi.querySelectorAll('button'),function(b,j){
+      b.classList.toggle('kini', j===i);
+    });
+  }
+  slide.forEach(function(s,j){
+    var li=document.createElement('li'), b=document.createElement('button');
+    b.innerHTML='<span>'+(j+1)+'</span>'+(s.dataset.judul||'Slide '+(j+1));
+    b.onclick=function(){ tutupDaftar(); tampil(j); };
+    li.appendChild(b); daftarisi.appendChild(li);
+  });
+  function bukaDaftar(){ daftar.classList.add('buka');
+    var b=daftarisi.querySelectorAll('button')[i]; if(b) b.focus(); }
+  function tutupDaftar(){ daftar.classList.remove('buka'); }
+
+  document.getElementById('next').onclick=function(e){e.stopPropagation();tampil(i+1);};
+  document.getElementById('prev').onclick=function(e){e.stopPropagation();tampil(i-1);};
+  document.getElementById('indeks').onclick=function(e){e.stopPropagation();
+    daftar.classList.contains('buka')?tutupDaftar():bukaDaftar();};
+  document.getElementById('penuh').onclick=function(e){e.stopPropagation();penuh();};
+  document.getElementById('maju').onclick=function(){ tampil(i+1); };
+
+  function penuh(){
+    if(document.fullscreenElement) document.exitFullscreen();
+    else document.documentElement.requestFullscreen().catch(function(){});
+  }
+  document.addEventListener('fullscreenchange',skala);
+
+  addEventListener('keydown',function(e){
+    var k=e.key;
+    if(k==='Escape'){ if(daftar.classList.contains('buka')){tutupDaftar();e.preventDefault();} return; }
+    if(daftar.classList.contains('buka') && k!=='d' && k!=='D') return;
+    if(k==='ArrowRight'||k==='PageDown'||k===' '||k==='Enter'){ tampil(i+1); e.preventDefault(); }
+    else if(k==='ArrowLeft'||k==='PageUp'||k==='Backspace'){ tampil(i-1); e.preventDefault(); }
+    else if(k==='Home'){ tampil(0); e.preventDefault(); }
+    else if(k==='End'){ tampil(n-1); e.preventDefault(); }
+    else if(k==='f'||k==='F'){ penuh(); e.preventDefault(); }
+    else if(k==='d'||k==='D'){ daftar.classList.contains('buka')?tutupDaftar():bukaDaftar(); e.preventDefault(); }
+  });
+
+  addEventListener('resize',skala);
+  addEventListener('mousemove',function(){
+    kendali.classList.remove('sepi'); clearTimeout(jeda);
+    jeda=setTimeout(function(){kendali.classList.add('sepi');},2600);
+  });
+
+  var awal=parseInt((location.hash||'').slice(1),10);
+  skala(); tampil(isFinite(awal)&&awal>0?awal-1:0);
+  jeda=setTimeout(function(){kendali.classList.add('sepi');},2600);
+})();
+</script>
