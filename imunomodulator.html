@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Naskah Imunomodulator &mdash; Berkas Bukti</title>
+<meta name="description" content="Bukti yang sudah di tangan untuk naskah Scopus kedua: empat protein imunomodulator, draf landasan biologis, dan rencana kuota.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Naskah Imunomodulator &mdash; Berkas Bukti">
+<meta property="og:description" content="Bukti yang sudah di tangan untuk naskah Scopus kedua: empat protein imunomodulator, draf landasan biologis, dan rencana kuota.">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+<style>
+:root{
+  --ground:#F3F4F8; --surface:#FFFFFF; --surface-2:#EBEDF4;
+  --ink:#161A26; --ink-soft:#3D4457; --muted:#5A6076;
+  --border:#DCDFEA; --border-strong:#C3C8D9;
+  --accent:#274CA8; --accent-soft:#E4E9F7;
+  --s1:#274CA8; --s2:#B3651A;
+  --bad:#B3402C; --bad-soft:#F8E7E3;
+  --good:#3F7A4F; --good-soft:#E5F0E7;
+  --warn:#8F6314; --warn-soft:#F6EDDB;
+  --shadow:0 1px 2px rgba(22,26,38,.05), 0 8px 24px -12px rgba(22,26,38,.16);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --ground:#101219; --surface:#181B25; --surface-2:#1F2330;
+  --ink:#E8EAF3; --ink-soft:#C3C8DA; --muted:#959BB1;
+  --border:#2A2F3E; --border-strong:#3A4054;
+  --accent:#8AA4F0; --accent-soft:#1E2740;
+  --s1:#6E8BE0; --s2:#C4813C;
+  --bad:#E58A74; --bad-soft:#33201C;
+  --good:#79C08D; --good-soft:#1B2A20;
+  --warn:#D6A648; --warn-soft:#2B2417;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+}}
+:root[data-theme="dark"]{
+  --ground:#101219; --surface:#181B25; --surface-2:#1F2330;
+  --ink:#E8EAF3; --ink-soft:#C3C8DA; --muted:#959BB1;
+  --border:#2A2F3E; --border-strong:#3A4054;
+  --accent:#8AA4F0; --accent-soft:#1E2740;
+  --s1:#6E8BE0; --s2:#C4813C;
+  --bad:#E58A74; --bad-soft:#33201C;
+  --good:#79C08D; --good-soft:#1B2A20;
+  --warn:#D6A648; --warn-soft:#2B2417;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);
+  font-family:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1020px;margin:0 auto;padding:0 24px 96px}
+.masthead{padding:56px 0 32px;border-bottom:1px solid var(--border);
+  display:flex;flex-direction:column;gap:16px}
+.eyebrow{font-family:"JetBrains Mono",monospace;font-size:11.5px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  display:flex;flex-wrap:wrap;gap:8px 16px}
+.eyebrow b{color:var(--accent);font-weight:700}
+h1{font-family:"Fraunces",Georgia,serif;font-optical-sizing:auto;font-weight:600;
+  font-size:clamp(2rem,5vw,3rem);line-height:1.08;letter-spacing:-.018em;
+  text-wrap:balance;margin:0}
+.standfirst{max-width:62ch;margin:0;font-size:1.075rem;color:var(--ink-soft)}
+.byline{font-size:13.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 18px}
+section{padding-top:54px}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:10px}
+.sec-num{font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;
+  letter-spacing:.08em;color:var(--accent);padding-top:.45em;flex:none}
+h2{font-family:"Fraunces",Georgia,serif;font-weight:600;
+  font-size:clamp(1.4rem,3vw,1.8rem);line-height:1.18;letter-spacing:-.014em;
+  margin:0;text-wrap:balance}
+h3{font-weight:600;font-size:1.04rem;margin:34px 0 8px}
+p{max-width:66ch;margin:0 0 14px}
+ul,ol{max-width:66ch;padding-left:1.15em;margin:0 0 14px}
+li{margin-bottom:7px}
+a{color:var(--accent);text-underline-offset:2px}
+strong{font-weight:600}
+.sp{font-style:italic}
+code{font-family:"JetBrains Mono",monospace;font-size:.855em;
+  background:var(--surface-2);border:1px solid var(--border);
+  border-radius:4px;padding:.1em .34em;word-break:break-all}
+.kecil{font-size:13.6px;line-height:1.55;color:var(--muted)}
+.kecil a{color:var(--accent)}
+.lede{font-size:1.03rem;color:var(--ink-soft);max-width:64ch}
+.verdict{display:grid;grid-template-columns:repeat(auto-fit,minmax(172px,1fr));
+  gap:1px;background:var(--border);border:1px solid var(--border);
+  border-radius:10px;overflow:hidden;margin:34px 0 8px;box-shadow:var(--shadow)}
+.stat{background:var(--surface);padding:18px 20px;display:flex;flex-direction:column;gap:5px}
+.stat .k{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--muted)}
+.stat .v{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums;
+  font-size:1.55rem;font-weight:700;line-height:1.1;letter-spacing:-.02em}
+.stat .n{font-size:13px;color:var(--muted);line-height:1.4}
+.v-acc{color:var(--accent)} .v-good{color:var(--good)} .v-warn{color:var(--warn)}
+.isi{margin:40px 0 0;padding:26px 28px 24px;background:var(--surface);border:1px solid var(--border);
+  border-radius:11px;box-shadow:var(--shadow)}
+.isi>h2{font-family:"JetBrains Mono",monospace;font-size:10.5px;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);margin:0 0 18px}
+.isikol{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:22px 30px}
+.isi h3{font-family:"JetBrains Mono",monospace;font-size:10.5px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--accent);margin:0 0 9px;display:flex;flex-direction:column;gap:3px}
+.isi h3 em{font-family:"Fraunces",Georgia,serif;font-style:normal;font-size:1.02rem;font-weight:600;
+  letter-spacing:-.01em;text-transform:none;color:var(--ink)}
+.isi ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px}
+.isi li{margin:0}
+.isi a{display:flex;gap:9px;font-size:14.4px;line-height:1.42;color:var(--ink-soft);text-decoration:none}
+.isi a:hover,.isi a:focus-visible{color:var(--accent)}
+.isi a span{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--muted);padding-top:.25em;flex:none}
+.babak{margin:74px 0 6px;padding:26px 0 22px;border-top:2px solid var(--ink);
+  border-bottom:1px solid var(--border)}
+.bnum{display:block;font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:9px}
+h2.bjud{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:clamp(1.7rem,4vw,2.3rem);
+  line-height:1.1;letter-spacing:-.018em;margin:0 0 10px}
+.babak p{margin:0;max-width:58ch;color:var(--ink-soft);font-size:1.02rem}
+.babak + section{padding-top:34px}
+.scroll{overflow-x:auto;margin:20px 0 22px;border:1px solid var(--border);
+  border-radius:9px;background:var(--surface);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:14.2px}
+caption{caption-side:top;text-align:left;padding:13px 16px 12px;font-size:12.5px;
+  color:var(--muted);border-bottom:1px solid var(--border);background:var(--surface-2)}
+th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+thead th{font-family:"JetBrains Mono",monospace;font-size:10.5px;font-weight:700;
+  letter-spacing:.075em;text-transform:uppercase;color:var(--muted);
+  white-space:nowrap;background:var(--surface-2)}
+tbody tr:last-child td{border-bottom:none}
+td.num,th.num{text-align:right;font-family:"JetBrains Mono",monospace;
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+.tag{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:10.5px;
+  font-weight:700;letter-spacing:.06em;padding:2px 7px;border-radius:4px;white-space:nowrap}
+.t-good{background:var(--good-soft);color:var(--good)}
+.t-warn{background:var(--warn-soft);color:var(--warn)}
+.t-bad{background:var(--bad-soft);color:var(--bad)}
+.t-mut{background:var(--surface-2);color:var(--muted)}
+.note{border-left:3px solid var(--accent);background:var(--accent-soft);
+  padding:16px 20px;border-radius:0 8px 8px 0;margin:22px 0}
+.note.bad{border-left-color:var(--bad);background:var(--bad-soft)}
+.note.warn{border-left-color:var(--warn);background:var(--warn-soft)}
+.note .nh{font-family:"JetBrains Mono",monospace;font-size:10.5px;font-weight:700;
+  letter-spacing:.11em;text-transform:uppercase;color:var(--accent);margin-bottom:7px}
+.note.bad .nh{color:var(--bad)} .note.warn .nh{color:var(--warn)}
+.note p{margin:0 0 9px;max-width:64ch} .note p:last-child{margin-bottom:0}
+.fig{background:var(--surface);border:1px solid var(--border);border-radius:10px;
+  padding:22px 20px 16px;margin:24px 0;box-shadow:var(--shadow);overflow-x:auto}
+.fig h4{margin:0 0 4px;font-size:.98rem;font-weight:600}
+.fig .sub{margin:0 0 16px;font-size:13.5px;color:var(--muted);max-width:70ch}
+svg{display:block;min-width:640px}
+.hx{font-family:"JetBrains Mono",monospace;font-size:10.5px;font-weight:700;
+  fill:var(--muted);text-anchor:middle;letter-spacing:.04em}
+.hs{font-size:11px;text-anchor:middle}
+.hy{font-size:12.5px;fill:var(--ink-soft);text-anchor:end}
+.cellv{font-family:"JetBrains Mono",monospace;font-size:11px;
+  fill:var(--ink);text-anchor:middle;font-variant-numeric:tabular-nums}
+.cellv.strong{fill:#fff;font-weight:700}
+.cap{font-size:11.5px;fill:var(--muted)}
+.grid{stroke:var(--border);stroke-width:1}
+.thr{stroke:var(--good);stroke-width:1.5;stroke-dasharray:4 3}
+.thrl{font-size:11px;fill:var(--good);font-weight:600}
+.ax{font-family:"JetBrains Mono",monospace;font-size:10.5px;fill:var(--muted);text-anchor:middle}
+.conn{stroke:var(--border-strong);stroke-width:2}
+.d1{fill:var(--s1);stroke:var(--surface);stroke-width:2}
+.d2{fill:var(--s2);stroke:var(--surface);stroke-width:2}
+.val{font-family:"JetBrains Mono",monospace;font-size:11.5px;font-weight:700;
+  font-variant-numeric:tabular-nums}
+.val.good{fill:var(--good)} .val.bad{fill:var(--bad)}
+.lg{font-size:12px;fill:var(--ink-soft)}
+.anot{font-family:"Instrument Sans",sans-serif;font-size:11.5px;font-weight:600}
+.anot2{font-family:"Instrument Sans",sans-serif;font-size:10.5px}
+.axl{font-family:"JetBrains Mono",monospace;font-size:10.5px;fill:var(--muted)}
+.eq{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;
+  padding:16px 20px;margin:18px 0;overflow-x:auto}
+.eq math{font-size:1.12rem;color:var(--ink)}
+.eq math[display="block"]{margin:0 auto}
+.eqket{margin:12px 0 0;font-size:12.8px;color:var(--muted);line-height:1.6;
+  max-width:70ch;text-align:left}
+.eqket math{font-size:1em}
+p math, td math, dd math{font-size:1.04em}
+mtable{border-spacing:0.35em 0.25em}
+footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--border);
+  font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 20px}
+@media (max-width:620px){.wrap{padding:0 18px 72px}.masthead{padding:40px 0 26px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap">
+<header class="masthead">
+  <div class="eyebrow"><span>Penelitian BIMA 2026</span><span>Berkas bukti</span><span><b>Naskah kedua</b></span></div>
+  <h1>Empat protein imunomodulator</h1>
+  <p class="standfirst">Bukti yang sudah di tangan untuk naskah Scopus kedua, apa yang masih kurang, dan mengapa keduanya muat dalam kuota yang sama.</p>
+  <div class="byline"><span><a href="./">&larr; Poster</a></span><span><a href="laporan.html">Laporan lengkap</a></span><span>Usulan Dr. Siti Amiroch, 27 Agustus 2026</span><span>disusun 28 Agustus 2026</span></div>
+</header>
+
+<div class="verdict">
+  <div class="stat"><span class="k">Pasangan jalur inang</span><span class="v v-acc">9 / 11</span><span class="n">dari seluruh pasangan yang bertahan</span></div>
+  <div class="stat"><span class="k">Reseptor tervalidasi</span><span class="v v-good">3 / 4</span><span class="n">MIF, MMP9, DPP4 lolos kendali redocking</span></div>
+  <div class="stat"><span class="k">Efisiensi ligan tertinggi</span><span class="v v-good">0,639</span><span class="n">asam p-kumarat pada MIF</span></div>
+  <div class="stat"><span class="k">Senyawa terlibat</span><span class="v v-acc">6</span><span class="n">seluruhnya lolos ADMET inhalasi</span></div>
+</div>
+
+<section>
+ <div class="sec-head"><span class="sec-num">1</span><h2>Kenapa harus naskah terpisah</h2></div>
+ <p class="lede">Bukan karena datanya lemah &mdash; justru sebaliknya. Karena klaimnya berbeda.</p>
+ <p>MIF, MMP9, MMP2, dan DPP4 seluruhnya protein manusia. Menghambatnya tidak menghentikan virus memperbanyak diri; yang berubah adalah respons imun inang terhadap infeksi. Menyebutnya antivirus akan ditanyakan penelaah di paragraf pertama.</p>
+ <p>Istilah <strong>imunomodulator</strong> yang diusulkan ketua tim lebih tepat daripada &ldquo;terapi berbasis inang&rdquo; yang sempat saya pakai: ia menyebut mekanismenya, bukan sekadar menyebut sasarannya bukan virus.</p>
+ <div class="note"><div class="nh">Perbandingan kekuatan bukti</div>
+  <p>Sembilan dari sebelas pasangan yang bertahan berada di jalur inang. Hanya dua di jalur virus, dan keduanya pada reseptor yang berstatus &ldquo;pencarian saja&rdquo;.</p>
+  <p>Jadi naskah antivirus dibangun di atas separuh bukti yang lebih lemah &mdash; itu pilihan sadar demi keabsahan klaim. Separuh yang lebih kuat tidak dibuang, melainkan diberi rumahnya sendiri.</p></div>
+</section>
+
+<section>
+ <div class="sec-head"><span class="sec-num">2</span><h2>Bukti yang sudah di tangan</h2></div>
+ <p class="lede">Seluruhnya sudah terhitung. Tidak ada komputasi docking baru yang diperlukan.</p>
+ <div class="scroll"><table>
+  <caption>Sembilan pasangan jalur inang yang lolos pemeriksaan pose, diurutkan efisiensi ligan.</caption>
+  <thead><tr><th>Reseptor</th><th>Ligan</th><th class="num">&Delta;G</th><th class="num">Atom</th><th class="num">LE</th><th class="num">Recall</th><th class="num">Jaccard</th></tr></thead>
+  <tbody><tr><td><strong>MIF</strong><span class="sp"> 6B1K</span></td><td>p-Coumaric acid</td><td class="num">-7.67</td><td class="num">12</td><td class="num"><b>0.639</b></td><td class="num">0.92</td><td class="num">0.92</td></tr><tr><td><strong>MIF</strong><span class="sp"> 6B1K</span></td><td>Caffeic acid</td><td class="num">-7.35</td><td class="num">13</td><td class="num"><b>0.565</b></td><td class="num">0.92</td><td class="num">0.85</td></tr><tr><td><strong>MIF</strong><span class="sp"> 6B1K</span></td><td>Salvianic acid A</td><td class="num">-7.05</td><td class="num">14</td><td class="num"><b>0.504</b></td><td class="num">0.92</td><td class="num">0.85</td></tr><tr><td><strong>DPP4</strong><span class="sp"> 4A5S</span></td><td>Salvianic acid A</td><td class="num">-6.24</td><td class="num">14</td><td class="num"><b>0.446</b></td><td class="num">0.62</td><td class="num">0.56</td></tr><tr><td><strong>MIF</strong><span class="sp"> 6B1K</span></td><td>Ascorbic acid</td><td class="num">-5.25</td><td class="num">12</td><td class="num"><b>0.438</b></td><td class="num">0.67</td><td class="num">0.62</td></tr><tr><td><strong>MMP9</strong><span class="sp"> 4XCT</span></td><td>Forsythoside D</td><td class="num">-9.36</td><td class="num">33</td><td class="num"><b>0.284</b></td><td class="num">0.94</td><td class="num">0.94</td></tr><tr><td><strong>MMP2</strong><span class="sp"> 8H78</span></td><td>Forsythoside D</td><td class="num">-9.08</td><td class="num">33</td><td class="num"><b>0.275</b></td><td class="num">0.71</td><td class="num">0.71</td></tr><tr><td><strong>MIF</strong><span class="sp"> 6B1K</span></td><td>Glucogallin</td><td class="num">-6.06</td><td class="num">23</td><td class="num"><b>0.263</b></td><td class="num">0.92</td><td class="num">0.85</td></tr><tr><td><strong>MIF</strong><span class="sp"> 6B1K</span></td><td>Forsythoside D</td><td class="num">-7.38</td><td class="num">33</td><td class="num"><b>0.224</b></td><td class="num">1.00</td><td class="num">0.80</td></tr></tbody></table></div>
+ <div class="scroll"><table>
+  <caption>Status kendali redocking. Satu dari empat tidak lolos &mdash; ini perlu dinyatakan terbuka.</caption>
+  <thead><tr><th>Reseptor</th><th>PDB</th><th>Ligan rujukan</th><th class="num">RMSD</th><th>Status</th></tr></thead>
+  <tbody>
+   <tr><td><strong>MIF</strong></td><td>6B1K</td><td>C9G</td><td class="num">0,25 &Aring;</td><td><span class="tag t-good">tervalidasi &mdash; terbaik di seluruh studi</span></td></tr>
+   <tr><td>DPP4</td><td>4A5S</td><td>N7F</td><td class="num">0,83 &Aring;</td><td><span class="tag t-good">tervalidasi</span></td></tr>
+   <tr><td>MMP9</td><td>4XCT</td><td>N73</td><td class="num">0,95 &Aring;</td><td><span class="tag t-good">tervalidasi</span></td></tr>
+   <tr><td>MMP2</td><td>8H78</td><td>L2U</td><td class="num">3,96 &Aring;</td><td><span class="tag t-bad">tidak tervalidasi</span></td></tr>
+  </tbody></table></div>
+ <p>MMP2 gagal karena ligan rujukannya sendiri terlalu besar &mdash; 64 atom berat. Situsnya lolos lewat uji pengganti koordinasi seng pada 2,08&nbsp;&Aring;, sehingga hasilnya hanya dapat dilaporkan sebagai sementara. Untuk naskah, pilihannya: dinyatakan terbuka sebagai keterbatasan, atau MMP2 dikeluarkan dan naskah berdiri di atas tiga reseptor tervalidasi.</p>
+</section>
+
+<section>
+ <div class="sec-head"><span class="sec-num">3</span><h2>Temuan yang paling layak dijual</h2></div>
+ <p class="lede">Bukan daftar kandidatnya, melainkan pembalikan peringkatnya.</p>
+ <p>Analisis jaringan interaksi menempatkan MMP9 sebagai simpul terpadat dan MIF paling buncit. Hasil docking membalikkannya sepenuhnya:</p>
+ <div class="fig">
+  <h4>Sentralitas jaringan tidak meramalkan hasil docking</h4>
+  <p class="sub">Kiri: peringkat menurut derajat terbobot pada jaringan STRING. Kanan: banyaknya pasangan yang bertahan setelah validasi pose. Garis biru MIF, garis merah MMP9.</p>
+  <svg viewBox="0 0 780 330" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Peringkat sentralitas jaringan dibandingkan jumlah pasangan yang bertahan"><text x="30" y="26" style="text-anchor:start" class="hx" fill="var(--muted)">PERINGKAT SENTRALITAS JARINGAN</text><text x="750" y="26" style="text-anchor:end" class="hx" fill="var(--accent)">PASANGAN YANG BERTAHAN</text><path d="M220 56 C390.0 56 390.0 215 560 215" fill="none" stroke="var(--bad)" stroke-width="3.6"/><circle cx="220" cy="56" r="5.5" fill="var(--bad)"/><circle cx="560" cy="215" r="5.5" fill="var(--bad)"/><text x="208" y="61" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="13" font-weight="700" fill="var(--ink)">MMP9</text><text x="572" y="220" style="text-anchor:start" font-family="JetBrains Mono,monospace" font-size="13" font-weight="700" fill="var(--ink)">MMP9 &#183; 1</text><path d="M220 135 C390.0 135 390.0 294 560 294" fill="none" stroke="#AEB5C4" stroke-width="1.8"/><circle cx="220" cy="135" r="4" fill="#AEB5C4"/><circle cx="560" cy="294" r="4" fill="#AEB5C4"/><text x="208" y="140" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="13" font-weight="400" fill="var(--ink)">MMP2</text><text x="572" y="299" style="text-anchor:start" font-family="JetBrains Mono,monospace" font-size="13" font-weight="400" fill="var(--ink)">MMP2 &#183; 1</text><path d="M220 215 C390.0 215 390.0 135 560 135" fill="none" stroke="#AEB5C4" stroke-width="1.8"/><circle cx="220" cy="215" r="4" fill="#AEB5C4"/><circle cx="560" cy="135" r="4" fill="#AEB5C4"/><text x="208" y="220" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="13" font-weight="400" fill="var(--ink)">DPP4</text><text x="572" y="140" style="text-anchor:start" font-family="JetBrains Mono,monospace" font-size="13" font-weight="400" fill="var(--ink)">DPP4 &#183; 1</text><path d="M220 294 C390.0 294 390.0 56 560 56" fill="none" stroke="var(--accent)" stroke-width="3.6"/><circle cx="220" cy="294" r="5.5" fill="var(--accent)"/><circle cx="560" cy="56" r="5.5" fill="var(--accent)"/><text x="208" y="299" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="13" font-weight="700" fill="var(--ink)">MIF</text><text x="572" y="61" style="text-anchor:start" font-family="JetBrains Mono,monospace" font-size="13" font-weight="700" fill="var(--ink)">MIF &#183; 6</text></svg>
+ </div>
+ <p>MIF yang paling buncit di jaringan menyumbang <strong>enam</strong> dari sembilan pasangan, dengan efisiensi ligan tertinggi di seluruh studi dan kecocokan kantong 0,92. MMP9 sang simpul terpadat hanya menyumbang satu.</p>
+ <div class="note"><div class="nh">Kenapa ini temuan, bukan kegagalan</div>
+  <p>Sentralitas menjawab <em>seberapa besar akibatnya bila protein ini terganggu</em>. Docking menjawab <em>seberapa mungkin ia benar-benar dapat diganggu molekul kecil</em>. Protein bisa sangat sentral namun kantongnya dangkal.</p>
+  <p>Dan ada penjelasan tambahan yang dapat diukur: kelima tetangga yang tertarik ke jaringan seluruhnya kerabat metaloproteinase, tidak satu pun kerabat MIF. Jadi sentralitas di sini sebagian mengukur kerapian anotasi, bukan kepentingan biologis.</p>
+  <p>Keduanya bersama-sama menjadi alasan kuat mengapa <strong>metode perangkingan protein yang baru</strong> &mdash; tahap 6B yang belum dikerjakan &mdash; memang diperlukan. Naskah ini dan naskah tahun pertama karena itu saling menopang.</p></div>
+</section>
+
+<section>
+ <div class="sec-head"><span class="sec-num">4</span><h2>Landasan biologis &mdash; draf untuk diperiksa</h2></div>
+ <p class="lede">Bagian ini disusun dari literatur yang ditelusuri langsung, bukan dari ingatan. Setiap klaim disertai tautan sumbernya supaya dapat diperiksa satu per satu oleh Prof. Nidom dan Bu Reviany.</p>
+ <div class="note warn"><div class="nh">Cara membaca bagian ini</div>
+  <p>Yang saya kerjakan adalah <strong>menyusun argumennya dan mencarikan bukti pendukungnya</strong>. Yang tidak dapat saya kerjakan adalah menilai apakah argumen itu masuk akal secara klinis dan veteriner &mdash; itu memerlukan penilaian ahli. Anggaplah ini draf yang siap dibantah, bukan kesimpulan.</p>
+  <p>Rincian bibliografi lengkap perlu ditarik dari DOI masing-masing sumber sebelum masuk naskah.</p></div>
+
+ <h3>MIF: bukti terkuat, dan sasaran yang sudah terbukti dapat dihambat</h3>
+ <p>MIF adalah sitokin proinflamasi yang mengatur imunitas bawaan, dan perannya pada pneumonia influenza sudah dipetakan cukup rapi. Tiga temuan yang saling menguatkan:</p>
+ <ul>
+  <li>Tikus <span class="sp">Mif</span>-defisien mengalami <strong>peradangan, muatan virus, dan kematian yang lebih rendah</strong> daripada tikus normal; sebaliknya tikus transgenik yang melebihkan MIF pada sel epitel alveolus justru lebih parah ketiganya.</li>
+  <li>Penghambatan MIF dengan <strong>ISO-1</strong> menurunkan IL-1&beta;, IL-6, dan TNF-&alpha; di paru secara bermakna pada model pneumonia H5N1 &mdash; jadi sasaran ini <em>sudah terbukti dapat dihambat molekul kecil</em>.</li>
+  <li>Sel epitel paru yang nekrotik akibat infeksi influenza A melepaskan MIF yang tetap bioaktif, sehingga kadarnya melonjak pada fase akut.</li>
+ </ul>
+ <p>Ini penting bagi posisi naskah kita: keberadaan ISO-1 membuktikan kantong MIF memang dapat diikat molekul kecil, sehingga kandidat fenolat kita tidak sedang menyasar protein yang secara farmakologis mustahil.</p>
+
+ <h3>MMP9: secara eksplisit disebut sasaran terapi influenza</h3>
+ <p>Bukti untuk MMP9 sama kuatnya, dan mekanismenya lebih mudah diceritakan:</p>
+ <ul>
+  <li>Tikus <span class="sp">Mmp9</span>-defisien yang diinfeksi H1N1 menunjukkan <strong>kematian, penurunan berat, titer virus paru, dan kerusakan paru yang lebih rendah</strong>, disertai berkurangnya pelepasan E-kaderin &mdash; penanda rusaknya sawar epitel.</li>
+  <li>MMP9 diperlukan bagi migrasi neutrofil ke saluran napas melalui pensinyalan TLR yang dipicu virus; infiltrasi neutrofil berlebihan inilah yang merusak jaringan.</li>
+  <li>Kadar MMP9 plasma meningkat pada pasien H1N1 pandemik maupun influenza musiman.</li>
+ </ul>
+ <p>Salah satu sumber menyebutnya langsung sebagai <em>novel therapeutic target</em> untuk infeksi influenza A. Itu kalimat yang dapat dikutip apa adanya pada pendahuluan.</p>
+
+ <h3>Dua target yang sebaiknya diturunkan derajatnya</h3>
+ <p>Kejujuran di sini akan lebih menolong daripada memaksakan keempatnya.</p>
+ <div class="scroll"><table>
+  <thead><tr><th>Target</th><th>Kendali docking</th><th>Dukungan literatur pada influenza</th><th>Usul</th></tr></thead>
+  <tbody>
+   <tr><td><strong>MIF</strong></td><td><span class="tag t-good">0,25 &Aring;</span></td><td>Kuat &mdash; model tikus defisien dan penghambat ISO-1</td><td>Sasaran utama</td></tr>
+   <tr><td><strong>MMP9</strong></td><td><span class="tag t-good">0,95 &Aring;</span></td><td>Kuat &mdash; model tikus defisien, disebut sasaran terapi</td><td>Sasaran utama</td></tr>
+   <tr><td>MMP2</td><td><span class="tag t-bad">3,96 &Aring;</span></td><td>Lemah &mdash; perannya pada influenza jauh kurang terkarakterisasi dibanding MMP9</td><td>Dikeluarkan atau jadi pelengkap</td></tr>
+   <tr><td>DPP4</td><td><span class="tag t-good">0,83 &Aring;</span></td><td>Lemah untuk influenza &mdash; buktinya bertumpu pada MERS, PPOK, dan cedera paru akibat LPS</td><td>Pelengkap, dengan mekanisme dinyatakan terbuka</td></tr>
+  </tbody></table></div>
+ <p>Menariknya, MMP2 dan DPP4 lemah karena alasan yang <em>berbeda</em>: MMP2 gagal pada uji komputasi kita sendiri, DPP4 lolos uji itu tetapi tipis dukungannya pada influenza. Keduanya sama-sama tidak layak dijadikan tumpuan, tetapi karena sebab yang tidak sama.</p>
+
+ <h3>Yang membuat argumennya kuat: dua jalur bukti bertemu</h3>
+ <p>Ini bagian yang menurut saya paling layak ditonjolkan, dan baru terlihat setelah literaturnya ditelusuri.</p>
+ <p>Docking kita menempatkan <strong>asam kafeat</strong> dan <strong>asam <i>p</i>-kumarat</strong> pada MIF, serta <strong>Forsythoside D</strong> pada MMP9 &mdash; murni dari perhitungan, tanpa memakai informasi farmakologi apa pun. Ternyata literatur yang berdiri sendiri sudah melaporkan:</p>
+ <ul>
+  <li>Asam <i>p</i>-kumarat bersifat melindungi pada model cedera paru akut akibat LPS dan bleomisin, lewat penurunan sitokin dan stres oksidatif.</li>
+  <li>Asam kafeat menghambat aktivitas enzimatik MMP-9, dan juga menekan MMP-2.</li>
+  <li>Asam kafeat, kumarat, dan ferulat menekan produksi superoksida pada sel paru secara bermakna.</li>
+ </ul>
+ <div class="note"><div class="nh">Satu keberatan yang akan diajukan penelaah, dan sebaiknya kita dahului</div>
+  <p>Penghambatan MMP-9 oleh asam kafeat yang dilaporkan literatur berlangsung lewat <strong>penekanan NF-&kappa;B</strong> &mdash; jalur transkripsi. Yang dimodelkan docking kita adalah <strong>pengikatan langsung pada situs katalitik</strong>. Keduanya mekanisme berbeda.</p>
+  <p>Kesamaan hasil karena itu tidak boleh diklaim sebagai konfirmasi. Yang jujur dikatakan: senyawa yang sama muncul dari dua pendekatan yang saling bebas, dan itu menjadikannya <em>prioritas pengujian</em> &mdash; bukan bukti mekanisme.</p></div>
+
+ <h3>Empat hal yang hanya dapat dinilai Prof. Nidom dan Bu Reviany</h3>
+ <div class="scroll"><table>
+  <thead><tr><th>Pertanyaan</th><th>Kenapa saya tidak dapat menjawabnya</th></tr></thead>
+  <tbody>
+   <tr><td>Apakah imunomodulasi inang masuk akal untuk <strong>H9N2</strong>, yang pada unggas umumnya ringan?</td><td>Seluruh bukti yang saya temukan berasal dari H5N1 dan H1N1 yang berat. Relevansinya ke H9N2 perlu penilaian virologi.</td></tr>
+   <tr><td>Apakah sasarannya unggas, mamalia, atau manusia?</td><td>Menentukan model hewan, dosis, dan cara pemberian &mdash; sekaligus menentukan jurnal yang dituju.</td></tr>
+   <tr><td>Apakah rute inhalasi realistis untuk senyawa-senyawa ini?</td><td>Penapisan ADMET kita hanya menilai ramalan sifat, bukan kelayakan formulasi.</td></tr>
+   <tr><td>Apakah saya membaca literaturnya dengan benar?</td><td>Saya merangkum dari abstrak dan ringkasan. Naskah tidak boleh berdiri di atas ringkasan.</td></tr>
+  </tbody></table></div>
+
+ <h3>Sumber yang ditelusuri</h3>
+ <p class="kecil">Diurutkan menurut pemakaiannya di atas. Rincian bibliografi lengkap perlu ditarik dari masing-masing tautan.</p>
+ <ol class="kecil">
+  <li><a href="https://pubmed.ncbi.nlm.nih.gov/19941385/">Role of macrophage migration inhibitory factor in influenza H5N1 virus pneumonia</a> &mdash; PubMed 19941385</li>
+  <li><a href="https://insight.jci.org/articles/view/128034">Macrophage migration inhibitory factor enhances influenza-associated mortality in mice</a> &mdash; JCI Insight</li>
+  <li><a href="https://jvi.asm.org/content/76/18/9298.abstract">Release of MIF and CXCL8/IL-8 from lung epithelial cells rendered necrotic by influenza A virus infection</a> &mdash; Journal of Virology</li>
+  <li><a href="https://pubmed.ncbi.nlm.nih.gov/30568032/">Matrix metalloproteinase-9 deficiency protects mice from severe influenza A viral infection</a> &mdash; PubMed 30568032, JCI Insight</li>
+  <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3320598/">MMP-9 mediates neutrophil migration into the airways in response to influenza virus-induced TLR signaling</a> &mdash; PLoS Pathogens, PMC3320598</li>
+  <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8696080/">The roles of DPP4 and DPP4 inhibitors in different lung diseases</a> &mdash; PMC8696080</li>
+  <li><a href="https://link.springer.com/article/10.1186/s41936-026-00556-8">Ameliorative effect of p-coumaric acid on bleomycin induced acute lung injury in mice</a></li>
+  <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6760477/">p-Coumaric acid protects cardiac function against LPS-induced acute lung injury</a> &mdash; PMC6760477</li>
+  <li><a href="https://www.frontiersin.org/journals/oncology/articles/10.3389/fonc.2019.00541/full">Chemical and pharmacological aspects of caffeic acid</a> &mdash; Frontiers in Oncology</li>
+  <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9270768/">Role of MMP-2 and MMP-9 in experimental lung fibrosis in mice</a> &mdash; PMC9270768</li>
+ </ol>
+</section>
+
+<section>
+ <div class="sec-head"><span class="sec-num">5</span><h2>Yang masih kurang</h2></div>
+ <p class="lede">Tiga hal, dan hanya satu yang memerlukan komputasi.</p>
+ <div class="scroll"><table>
+  <thead><tr><th>Kekurangan</th><th>Yang diperlukan</th><th>Penanggung jawab</th></tr></thead>
+  <tbody>
+   <tr><td><strong>Simulasi dinamika molekuler</strong></td><td>Dua kompleks: <i>p</i>-kumarat&ndash;MIF (40.330 atom) dan Forsythoside D&ndash;MMP9 (28.043 atom). Keduanya <strong>sudah disiapkan</strong>, tinggal dijalankan.</td><td>Hamim</td></tr>
+   <tr><td><strong>Landasan biologis</strong></td><td><span class="tag t-warn">draf sudah ada</span> Tinggal diperiksa kebenarannya dan dinilai relevansinya untuk H9N2 &mdash; lihat bagian sebelumnya.</td><td>Nidom, Reviany</td></tr>
+   <tr><td><strong>Keputusan MMP2</strong></td><td>Dipertahankan dengan keterbatasan dinyatakan terbuka, atau dikeluarkan.</td><td>Tim</td></tr>
+  </tbody></table></div>
+ <p>Perhatikan bahwa kolom pertama tidak memuat docking. Seluruh kampanye penambatan untuk naskah ini <strong>sudah selesai</strong> &mdash; ia bagian dari 231 run yang sama.</p>
+</section>
+
+<section>
+ <div class="sec-head"><span class="sec-num">6</span><h2>Kuota: kedua naskah muat</h2></div>
+ <p class="lede">Ini yang tadinya saya kira harus dipilih salah satu. Ternyata tidak, berkat pemangkasan rantai neuraminidase.</p>
+ <div class="scroll"><table>
+  <caption>Kuota Kaggle 30 jam GPU per minggu.</caption>
+  <thead><tr><th>Naskah</th><th>Kompleks</th><th class="num">Ukuran</th><th class="num">Perkiraan 50 ns</th></tr></thead>
+  <tbody>
+   <tr><td rowspan="2"><strong>Antivirus</strong></td><td>Adoxosidic &ndash; NA, rantai A</td><td class="num">~35.000</td><td class="num">11&ndash;19 j</td></tr>
+   <tr><td>PA endonuklease</td><td class="num">~30.000</td><td class="num">10&ndash;17 j</td></tr>
+   <tr><td rowspan="2"><strong>Imunomodulator</strong></td><td><i>p</i>-Coumaric &ndash; MIF</td><td class="num">40.330</td><td class="num">12&ndash;21 j</td></tr>
+   <tr><td>Forsythoside D &ndash; MMP9</td><td class="num">28.043</td><td class="num">8&ndash;15 j</td></tr>
+   <tr><td colspan="2"><strong>Jumlah</strong></td><td class="num"><strong>~133.000</strong></td><td class="num"><strong>41&ndash;72 j</strong></td></tr>
+  </tbody></table></div>
+ <p>Empat puluh satu sampai tujuh puluh dua jam berarti <strong>satu setengah sampai dua setengah minggu</strong> kuota. Pada susunan lama, neuraminidase sendirian memakan 30&ndash;55 jam &mdash; hampir seluruh anggaran untuk satu kompleks.</p>
+ <div class="note"><div class="nh">Pemangkasan itu yang membuka jalan</div>
+  <p>Struktur 4K1K memuat dua rantai, tetapi seluruh kontak ligan berada di rantai A. Membuang rantai B menurunkan sistem dari 101.042 ke sekitar 35.000 atom &mdash; dan menghemat sekitar 25 jam GPU, persis sebanyak yang diperlukan naskah kedua.</p></div>
+ <p>Urutan yang disarankan: dua kompleks virus lebih dulu karena naskah antivirus memenuhi indikator proposal, lalu dua kompleks inang menyusul. Bila kuota melonggar, keduanya dapat berjalan berselang-seling.</p>
+</section>
+
+<section>
+ <div class="sec-head"><span class="sec-num">7</span><h2>Kerangka naskah yang diusulkan</h2></div>
+ <p class="lede">Disusun supaya temuan pembalikan peringkat menjadi tulang punggungnya, bukan sekadar catatan.</p>
+ <div class="scroll"><table>
+  <thead><tr><th>Bagian</th><th>Isi</th><th>Bahan</th></tr></thead>
+  <tbody>
+   <tr><td>Pendahuluan</td><td>Kerusakan paru akibat influenza sebagai sasaran terapi pendamping; MIF dan MMP9 sebagai perantara peradangan</td><td><span class="tag t-warn">draf siap diperiksa</span></td></tr>
+   <tr><td>Metode</td><td>DNN&ndash;NDD, ADMET dua jalur, jaringan PPI, docking berkontrol, validasi pose, MD</td><td><span class="tag t-good">siap</span></td></tr>
+   <tr><td>Hasil 1</td><td>Sembilan pasangan bertahan pada tiga reseptor tervalidasi</td><td><span class="tag t-good">siap</span></td></tr>
+   <tr><td>Hasil 2</td><td><strong>Sentralitas jaringan tidak meramalkan hasil docking</strong> &mdash; temuan utama</td><td><span class="tag t-good">siap</span></td></tr>
+   <tr><td>Hasil 3</td><td>Kestabilan kompleks MIF dan MMP9 sepanjang 50 ns</td><td><span class="tag t-warn">menunggu MD</span></td></tr>
+   <tr><td>Pembahasan</td><td>Mengapa protein sentral belum tentu dapat diobati; implikasi bagi penentuan target</td><td><span class="tag t-bad">perlu ditulis</span></td></tr>
+  </tbody></table></div>
+ <p>Dua dari tiga bagian hasil sudah dapat ditulis hari ini. Yang menahan bukan komputasinya, melainkan landasan biologis di pendahuluan dan pembahasan &mdash; dan itu ranah anggota tim yang berlatar virologi dan farmasi.</p>
+</section>
+
+<div class="sp"></div>
+</div>
+</body>
+</html>
