@@ -33,7 +33,7 @@ body{margin:0;background:var(--meja);color:var(--tinta);overflow:hidden;
 
 /* ---------- panggung berskala ---------- */
 #panggung{position:fixed;inset:0;display:grid;place-items:center}
-#dek{position:relative;width:1280px;height:720px;transform-origin:center center;
+#dek{position:relative;width:1280px;height:800px;transform-origin:center center;
   background:var(--lembar);box-shadow:0 30px 90px -30px rgba(0,0,0,.7)}
 .slide{position:absolute;inset:0;padding:62px 76px 74px;
   display:flex;flex-direction:column;
@@ -188,7 +188,7 @@ table.tbl td.n,table.tbl th.n{text-align:right;font-family:"IBM Plex Mono",monos
   #panggung{position:static;display:block}
   #dek{width:100%;height:auto;transform:none!important;box-shadow:none}
   .slide{position:relative;inset:auto;opacity:1;visibility:visible;
-    width:297mm;height:209mm;padding:16mm 18mm;break-after:page}
+    width:297mm;height:185.6mm;padding:15mm 18mm;break-after:page}
   #kendali,#lajur,#daftar,#maju{display:none}
 }
 </style>
@@ -754,7 +754,7 @@ table.tbl td.n,table.tbl th.n{text-align:right;font-family:"IBM Plex Mono",monos
 
   function skala(){
     var m = document.fullscreenElement ? 0 : 28;
-    var k = Math.min((innerWidth-m)/1280, (innerHeight-m)/720);
+    var k = Math.min((innerWidth-m)/1280, (innerHeight-m)/800);
     dek.style.transform = 'scale('+k+')';
   }
   function tampil(k,sorot){
