@@ -68,7 +68,7 @@ i{font-style:italic}
 .tgl{font-family:"IBM Plex Mono",monospace;font-size:14px;color:var(--samar);margin:0}
 
 /* ---------- kartu angka ---------- */
-.kartu{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:6px 0 26px}
+.kartu{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:auto 0 26px}
 .kartu>div{background:var(--lembar2);border:1px solid var(--garis);
   border-radius:5px;padding:26px 26px 24px;display:flex;flex-direction:column;gap:7px}
 .kartu b{font-family:"IBM Plex Mono",monospace;font-size:58px;font-weight:600;
@@ -124,6 +124,14 @@ table.tbl td.n,table.tbl th.n{text-align:right;font-family:"IBM Plex Mono",monos
 .pil.sepi{background:var(--belum-samar);color:var(--belum)}
 
 /* ---------- gambar ---------- */
+.slide.gambar h2{font-size:33px;margin-bottom:18px}
+.slide.gambar .mata{margin-bottom:18px}
+.gbr.samping{display:grid;grid-template-columns:1.5fr 1fr;gap:46px;align-items:center}
+.gbr.samping svg{max-height:none}
+.gbr.samping .baca{align-self:center}
+.gbr.samping .baca h3{font-size:19px;margin-bottom:7px}
+.gbr.samping .baca p{font-size:17px;margin-bottom:18px}
+.gbr.samping .baca p:last-child{margin-bottom:0}
 .gbr{flex:1;display:flex;align-items:center;justify-content:center;min-height:0}
 .gbr svg{display:block;width:100%;height:auto;max-height:100%}
 .gket{margin:16px 0 0;font-size:16px;color:var(--samar);font-style:italic;max-width:96ch}
@@ -205,7 +213,7 @@ table.tbl td.n,table.tbl th.n{text-align:right;font-family:"IBM Plex Mono",monos
  <div><span class="ang">3</span><h3>Kebaruan ada di sisi metode</h3><p>Optimasi pelatihan model dan cara memeringkat protein sasaran &mdash; dua hal yang kita usulkan, bukan sekadar memakai perangkat yang sudah ada.</p></div>
 </div>
 </section>
-<section class="slide" data-judul="Dua tahun, dua belas tahap">
+<section class="slide gambar" data-judul="Dua tahun, dua belas tahap">
 <p class="mata">Rencana dan keadaan</p><h2>Dua tahun, dua belas tahap</h2>
 <div class="gbr"><svg viewBox="0 0 760 426" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dua belas tahap penelitian beserta keadaannya, masing-masing tahun dua baris">
 <text x="10" y="28" style="text-anchor:start" class="g-l">TAHUN PERTAMA &#183; TAHAP 1&#8211;6</text>
@@ -327,9 +335,9 @@ table.tbl td.n,table.tbl th.n{text-align:right;font-family:"IBM Plex Mono",monos
 </div>
 <p class="tegas">Lingkupnya tidak melebar. Tahun pertama hampir tuntas, dan tahun kedua sudah mulai bergerak.</p>
 </section>
-<section class="slide" data-judul="Dari 832 entri menjadi tujuh pasangan">
+<section class="slide gambar" data-judul="Dari 832 entri menjadi tujuh pasangan">
 <p class="mata">Hasil &middot; penyaringan</p><h2>Dari 832 entri menjadi tujuh pasangan</h2>
-<div class="gbr"><svg viewBox="0 0 760 506" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Alur penyaringan dari 832 entri menjadi tujuh pasangan, beserta jumlah dan alasan yang gugur di tiap tahap">
+<div class="gbr samping"><svg viewBox="0 0 760 506" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Alur penyaringan dari 832 entri menjadi tujuh pasangan, beserta jumlah dan alasan yang gugur di tiap tahap">
 <text x="14" y="30" style="text-anchor:start" class="g-l">PENYARINGAN SENYAWA</text>
 <text x="14" y="44" style="text-anchor:start" class="g-s">satuan: senyawa</text>
 <line x1="14" y1="46" x2="350" y2="46" stroke="var(--garis2)" stroke-width="1"/>
@@ -416,9 +424,15 @@ table.tbl td.n,table.tbl th.n{text-align:right;font-family:"IBM Plex Mono",monos
 <text x="352" y="429.0" style="text-anchor:end" class="g-s">yang lolos kendali</text>
 <text x="14" y="478" style="text-anchor:start" class="g-s">Angka merah di kanan setiap anak panah adalah banyaknya yang gugur pada tahap itu, beserta alasannya.</text>
 <text x="14" y="492" style="text-anchor:start" class="g-s">Persentase menyatakan bagian yang tersisa terhadap tahap sebelumnya.</text>
-</svg></div>
+</svg>
+<div class="baca">
+ <h3>Yang dibaca dari gambar ini</h3>
+ <p>Setiap cabang merah menyebut <b>berapa yang gugur</b> pada tahap itu, alasannya, dan berapa persen yang tersisa.</p>
+ <p>Penyusutan terbesar terjadi pada tahap prediksi: <b>521 dari 625</b> tidak mencapai ambang 0,9 pada ketiga <i>fingerprint</i>.</p>
+ <p>Satuannya berubah di tengah alur. Panel kanan menghitung <b>pasangan senyawa&ndash;reseptor</b>, dan jembatannya adalah perkalian dengan lima reseptor yang lolos kendali.</p>
+</div></div>
 </section>
-<section class="slide" data-judul="Kendali dulu, hasil kemudian">
+<section class="slide gambar" data-judul="Kendali dulu, hasil kemudian">
 <p class="mata">Hasil &middot; validasi</p><h2>Kendali dulu, hasil kemudian</h2>
 <div class="gbr"><svg viewBox="0 0 760 352" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Simpangan kendali re-docking setiap reseptor terhadap ambang 2 angstrom">
 <line x1="196.0" y1="42" x2="196.0" y2="262" stroke="var(--garis)" stroke-width="1"/>
@@ -470,7 +484,7 @@ table.tbl td.n,table.tbl th.n{text-align:right;font-family:"IBM Plex Mono",monos
 </div>
 <p class="tegas"><b class="buruk">13 pasangan</b> berskor memenuhi ambang tetapi posenya meleset dari kantong &mdash; seluruhnya akan lolos bila hanya skor yang diperiksa.</p>
 </section>
-<section class="slide" data-judul="Molekul besar hampir selalu menang pada skor">
+<section class="slide gambar" data-judul="Molekul besar hampir selalu menang pada skor">
 <p class="mata">Hasil &middot; penilaian</p><h2>Molekul besar hampir selalu menang pada skor</h2>
 <div class="gbr"><svg viewBox="0 0 760 378" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Afinitas docking dibandingkan efisiensi ligan untuk sebelas pasangan yang bertahan">
 <line x1="102.9" y1="40" x2="102.9" y2="286" stroke="var(--garis)" stroke-width="1"/>
@@ -530,7 +544,7 @@ table.tbl td.n,table.tbl th.n{text-align:right;font-family:"IBM Plex Mono",monos
 <text x="64" y="369" style="text-anchor:start" class="g-s">Forsythoside D (33 atom) menang pada &#916;G di tiga reseptor namun kalah pada efisiensi ligan &#8212; inilah bias ukuran itu.</text>
 </svg></div>
 </section>
-<section class="slide" data-judul="Jaringan menyusun antrean, docking yang memutuskan">
+<section class="slide gambar" data-judul="Jaringan menyusun antrean, docking yang memutuskan">
 <p class="mata">Temuan</p><h2>Jaringan menyusun antrean, docking yang memutuskan</h2>
 <div class="gbr"><svg viewBox="0 0 760 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Peringkat sentralitas jaringan dibandingkan jumlah pasangan yang bertahan">
 <text x="24" y="26" style="text-anchor:start" class="g-l">PERINGKAT SENTRALITAS JARINGAN</text>
@@ -631,7 +645,7 @@ table.tbl td.n,table.tbl th.n{text-align:right;font-family:"IBM Plex Mono",monos
  <div><h3>Dan docking membalikkannya</h3><p>MMP9 sang simpul terpadat hanya menyumbang satu pasangan; MIF yang paling buncit menyumbang enam. Keduanya bukti kuantitatif bahwa cara lama tidak memadai.</p></div>
 </div>
 </section>
-<section class="slide" data-judul="Rencana tahapan selanjutnya">
+<section class="slide gambar" data-judul="Rencana tahapan selanjutnya">
 <p class="mata">Rencana</p><h2>Rencana tahapan selanjutnya</h2>
 <div class="gbr"><svg viewBox="0 0 760 376" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Usulan jadwal sepuluh pekerjaan berikutnya selama enam minggu">
 <line x1="286.0" y1="38" x2="286.0" y2="304" stroke="var(--garis)" stroke-width="1"/>
