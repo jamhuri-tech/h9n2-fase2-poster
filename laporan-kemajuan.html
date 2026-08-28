@@ -23,6 +23,7 @@
   --capai:#2C6543; --capai-samar:#E4EEE8;
   --proses:#8A5A12; --proses-samar:#F6EEDD;
   --belum:#6E7587; --belum-samar:#EDEFF3;
+  --tegas:#A63D2B;
   --bayang:0 1px 2px rgba(20,23,31,.05), 0 18px 44px -24px rgba(20,23,31,.28);
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
@@ -33,6 +34,7 @@
   --capai:#79BC94; --capai-samar:#182A21;
   --proses:#D5A64F; --proses-samar:#2A2417;
   --belum:#9198A9; --belum-samar:#232733;
+  --tegas:#E08A74;
   --bayang:0 1px 2px rgba(0,0,0,.5), 0 18px 44px -24px rgba(0,0,0,.8);
 }}
 :root[data-theme="dark"]{
@@ -43,6 +45,7 @@
   --capai:#79BC94; --capai-samar:#182A21;
   --proses:#D5A64F; --proses-samar:#2A2417;
   --belum:#9198A9; --belum-samar:#232733;
+  --tegas:#E08A74;
   --bayang:0 1px 2px rgba(0,0,0,.5), 0 18px 44px -24px rgba(0,0,0,.8);
 }
 *{box-sizing:border-box}
@@ -127,6 +130,23 @@ tr.gol td{background:var(--lembar2);font-weight:600;font-size:10.5px;
 .s-capai{background:var(--capai-samar);color:var(--capai)}
 .s-proses{background:var(--proses-samar);color:var(--proses)}
 .s-belum{background:var(--belum-samar);color:var(--belum)}
+
+/* ---------- gambar ---------- */
+.gbr{margin:26px 0 28px;break-inside:avoid}
+.gbr figcaption{display:flex;flex-direction:column;gap:1px;margin-bottom:11px}
+.gbr .no{font-family:"Libre Franklin",sans-serif;font-size:10px;font-weight:700;
+  letter-spacing:.11em;text-transform:uppercase;color:var(--institusi)}
+.gbr .jdl{font-family:"Libre Franklin",sans-serif;font-weight:600;font-size:.95rem;color:var(--tinta)}
+.gbr .ket{font-size:12.5px;color:var(--samar);font-style:italic;max-width:68ch;line-height:1.5}
+.gbr svg{display:block;width:100%;height:auto;
+  border:1px solid var(--garis);border-radius:3px;background:var(--lembar)}
+.g-t{font-family:"Libre Franklin",sans-serif;font-size:11px;fill:var(--tinta)}
+.g-s{font-family:"Libre Franklin",sans-serif;font-size:9.5px;fill:var(--samar)}
+.g-l{font-family:"Libre Franklin",sans-serif;font-size:9px;font-weight:700;
+  letter-spacing:.1em;fill:var(--samar)}
+.g-n{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;fill:var(--tinta)}
+.g-b{font-family:"IBM Plex Mono",monospace;font-size:17px;font-weight:600;fill:var(--tinta);
+  font-variant-numeric:tabular-nums}
 
 /* ---------- kutipan angka ---------- */
 .angka{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));
@@ -231,6 +251,93 @@ tr.gol td{background:var(--lembar2);font-weight:600;font-size:10.5px;
  <h3><span class="no">C.1</span>Tahapan pelaksanaan dan keadaannya</h3>
  <p>Usulan penelitian membagi pelaksanaan menjadi dua belas tahap dalam dua tahun, enam tahap pada setiap tahun. Tahun pertama berakhir pada analisis graf jaringan interaksi protein&ndash;protein sampai diperoleh protein inti; tahun kedua memuat <i>docking</i>, optimasi metaheuristik, serta simulasi dinamika molekuler beserta analisis kestabilannya.</p>
  <p>Keadaan sampai tanggal pelaporan adalah sebagai berikut: <b>lima dari enam tahap tahun pertama telah selesai</b> dan satu tahap sedang berjalan, sementara <b>tiga dari enam tahap tahun kedua telah selesai mendahului jadwal</b>. Dengan demikian lingkup pelaksanaan tidak melebar; yang terjadi adalah sebagian pekerjaan tahun berikutnya sudah dapat dikerjakan lebih awal.</p>
+<figure class="gbr">
+ <figcaption><span class="no">Gambar 1</span><span class="jdl">Dua belas tahap pelaksanaan beserta keadaannya</span><span class="ket">Warna menyatakan keadaan per 28 Agustus 2026. Kotak tahap 7 sampai 9 sudah hijau meskipun berada pada blok tahun kedua, karena pekerjaannya terselesaikan mendahului jadwal.</span></figcaption>
+<svg viewBox="0 0 760 262" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dua belas tahap penelitian beserta keadaannya">
+<text x="10" y="32" style="text-anchor:start" class="g-l">TAHUN PERTAMA &#183; TAHAP 1&#8211;6</text>
+<text x="215" y="32" style="text-anchor:start" class="g-s">· Berakhir pada analisis graf sampai diperoleh protein inti</text>
+<rect x="10" y="48" width="115" height="66" rx="3" fill="var(--capai-samar)" stroke="var(--capai)" stroke-width="1.2"/>
+<rect x="10" y="48" width="3.5" height="66" rx="1.5" fill="var(--capai)"/>
+<text x="21" y="67" style="text-anchor:start" class="g-n" fill="var(--capai)">1</text>
+<text x="21" y="86" style="text-anchor:start" class="g-t">Koleksi</text>
+<text x="21" y="100" style="text-anchor:start" class="g-t">senyawa herbal</text>
+<path d="M127.4 77 l3.4 4 l-3.4 4" fill="none" stroke="var(--garis2)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="135" y="48" width="115" height="66" rx="3" fill="var(--capai-samar)" stroke="var(--capai)" stroke-width="1.2"/>
+<rect x="135" y="48" width="3.5" height="66" rx="1.5" fill="var(--capai)"/>
+<text x="146" y="67" style="text-anchor:start" class="g-n" fill="var(--capai)">2</text>
+<text x="146" y="86" style="text-anchor:start" class="g-t">Model</text>
+<text x="146" y="100" style="text-anchor:start" class="g-t">DNN&#8211;NDD</text>
+<path d="M252.4 77 l3.4 4 l-3.4 4" fill="none" stroke="var(--garis2)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="260" y="48" width="115" height="66" rx="3" fill="var(--capai-samar)" stroke="var(--capai)" stroke-width="1.2"/>
+<rect x="260" y="48" width="3.5" height="66" rx="1.5" fill="var(--capai)"/>
+<text x="271" y="67" style="text-anchor:start" class="g-n" fill="var(--capai)">3</text>
+<text x="271" y="86" style="text-anchor:start" class="g-t">Skrining</text>
+<text x="271" y="100" style="text-anchor:start" class="g-t">ADMET</text>
+<path d="M377.4 77 l3.4 4 l-3.4 4" fill="none" stroke="var(--garis2)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="385" y="48" width="115" height="66" rx="3" fill="var(--capai-samar)" stroke="var(--capai)" stroke-width="1.2"/>
+<rect x="385" y="48" width="3.5" height="66" rx="1.5" fill="var(--capai)"/>
+<text x="396" y="67" style="text-anchor:start" class="g-n" fill="var(--capai)">4</text>
+<text x="396" y="86" style="text-anchor:start" class="g-t">Target</text>
+<text x="396" y="100" style="text-anchor:start" class="g-t">protein</text>
+<path d="M502.4 77 l3.4 4 l-3.4 4" fill="none" stroke="var(--garis2)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="510" y="48" width="115" height="66" rx="3" fill="var(--capai-samar)" stroke="var(--capai)" stroke-width="1.2"/>
+<rect x="510" y="48" width="3.5" height="66" rx="1.5" fill="var(--capai)"/>
+<text x="521" y="67" style="text-anchor:start" class="g-n" fill="var(--capai)">5</text>
+<text x="521" y="86" style="text-anchor:start" class="g-t">Jaringan</text>
+<text x="521" y="100" style="text-anchor:start" class="g-t">PPI</text>
+<path d="M627.4 77 l3.4 4 l-3.4 4" fill="none" stroke="var(--garis2)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="635" y="48" width="115" height="66" rx="3" fill="var(--proses-samar)" stroke="var(--proses)" stroke-width="1.2"/>
+<rect x="635" y="48" width="3.5" height="66" rx="1.5" fill="var(--proses)"/>
+<text x="646" y="67" style="text-anchor:start" class="g-n" fill="var(--proses)">6</text>
+<text x="646" y="86" style="text-anchor:start" class="g-t">Analisis</text>
+<text x="646" y="100" style="text-anchor:start" class="g-t">graf</text>
+<text x="10" y="144" style="text-anchor:start" class="g-l">TAHUN KEDUA &#183; TAHAP 7&#8211;12</text>
+<text x="215" y="144" style="text-anchor:start" class="g-s">· Docking, metaheuristik, dan dinamika molekuler</text>
+<rect x="10" y="160" width="115" height="66" rx="3" fill="var(--capai-samar)" stroke="var(--capai)" stroke-width="1.2"/>
+<rect x="10" y="160" width="3.5" height="66" rx="1.5" fill="var(--capai)"/>
+<text x="21" y="179" style="text-anchor:start" class="g-n" fill="var(--capai)">7</text>
+<text x="21" y="198" style="text-anchor:start" class="g-t">Optimasi</text>
+<text x="21" y="212" style="text-anchor:start" class="g-t">struktur ligan</text>
+<path d="M127.4 189 l3.4 4 l-3.4 4" fill="none" stroke="var(--garis2)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="135" y="160" width="115" height="66" rx="3" fill="var(--capai-samar)" stroke="var(--capai)" stroke-width="1.2"/>
+<rect x="135" y="160" width="3.5" height="66" rx="1.5" fill="var(--capai)"/>
+<text x="146" y="179" style="text-anchor:start" class="g-n" fill="var(--capai)">8</text>
+<text x="146" y="198" style="text-anchor:start" class="g-t">Molecular</text>
+<text x="146" y="212" style="text-anchor:start" class="g-t">docking</text>
+<path d="M252.4 189 l3.4 4 l-3.4 4" fill="none" stroke="var(--garis2)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="260" y="160" width="115" height="66" rx="3" fill="var(--capai-samar)" stroke="var(--capai)" stroke-width="1.2"/>
+<rect x="260" y="160" width="3.5" height="66" rx="1.5" fill="var(--capai)"/>
+<text x="271" y="179" style="text-anchor:start" class="g-n" fill="var(--capai)">9</text>
+<text x="271" y="198" style="text-anchor:start" class="g-t">Validasi</text>
+<text x="271" y="212" style="text-anchor:start" class="g-t">pose</text>
+<path d="M377.4 189 l3.4 4 l-3.4 4" fill="none" stroke="var(--garis2)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="385" y="160" width="115" height="66" rx="3" fill="var(--belum-samar)" stroke="var(--belum)" stroke-width="1.2"/>
+<rect x="385" y="160" width="3.5" height="66" rx="1.5" fill="var(--belum)"/>
+<text x="396" y="179" style="text-anchor:start" class="g-n" fill="var(--belum)">10</text>
+<text x="396" y="198" style="text-anchor:start" class="g-t">Optimasi</text>
+<text x="396" y="212" style="text-anchor:start" class="g-t">metaheuristik</text>
+<path d="M502.4 189 l3.4 4 l-3.4 4" fill="none" stroke="var(--garis2)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="510" y="160" width="115" height="66" rx="3" fill="var(--proses-samar)" stroke="var(--proses)" stroke-width="1.2"/>
+<rect x="510" y="160" width="3.5" height="66" rx="1.5" fill="var(--proses)"/>
+<text x="521" y="179" style="text-anchor:start" class="g-n" fill="var(--proses)">11</text>
+<text x="521" y="198" style="text-anchor:start" class="g-t">Dinamika</text>
+<text x="521" y="212" style="text-anchor:start" class="g-t">molekuler</text>
+<path d="M627.4 189 l3.4 4 l-3.4 4" fill="none" stroke="var(--garis2)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="635" y="160" width="115" height="66" rx="3" fill="var(--belum-samar)" stroke="var(--belum)" stroke-width="1.2"/>
+<rect x="635" y="160" width="3.5" height="66" rx="1.5" fill="var(--belum)"/>
+<text x="646" y="179" style="text-anchor:start" class="g-n" fill="var(--belum)">12</text>
+<text x="646" y="198" style="text-anchor:start" class="g-t">Analisis</text>
+<text x="646" y="212" style="text-anchor:start" class="g-t">kestabilan</text>
+<path d="M750 114 C762 114 762 138 750 138 L18 138 C6 138 6 152 16 152" fill="none" stroke="var(--garis2)" stroke-width="1.2" stroke-dasharray="3 3"/>
+<rect x="10" y="235" width="11" height="11" rx="2" fill="var(--capai-samar)" stroke="var(--capai)" stroke-width="1.2"/>
+<text x="27" y="244" style="text-anchor:start" class="g-s">Selesai</text>
+<rect x="142" y="235" width="11" height="11" rx="2" fill="var(--proses-samar)" stroke="var(--proses)" stroke-width="1.2"/>
+<text x="159" y="244" style="text-anchor:start" class="g-s">Berjalan</text>
+<rect x="274" y="235" width="11" height="11" rx="2" fill="var(--belum-samar)" stroke="var(--belum)" stroke-width="1.2"/>
+<text x="291" y="244" style="text-anchor:start" class="g-s">Belum dimulai</text>
+<text x="440" y="244" style="text-anchor:start" class="g-s">Lima dari enam tahap tahun pertama selesai; tiga dari enam tahap tahun kedua selesai mendahului jadwal</text>
+</svg>
+</figure>
  <div class="tbl"><table>
   <caption>Tabel 1. Dua belas tahap pelaksanaan beserta keadaannya per 28 Agustus 2026.</caption>
   <thead><tr><th class="n">Tahap</th><th>Kegiatan</th><th>Keadaan</th><th>Hasil yang dapat diperiksa</th></tr></thead>
@@ -266,22 +373,99 @@ tr.gol td{background:var(--lembar2);font-weight:600;font-size:10.5px;
  <h3><span class="no">C.5</span>Penetapan protein sasaran dan analisis jaringan</h3>
  <p>Protein sasaran kita tetapkan melalui irisan dua sumber yang saling bebas: prediksi target inang dari struktur senyawa, dan basis data gen yang berkaitan dengan infeksi influenza A. Irisan keduanya menghasilkan empat protein inang &mdash; DPP4, MMP9, MMP2, dan MIF &mdash; yang kemudian kita rangkai menjadi jaringan interaksi protein&ndash;protein memakai basis data STRING, dengan penambahan tetangga terdekat sehingga jaringannya memuat sembilan simpul.</p>
  <p>Peringkat sentralitas pada jaringan tersebut menempatkan MMP9 sebagai simpul terpadat, disusul MMP2, DPP4, dan MIF. Perlu kita catat secara terbuka bahwa peringkat ini memiliki keterbatasan: kelima tetangga yang tertarik masuk ke dalam jaringan seluruhnya berkerabat metaloproteinase, sehingga sebagian dari yang diukur adalah kelengkapan anotasi sebuah protein, bukan semata kepentingan biologisnya. Pengembangan metode perangkingan yang tidak bertumpu pada sentralitas baku merupakan bagian penelitian yang sedang kita kerjakan.</p>
- <p>Selain protein inang, kita juga menyertakan protein virus sebagai sasaran, yaitu neuraminidase dan endonuklease PA. Karena tidak tersedia struktur kristal neuraminidase galur H9N2 pada Protein Data Bank, kita memakai struktur N2 dari galur lain, disertai pengukuran pendukung: 15 dari 16 residu kantong pengikatan terkonservasi seratus persen pada 60 galur H9N2, termasuk 20 galur asal Indonesia.</p>
+ <figure class="gbr">
+ <figcaption><span class="no">Gambar 2</span><span class="jdl">Sentralitas jaringan tidak meramalkan hasil docking</span><span class="ket">Kiri: peringkat menurut derajat terbobot pada jaringan STRING. Kanan: banyaknya pasangan yang bertahan setelah validasi pose. Pembalikan inilah yang menjadi alasan kuantitatif bahwa perangkingan berbasis sentralitas baku perlu diganti.</span></figcaption>
+<svg viewBox="0 0 760 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Peringkat sentralitas jaringan dibandingkan jumlah pasangan yang bertahan">
+<text x="150" y="26" style="text-anchor:end" class="g-l">PERINGKAT SENTRALITAS JARINGAN</text>
+<text x="610" y="26" style="text-anchor:start" class="g-l">PASANGAN YANG BERTAHAN</text>
+<path d="M170 58 C300 58 300 104 430 104" fill="none" stroke="var(--proses)" stroke-width="3.4"/>
+<circle cx="170" cy="58" r="5" fill="var(--proses)"/>
+<circle cx="430" cy="104" r="5" fill="var(--proses)"/>
+<text x="158" y="62" style="text-anchor:end" class="g-t">1. MMP9</text>
+<text x="442" y="108" style="text-anchor:start" class="g-t">MMP9 &#183; 1</text>
+<path d="M170 104 C300 104 300 150 430 150" fill="none" stroke="var(--garis2)" stroke-width="1.6"/>
+<circle cx="170" cy="104" r="3.6" fill="var(--garis2)"/>
+<circle cx="430" cy="150" r="3.6" fill="var(--garis2)"/>
+<text x="158" y="108" style="text-anchor:end" class="g-t">2. MMP2</text>
+<text x="442" y="154" style="text-anchor:start" class="g-t">MMP2 &#183; 1</text>
+<path d="M170 150 C300 150 300 196 430 196" fill="none" stroke="var(--garis2)" stroke-width="1.6"/>
+<circle cx="170" cy="150" r="3.6" fill="var(--garis2)"/>
+<circle cx="430" cy="196" r="3.6" fill="var(--garis2)"/>
+<text x="158" y="154" style="text-anchor:end" class="g-t">3. DPP4</text>
+<text x="442" y="200" style="text-anchor:start" class="g-t">DPP4 &#183; 1</text>
+<path d="M170 196 C300 196 300 58 430 58" fill="none" stroke="var(--institusi)" stroke-width="3.4"/>
+<circle cx="170" cy="196" r="5" fill="var(--institusi)"/>
+<circle cx="430" cy="58" r="5" fill="var(--institusi)"/>
+<text x="158" y="200" style="text-anchor:end" class="g-t">4. MIF</text>
+<text x="442" y="62" style="text-anchor:start" class="g-t">MIF &#183; 6</text>
+<line x1="540" y1="46" x2="540" y2="210" stroke="var(--garis)" stroke-width="1"/>
+<text x="556" y="72" style="text-anchor:start" class="g-t">MIF paling buncit pada jaringan,</text>
+<text x="556" y="88" style="text-anchor:start" class="g-t">tetapi menyumbang enam dari</text>
+<text x="556" y="104" style="text-anchor:start" class="g-t">sebelas pasangan yang bertahan,</text>
+<text x="556" y="120" style="text-anchor:start" class="g-t">dengan efisiensi ligan tertinggi</text>
+<text x="556" y="136" style="text-anchor:start" class="g-t">pada seluruh studi.</text>
+<text x="556" y="162" style="text-anchor:start" class="g-t" fill="var(--proses)">MMP9 simpul terpadat</text>
+<text x="556" y="178" style="text-anchor:start" class="g-t" fill="var(--proses)">hanya menyumbang satu.</text>
+<text x="24" y="236" style="text-anchor:start" class="g-s">Sentralitas menjawab seberapa besar akibatnya bila protein terganggu; docking menjawab seberapa mungkin ia benar-benar dapat diganggu molekul kecil.</text>
+</svg>
+</figure>
+<p>Selain protein inang, kita juga menyertakan protein virus sebagai sasaran, yaitu neuraminidase dan endonuklease PA. Karena tidak tersedia struktur kristal neuraminidase galur H9N2 pada Protein Data Bank, kita memakai struktur N2 dari galur lain, disertai pengukuran pendukung: 15 dari 16 residu kantong pengikatan terkonservasi seratus persen pada 60 galur H9N2, termasuk 20 galur asal Indonesia.</p>
 
  <h3><span class="no">C.6</span>Kampanye <i>molecular docking</i> dan validasinya</h3>
  <p><i>Docking</i> kita jalankan memakai AutoDock Vina versi 1.2.7 dengan tiga benih acak per pasangan dan <i>exhaustiveness</i> 32. Simpangan baku antar-benih rata-rata 0,03 kkal/mol, yang menunjukkan pencarian telah konvergen. Seluruhnya berjumlah 231 <i>run</i>. Kotak pencarian ditetapkan melalui pengelompokan salinan ligan rujukan dan pertimbangan ion logam katalitik pada metaloprotein.</p>
  <p>Setiap reseptor kita uji lebih dahulu melalui kendali <i>re-docking</i>: ligan rujukan yang posisinya sudah diketahui dari struktur kristal ditambatkan ulang, lalu simpangannya diukur dengan memperhitungkan kesetangkupan molekul. Reseptor dinyatakan sahih bila simpangannya di bawah 2 &Aring;. <b>Lima dari sembilan reseptor lolos</b>, dan hanya reseptor yang lolos inilah yang hasilnya kita laporkan.</p>
  <div class="tbl"><table>
-  <caption>Tabel 2. Hasil kendali <i>re-docking</i> pada reseptor yang dipakai.</caption>
-  <thead><tr><th>Reseptor</th><th>Kode PDB</th><th>Ligan rujukan</th><th class="n">RMSD</th><th>Keterangan</th></tr></thead>
+  <caption>Tabel 2. Status kendali <i>re-docking</i> pada kelima reseptor yang hasilnya dilaporkan. RMSD diukur pada pose terbaik dengan memperhitungkan kesetangkupan molekul.</caption>
+  <thead><tr><th>Reseptor</th><th>Kode PDB</th><th>Ligan rujukan</th><th>Fungsi penilai</th><th class="n">RMSD</th><th>Status</th></tr></thead>
   <tbody>
-   <tr><td>MIF</td><td>6B1K</td><td>C9G</td><td class="n">0,25 &Aring;</td><td><span class="st s-capai">Sahih</span> &mdash; terbaik pada seluruh studi</td></tr>
-   <tr><td>DPP4</td><td>4A5S</td><td>N7F</td><td class="n">0,83 &Aring;</td><td><span class="st s-capai">Sahih</span></td></tr>
-   <tr><td>MMP9</td><td>4XCT</td><td>N73</td><td class="n">0,95 &Aring;</td><td><span class="st s-capai">Sahih</span></td></tr>
-   <tr><td>MMP2</td><td>8H78</td><td>L2U</td><td class="n">3,96 &Aring;</td><td><span class="st s-belum">Tidak sahih</span> &mdash; ligan rujukan terlalu besar; hasil bersifat sementara</td></tr>
+   <tr><td>MIF</td><td>6B1K</td><td>C9G</td><td>Vina</td><td class="n">0,25 &Aring;</td><td><span class="st s-capai">Tervalidasi</span> &mdash; terbaik pada seluruh studi</td></tr>
+   <tr><td>DPP4</td><td>4A5S</td><td>N7F</td><td>Vina</td><td class="n">0,83 &Aring;</td><td><span class="st s-capai">Tervalidasi</span></td></tr>
+   <tr><td>MMP9</td><td>4XCT</td><td>N73</td><td>Vina</td><td class="n">0,95 &Aring;</td><td><span class="st s-capai">Tervalidasi</span></td></tr>
+   <tr><td>Neuraminidase N2</td><td>4K1K</td><td>G39</td><td>Vinardo</td><td class="n">0,21 &Aring;</td><td><span class="st s-proses">Diselamatkan</span> &mdash; gagal di bawah Vina, lolos setelah dijalankan ulang penuh dengan Vinardo</td></tr>
+   <tr><td>MMP2</td><td>8H78</td><td>L2U</td><td>Vina</td><td class="n">3,96 &Aring;</td><td><span class="st s-proses">Diselamatkan</span> &mdash; lewat uji pengganti koordinasi seng pada 2,08 &Aring;; hasilnya bersifat sementara</td></tr>
   </tbody>
- </table></div>
- <p>Setelah penyaringan afinitas, setiap pose kita periksa kesahihannya dengan membandingkan himpunan residu kontak terhadap himpunan residu kantong pengikatan rujukan. Pemeriksaan ini menggugurkan 13 pasangan yang skor afinitasnya memenuhi ambang namun posenya tidak menempati kantong yang benar &mdash; sebuah penyaringan yang tidak akan tertangkap bila hanya skor yang dilihat. Dari <b>35 pasangan</b> senyawa&ndash;reseptor yang diuji &mdash; tujuh ligan dikalikan lima reseptor yang lolos kendali &mdash; sebanyak 20 pasangan memenuhi ambang afinitas dan <b>11 pasangan lolos pemeriksaan pose</b>, sedangkan yang memenuhi keduanya sekaligus hanya <b>7 pasangan</b>.</p>
+</table></div>
+ <figure class="gbr">
+ <figcaption><span class="no">Gambar 3</span><span class="jdl">Kendali <i>re-docking</i> terhadap ambang 2 &Aring;</span><span class="ket">Setiap reseptor diuji dengan menambatkan ulang ligan rujukannya yang posisinya sudah diketahui dari struktur kristal. Empat reseptor lain pada daftar pendek tidak lolos kendali ini, sehingga hasilnya tidak dilaporkan.</span></figcaption>
+<svg viewBox="0 0 760 236" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Simpangan kendali re-docking setiap reseptor terhadap ambang 2 angstrom">
+<line x1="196.0" y1="42" x2="196.0" y2="262" stroke="var(--garis)" stroke-width="1"/>
+<text x="196.0" y="276" style="text-anchor:middle" class="g-s">0</text>
+<line x1="310.5" y1="42" x2="310.5" y2="262" stroke="var(--garis)" stroke-width="1"/>
+<text x="310.5" y="276" style="text-anchor:middle" class="g-s">1</text>
+<line x1="425.1" y1="42" x2="425.1" y2="262" stroke="var(--garis)" stroke-width="1"/>
+<text x="425.1" y="276" style="text-anchor:middle" class="g-s">2</text>
+<line x1="539.6" y1="42" x2="539.6" y2="262" stroke="var(--garis)" stroke-width="1"/>
+<text x="539.6" y="276" style="text-anchor:middle" class="g-s">3</text>
+<line x1="654.2" y1="42" x2="654.2" y2="262" stroke="var(--garis)" stroke-width="1"/>
+<text x="654.2" y="276" style="text-anchor:middle" class="g-s">4</text>
+<text x="448.0" y="292" style="text-anchor:middle" class="g-s">simpangan pose terbaik terhadap struktur kristal (&#197;)</text>
+<line x1="425.1" y1="36" x2="425.1" y2="262" stroke="var(--tegas)" stroke-width="1.5" stroke-dasharray="5 3"/>
+<text x="432.1" y="32" style="text-anchor:start" class="g-l" fill="var(--tegas)">ambang 2 &#197;</text>
+<text x="188" y="66" style="text-anchor:end" class="g-t">MIF</text>
+<text x="188" y="78" style="text-anchor:end" class="g-s">6B1K &#183; Vina</text>
+<rect x="196" y="52" width="28.6" height="20" rx="2" fill="var(--capai)" opacity=".85"/>
+<text x="232.6" y="66" style="text-anchor:start" class="g-n" fill="var(--capai)">0,25 &#197;</text>
+<text x="188" y="112" style="text-anchor:end" class="g-t">Neuraminidase N2</text>
+<text x="188" y="124" style="text-anchor:end" class="g-s">4K1K &#183; Vinardo</text>
+<rect x="196" y="98" width="24.1" height="20" rx="2" fill="var(--proses)" opacity=".85"/>
+<text x="228.1" y="112" style="text-anchor:start" class="g-n" fill="var(--proses)">0,21 &#197;</text>
+<text x="188" y="158" style="text-anchor:end" class="g-t">DPP4</text>
+<text x="188" y="170" style="text-anchor:end" class="g-s">4A5S &#183; Vina</text>
+<rect x="196" y="144" width="95.1" height="20" rx="2" fill="var(--capai)" opacity=".85"/>
+<text x="299.1" y="158" style="text-anchor:start" class="g-n" fill="var(--capai)">0,83 &#197;</text>
+<text x="188" y="204" style="text-anchor:end" class="g-t">MMP9</text>
+<text x="188" y="216" style="text-anchor:end" class="g-s">4XCT &#183; Vina</text>
+<rect x="196" y="190" width="108.8" height="20" rx="2" fill="var(--capai)" opacity=".85"/>
+<text x="312.8" y="204" style="text-anchor:start" class="g-n" fill="var(--capai)">0,95 &#197;</text>
+<text x="188" y="250" style="text-anchor:end" class="g-t">MMP2</text>
+<text x="188" y="262" style="text-anchor:end" class="g-s">8H78 &#183; Vina</text>
+<rect x="196" y="236" width="453.6" height="20" rx="2" fill="var(--proses)" opacity=".85"/>
+<text x="657.6" y="250" style="text-anchor:start" class="g-n" fill="var(--proses)">3,96 &#197;</text>
+<text x="196" y="304" style="text-anchor:start" class="g-s">MMP2 gagal karena ligan rujukannya sendiri terlalu besar (64 atom berat); situsnya diselamatkan lewat uji pengganti koordinasi seng pada 2,08 &#197;.</text>
+<text x="196" y="318" style="text-anchor:start" class="g-s">Neuraminidase gagal di bawah Vina lalu lolos setelah dijalankan ulang penuh dengan Vinardo. Empat reseptor lain tidak lolos kendali dan hasilnya tidak dilaporkan.</text>
+</svg>
+</figure>
+<p>Setelah penyaringan afinitas, setiap pose kita periksa kesahihannya dengan membandingkan himpunan residu kontak terhadap himpunan residu kantong pengikatan rujukan. Pemeriksaan ini menggugurkan 13 pasangan yang skor afinitasnya memenuhi ambang namun posenya tidak menempati kantong yang benar &mdash; sebuah penyaringan yang tidak akan tertangkap bila hanya skor yang dilihat. Dari <b>35 pasangan</b> senyawa&ndash;reseptor yang diuji &mdash; tujuh ligan dikalikan lima reseptor yang lolos kendali &mdash; sebanyak 20 pasangan memenuhi ambang afinitas dan <b>11 pasangan lolos pemeriksaan pose</b>, sedangkan yang memenuhi keduanya sekaligus hanya <b>7 pasangan</b>.</p>
  <div class="tbl"><table>
   <caption>Tabel 3. Tiga pasangan terkuat setelah seluruh penyaringan, satu untuk setiap jenis sasaran. Nilai &Delta;G dalam kkal/mol.</caption>
   <thead><tr><th>Senyawa</th><th>Reseptor</th><th>Jenis sasaran</th><th class="n">&Delta;G</th><th class="n">LE</th><th>Dasar pemilihan</th></tr></thead>
@@ -291,10 +475,124 @@ tr.gol td{background:var(--lembar2);font-weight:600;font-size:10.5px;
    <tr><td>Adoxosidic acid</td><td>Neuraminidase N2</td><td>Protein virus</td><td class="n">&minus;5,40</td><td class="n">0,208</td><td>Pose terbaik pada sasaran virus; 11 dari 13 kontak kanonik ditiru</td></tr>
   </tbody>
  </table></div>
- <p>Nilai &Delta;G pada baris neuraminidase perlu dibaca dengan hati-hati: reseptor tersebut dinilai memakai fungsi penilai Vinardo, sedangkan dua baris lainnya memakai Vina. Skor dari dua fungsi penilai yang berbeda tidak setara, sehingga angka &minus;5,40 tidak dapat langsung dibandingkan terhadap &minus;9,36 maupun terhadap ambang &minus;6,5 yang terkalibrasi untuk Vina. Inilah salah satu alasan kita mengusulkan perumusan ulang atas ambang tersebut, yang kita uraikan pada bagian G.</p>
+ <figure class="gbr">
+ <figcaption><span class="no">Gambar 4</span><span class="jdl">Afinitas dibandingkan efisiensi ligan pada sebelas pasangan yang bertahan</span><span class="ket">Molekul besar hampir selalu menang pada &Delta;G karena fungsi penilai <i>docking</i> menjumlahkan sumbangan tiap atom. Efisiensi ligan membagi afinitas dengan jumlah atom berat, sehingga membalik urutannya.</span></figcaption>
+<svg viewBox="0 0 760 352" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Afinitas docking dibandingkan efisiensi ligan untuk sebelas pasangan yang bertahan">
+<line x1="102.9" y1="40" x2="102.9" y2="286" stroke="var(--garis)" stroke-width="1"/>
+<line x1="167.8" y1="40" x2="167.8" y2="286" stroke="var(--garis)" stroke-width="1"/>
+<text x="167.8" y="304" style="text-anchor:middle" class="g-s">&#8722;9</text>
+<line x1="232.7" y1="40" x2="232.7" y2="286" stroke="var(--garis)" stroke-width="1"/>
+<line x1="297.6" y1="40" x2="297.6" y2="286" stroke="var(--garis)" stroke-width="1"/>
+<text x="297.6" y="304" style="text-anchor:middle" class="g-s">&#8722;8</text>
+<line x1="362.5" y1="40" x2="362.5" y2="286" stroke="var(--garis)" stroke-width="1"/>
+<line x1="427.4" y1="40" x2="427.4" y2="286" stroke="var(--garis)" stroke-width="1"/>
+<text x="427.4" y="304" style="text-anchor:middle" class="g-s">&#8722;7</text>
+<line x1="492.3" y1="40" x2="492.3" y2="286" stroke="var(--garis)" stroke-width="1"/>
+<line x1="557.2" y1="40" x2="557.2" y2="286" stroke="var(--garis)" stroke-width="1"/>
+<text x="557.2" y="304" style="text-anchor:middle" class="g-s">&#8722;6</text>
+<line x1="622.1" y1="40" x2="622.1" y2="286" stroke="var(--garis)" stroke-width="1"/>
+<line x1="687.0" y1="40" x2="687.0" y2="286" stroke="var(--garis)" stroke-width="1"/>
+<text x="687.0" y="304" style="text-anchor:middle" class="g-s">&#8722;5</text>
+<line x1="64" y1="263.6" x2="700" y2="263.6" stroke="var(--garis)" stroke-width="1"/>
+<text x="54" y="267.6" style="text-anchor:end" class="g-s">0,2</text>
+<line x1="64" y1="218.9" x2="700" y2="218.9" stroke="var(--garis)" stroke-width="1"/>
+<text x="54" y="222.9" style="text-anchor:end" class="g-s">0,3</text>
+<line x1="64" y1="174.2" x2="700" y2="174.2" stroke="var(--garis)" stroke-width="1"/>
+<text x="54" y="178.2" style="text-anchor:end" class="g-s">0,4</text>
+<line x1="64" y1="129.5" x2="700" y2="129.5" stroke="var(--garis)" stroke-width="1"/>
+<text x="54" y="133.5" style="text-anchor:end" class="g-s">0,5</text>
+<line x1="64" y1="84.7" x2="700" y2="84.7" stroke="var(--garis)" stroke-width="1"/>
+<text x="54" y="88.7" style="text-anchor:end" class="g-s">0,6</text>
+<line x1="64" y1="40.0" x2="700" y2="40.0" stroke="var(--garis)" stroke-width="1"/>
+<text x="54" y="44.0" style="text-anchor:end" class="g-s">0,7</text>
+<text x="382.0" y="322" style="text-anchor:middle" class="g-s">afinitas &#916;G (kkal/mol) &#8212; makin ke kiri makin kuat</text>
+<text x="18" y="163.0" style="text-anchor:middle" class="g-s" transform="rotate(-90 18 163.0)">efisiensi ligan (kkal/mol per atom berat)</text>
+<line x1="492.3" y1="26" x2="492.3" y2="286" stroke="var(--tegas)" stroke-width="1.5" stroke-dasharray="5 3"/>
+<text x="485.3" y="22" style="text-anchor:end" class="g-l" fill="var(--tegas)">ambang &#8722;6,5 (terkalibrasi untuk Vina)</text>
+<circle cx="121.1" cy="226.1" r="7.8" fill="var(--institusi)" opacity=".75"/>
+<text x="121.1" y="212.1" style="text-anchor:middle" class="g-t">MMP9 &#183; Forsythoside D</text>
+<circle cx="157.5" cy="230.1" r="7.8" fill="var(--institusi)" opacity=".75"/>
+<text x="157.5" y="250.1" style="text-anchor:middle" class="g-t">MMP2 &#183; Forsythoside D</text>
+<circle cx="340.5" cy="67.3" r="4.9" fill="var(--institusi)" opacity=".75"/>
+<text x="350.5" y="55.3" style="text-anchor:start" class="g-t">MIF &#183; p-Coumaric acid</text>
+<circle cx="378.1" cy="252.9" r="7.8" fill="var(--institusi)" opacity=".75"/>
+<text x="378.1" y="272.9" style="text-anchor:middle" class="g-t">MIF &#183; Forsythoside D</text>
+<circle cx="382.0" cy="100.4" r="5.0" fill="var(--institusi)" opacity=".75"/>
+<text x="392.0" y="104.4" style="text-anchor:start" class="g-t">MIF &#183; Caffeic acid</text>
+<circle cx="420.9" cy="127.7" r="5.2" fill="var(--institusi)" opacity=".75"/>
+<text x="430.9" y="131.7" style="text-anchor:start" class="g-t">MIF &#183; Salvianic acid A</text>
+<circle cx="484.5" cy="264.1" r="7.8" fill="none" stroke="var(--institusi)" stroke-width="1.8" stroke-dasharray="2.5 2"/>
+<text x="484.5" y="250.1" style="text-anchor:middle" class="g-t">NA &#183; Forsythoside D</text>
+<circle cx="526.1" cy="153.6" r="5.2" fill="var(--institusi)" opacity=".75"/>
+<text x="516.1" y="157.6" style="text-anchor:end" class="g-t">DPP4 &#183; Salvianic acid A</text>
+<circle cx="549.4" cy="235.5" r="6.4" fill="var(--institusi)" opacity=".75"/>
+<text x="539.4" y="227.5" style="text-anchor:end" class="g-t">MIF &#183; Glucogallin</text>
+<circle cx="635.1" cy="260.1" r="6.8" fill="none" stroke="var(--institusi)" stroke-width="1.8" stroke-dasharray="2.5 2"/>
+<text x="635.1" y="280.1" style="text-anchor:middle" class="g-t">NA &#183; Adoxosidic acid</text>
+<circle cx="654.6" cy="157.2" r="4.9" fill="var(--institusi)" opacity=".75"/>
+<text x="644.6" y="161.2" style="text-anchor:end" class="g-t">MIF &#183; Ascorbic acid</text>
+<text x="64" y="332" style="text-anchor:start" class="g-s">Luas lingkaran sebanding dengan jumlah atom berat. Lingkaran putus-putus dinilai dengan Vinardo, sehingga skornya tidak setara dengan yang dinilai Vina.</text>
+<text x="64" y="346" style="text-anchor:start" class="g-s">Forsythoside D (33 atom) menang pada &#916;G di tiga reseptor namun kalah pada efisiensi ligan &#8212; inilah bias ukuran yang membuat skor mentah tidak dapat dipakai sendirian.</text>
+</svg>
+</figure>
+<p>Nilai &Delta;G pada baris neuraminidase perlu dibaca dengan hati-hati: reseptor tersebut dinilai memakai fungsi penilai Vinardo, sedangkan dua baris lainnya memakai Vina. Skor dari dua fungsi penilai yang berbeda tidak setara, sehingga angka &minus;5,40 tidak dapat langsung dibandingkan terhadap &minus;9,36 maupun terhadap ambang &minus;6,5 yang terkalibrasi untuk Vina. Inilah salah satu alasan kita mengusulkan perumusan ulang atas ambang tersebut, yang kita uraikan pada bagian G.</p>
  <p>Dasar pemilihan ketiganya adalah hasil validasi pose, bukan skor mentah. Bila skor yang dipakai, ketiganya akan didominasi molekul berukuran terbesar, karena fungsi penilai <i>docking</i> bersifat ekstensif terhadap jumlah atom. Untuk itu kita juga melaporkan efisiensi ligan, yaitu afinitas per atom berat, sebagai ukuran yang tidak memihak molekul besar.</p>
 
- <h3><span class="no">C.7</span>Simulasi dinamika molekuler</h3>
+ <figure class="gbr">
+ <figcaption><span class="no">Gambar 5</span><span class="jdl">Penyusutan bertahap dari 832 entri menjadi tujuh pasangan</span><span class="ket">Setiap tahap menyebutkan penyaring yang diterapkan. Perhatikan bahwa satuannya berubah di tengah alur: lima tahap pertama menghitung senyawa, tiga tahap terakhir menghitung pasangan senyawa&ndash;reseptor.</span></figcaption>
+<svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Penyusutan bertahap dari 832 senyawa menjadi tujuh pasangan">
+<text x="24" y="26" style="text-anchor:start" class="g-l">PENYARINGAN SENYAWA</text>
+<text x="414" y="26" style="text-anchor:start" class="g-l">PENYARINGAN PASANGAN SENYAWA&#8211;RESEPTOR</text>
+<line x1="392" y1="14" x2="392" y2="286" stroke="var(--garis)" stroke-width="1" stroke-dasharray="4 4"/>
+<rect x="24" y="46" width="344" height="40" rx="3" fill="var(--lembar2)" stroke="var(--garis2)" stroke-width="1"/>
+<text x="38" y="72" style="text-anchor:start" class="g-b" fill="var(--institusi)">832</text>
+<text x="98" y="64" style="text-anchor:start" class="g-t">entri terjaring</text>
+<text x="98" y="78" style="text-anchor:start" class="g-s">KnapSack, enam tanaman</text>
+<path d="M54 88 l0 6.5 M50.4 91.5 l3.6 4 l3.6 -4" fill="none" stroke="var(--garis2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="24" y="100" width="344" height="40" rx="3" fill="var(--lembar2)" stroke="var(--garis2)" stroke-width="1"/>
+<text x="38" y="126" style="text-anchor:start" class="g-b" fill="var(--institusi)">625</text>
+<text x="98" y="118" style="text-anchor:start" class="g-t">struktur valid</text>
+<text x="98" y="132" style="text-anchor:start" class="g-s">kanonikalisasi SMILES, duplikat disingkirkan</text>
+<path d="M54 142 l0 6.5 M50.4 145.5 l3.6 4 l3.6 -4" fill="none" stroke="var(--garis2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="24" y="154" width="344" height="40" rx="3" fill="var(--lembar2)" stroke="var(--garis2)" stroke-width="1"/>
+<text x="38" y="180" style="text-anchor:start" class="g-b" fill="var(--institusi)">104</text>
+<text x="98" y="172" style="text-anchor:start" class="g-t">lolos ambang 0,9</text>
+<text x="98" y="186" style="text-anchor:start" class="g-s">pada ketiga <tspan>fingerprint</tspan> sekaligus</text>
+<path d="M54 196 l0 6.5 M50.4 199.5 l3.6 4 l3.6 -4" fill="none" stroke="var(--garis2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="24" y="208" width="344" height="40" rx="3" fill="var(--lembar2)" stroke="var(--garis2)" stroke-width="1"/>
+<text x="38" y="234" style="text-anchor:start" class="g-b" fill="var(--institusi)">9</text>
+<text x="98" y="226" style="text-anchor:start" class="g-t">lolos ADMET</text>
+<text x="98" y="240" style="text-anchor:start" class="g-s">rancangan inhalasi; dua juga lolos oral</text>
+<path d="M54 250 l0 6.5 M50.4 253.5 l3.6 4 l3.6 -4" fill="none" stroke="var(--garis2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="24" y="262" width="344" height="40" rx="3" fill="var(--institusi-samar)" stroke="var(--institusi)" stroke-width="1.6"/>
+<text x="38" y="288" style="text-anchor:start" class="g-b" fill="var(--institusi)">7</text>
+<text x="98" y="280" style="text-anchor:start" class="g-t">ligan didocking</text>
+<text x="98" y="294" style="text-anchor:start" class="g-s">dua dikeluarkan: torsi 32 dan 33 melampaui batas Vina</text>
+<rect x="414" y="46" width="322" height="40" rx="3" fill="var(--lembar2)" stroke="var(--garis2)" stroke-width="1"/>
+<text x="428" y="72" style="text-anchor:start" class="g-b" fill="var(--institusi)">35</text>
+<text x="488" y="64" style="text-anchor:start" class="g-t">pasangan diuji</text>
+<text x="488" y="78" style="text-anchor:start" class="g-s">7 ligan &#215; 5 reseptor yang lolos kendali</text>
+<path d="M444 88 l0 6.5 M440.4 91.5 l3.6 4 l3.6 -4" fill="none" stroke="var(--garis2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="414" y="100" width="322" height="40" rx="3" fill="var(--lembar2)" stroke="var(--garis2)" stroke-width="1"/>
+<text x="428" y="126" style="text-anchor:start" class="g-b" fill="var(--institusi)">20</text>
+<text x="488" y="118" style="text-anchor:start" class="g-t">memenuhi ambang</text>
+<text x="488" y="132" style="text-anchor:start" class="g-s">&#916;G &#8804; &#8722;6,5 kkal/mol</text>
+<path d="M444 142 l0 6.5 M440.4 145.5 l3.6 4 l3.6 -4" fill="none" stroke="var(--garis2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="414" y="154" width="322" height="40" rx="3" fill="var(--lembar2)" stroke="var(--garis2)" stroke-width="1"/>
+<text x="428" y="180" style="text-anchor:start" class="g-b" fill="var(--institusi)">11</text>
+<text x="488" y="172" style="text-anchor:start" class="g-t">pose sahih</text>
+<text x="488" y="186" style="text-anchor:start" class="g-s">irisan residu kontak terhadap kantong rujukan</text>
+<path d="M444 196 l0 6.5 M440.4 199.5 l3.6 4 l3.6 -4" fill="none" stroke="var(--garis2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="414" y="208" width="322" height="40" rx="3" fill="var(--institusi-samar)" stroke="var(--institusi)" stroke-width="1.6"/>
+<text x="428" y="234" style="text-anchor:start" class="g-b" fill="var(--institusi)">7</text>
+<text x="488" y="226" style="text-anchor:start" class="g-t">lolos keduanya</text>
+<text x="488" y="240" style="text-anchor:start" class="g-s">13 pasangan gugur karena posenya salah kantong</text>
+<path d="M368 271 C384 271 384 66 410 66" fill="none" stroke="var(--institusi)" stroke-width="1.4" stroke-dasharray="4 3"/>
+<path d="M404 62.5 l6 3.5 l-6 3.5" fill="var(--institusi)"/>
+<text x="394" y="292" style="text-anchor:middle" class="g-s">Satuannya berubah di sini: dari senyawa menjadi pasangan senyawa&#8211;reseptor</text>
+</svg>
+</figure>
+<h3><span class="no">C.7</span>Simulasi dinamika molekuler</h3>
  <p>Tiga kompleks pada Tabel 3 kita siapkan untuk simulasi dinamika molekuler selama 50 nanodetik, memakai medan gaya ff14SB untuk protein, GAFF2 dengan muatan AM1&ndash;BCC untuk ligan, dan model air TIP3P. Penyiapan sistem mencakup pelengkapan 33 atom rantai samping yang hilang pada 12 residu struktur kristal.</p>
  <p>Sampai tanggal pelaporan <b>belum ada satu pun lintasan produksi yang selesai</b>. Enam protokol penyetimbangan berturut-turut berakhir dengan divergensi numerik, dan penanganannya kita uraikan pada bagian F. Karena tahap ini menjadi penentu bagi luaran Scopus kedua, penyelesaiannya kita tempatkan sebagai prioritas pada rencana tahapan berikutnya.</p>
 </section>
@@ -363,7 +661,56 @@ tr.gol td{background:var(--lembar2);font-weight:600;font-size:10.5px;
    <tr><td class="n">10</td><td>Mempertimbangkan uji penghambatan enzim skala terbatas</td><td>Mengubah klaim dari sepenuhnya <i>in silico</i> menjadi disertai konfirmasi awal; lingkupnya kecil dengan dampak besar pada penerimaan naskah.</td><td>keputusan tim</td></tr>
   </tbody>
  </table></div>
- <h3>Rencana luaran wajib yang tersisa</h3>
+ <figure class="gbr">
+ <figcaption><span class="no">Gambar 6</span><span class="jdl">Usulan jadwal sepuluh pekerjaan berikutnya</span><span class="ket">Dihitung sejak pekerjaan nomor satu dimulai. Batang putus-putus menandai pekerjaan yang pelaksanaannya masih menunggu keputusan tim.</span></figcaption>
+<svg viewBox="0 0 760 332" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Usulan jadwal sepuluh pekerjaan berikutnya selama enam minggu">
+<line x1="286.0" y1="38" x2="286.0" y2="304" stroke="var(--garis)" stroke-width="1"/>
+<text x="322.2" y="32" style="text-anchor:middle" class="g-l">MINGGU 1</text>
+<line x1="358.3" y1="38" x2="358.3" y2="304" stroke="var(--garis)" stroke-width="1"/>
+<text x="394.5" y="32" style="text-anchor:middle" class="g-l">MINGGU 2</text>
+<line x1="430.7" y1="38" x2="430.7" y2="304" stroke="var(--garis)" stroke-width="1"/>
+<text x="466.8" y="32" style="text-anchor:middle" class="g-l">MINGGU 3</text>
+<line x1="503.0" y1="38" x2="503.0" y2="304" stroke="var(--garis)" stroke-width="1"/>
+<text x="539.2" y="32" style="text-anchor:middle" class="g-l">MINGGU 4</text>
+<line x1="575.3" y1="38" x2="575.3" y2="304" stroke="var(--garis)" stroke-width="1"/>
+<text x="611.5" y="32" style="text-anchor:middle" class="g-l">MINGGU 5</text>
+<line x1="647.7" y1="38" x2="647.7" y2="304" stroke="var(--garis)" stroke-width="1"/>
+<text x="683.8" y="32" style="text-anchor:middle" class="g-l">MINGGU 6</text>
+<line x1="720.0" y1="38" x2="720.0" y2="304" stroke="var(--garis)" stroke-width="1"/>
+<rect x="286" y="51" width="434" height="23" fill="var(--lembar2)" opacity=".6"/>
+<text x="276" y="66" style="text-anchor:end" class="g-t">1. Metode perangkingan protein &#8212; tahap 6</text>
+<rect x="286.0" y="54" width="144.7" height="17" rx="2.5" fill="var(--institusi)" opacity=".82"/>
+<text x="276" y="91" style="text-anchor:end" class="g-t">2. Siapkan ulang sistem neuraminidase</text>
+<rect x="286.0" y="79" width="18.1" height="17" rx="2.5" fill="var(--institusi)" opacity=".82"/>
+<rect x="286" y="101" width="434" height="23" fill="var(--lembar2)" opacity=".6"/>
+<text x="276" y="116" style="text-anchor:end" class="g-t">3. Kendali Vinardo untuk endonuklease PA</text>
+<rect x="304.1" y="104" width="18.1" height="17" rx="2.5" fill="var(--institusi)" opacity=".82"/>
+<text x="276" y="141" style="text-anchor:end" class="g-t">4. Uji protokol penyetimbangan dengan mode latihan</text>
+<rect x="322.2" y="129" width="18.1" height="17" rx="2.5" fill="var(--institusi)" opacity=".82"/>
+<rect x="286" y="151" width="434" height="23" fill="var(--lembar2)" opacity=".6"/>
+<text x="276" y="166" style="text-anchor:end" class="g-t">5. Draf naskah tahun pertama sampai jaringan PPI</text>
+<rect x="358.3" y="154" width="144.7" height="17" rx="2.5" fill="var(--institusi)" opacity=".82"/>
+<text x="276" y="191" style="text-anchor:end" class="g-t">6. Lengkapi protein inti menjadi lima</text>
+<rect x="358.3" y="179" width="57.9" height="17" rx="2.5" fill="var(--institusi)" opacity=".82"/>
+<rect x="286" y="201" width="434" height="23" fill="var(--lembar2)" opacity=".6"/>
+<text x="276" y="216" style="text-anchor:end" class="g-t">7. Validasi kandidat terhadap literatur fitokimia</text>
+<rect x="430.7" y="204" width="72.3" height="17" rx="2.5" fill="var(--institusi)" opacity=".82"/>
+<text x="276" y="241" style="text-anchor:end" class="g-t">8. Lintasan produksi MD dan analisis kestabilan</text>
+<rect x="358.3" y="229" width="217.0" height="17" rx="2.5" fill="var(--institusi)" opacity=".82"/>
+<rect x="286" y="251" width="434" height="23" fill="var(--lembar2)" opacity=".6"/>
+<text x="276" y="266" style="text-anchor:end" class="g-t">9. Keputusan kelanjutan optimasi metaheuristik</text>
+<rect x="474.1" y="254" width="21.7" height="17" rx="2.5" fill="var(--institusi)" opacity=".82"/>
+<text x="276" y="291" style="text-anchor:end" class="g-t">10. Uji penghambatan enzim skala terbatas</text>
+<rect x="503.0" y="279" width="217.0" height="17" rx="2.5" fill="none" stroke="var(--samar)" stroke-width="1.4" stroke-dasharray="4 3"/>
+<line x1="286" y1="304" x2="720" y2="304" stroke="var(--garis2)" stroke-width="1"/>
+<path d="M575.3 320 L720.0 320" stroke="var(--capai)" stroke-width="2.4"/>
+<path d="M575.3 315 l0 10 M720.0 315 l0 10" stroke="var(--capai)" stroke-width="2.4"/>
+<text x="276" y="324" style="text-anchor:end" class="g-t" fill="var(--capai)">Naskah kedua siap dikirim</text>
+<text x="24" y="302" style="text-anchor:start" class="g-s">Jadwal ini bersifat usulan, dihitung sejak pekerjaan nomor satu dimulai. Butir 10 digambar putus-putus karena pelaksanaannya masih menunggu keputusan tim.</text>
+<text x="24" y="318" style="text-anchor:start" class="g-s">Butir 1 sampai 4 tidak menunggu komputasi panjang; butir 8 adalah penentu bagi luaran Scopus kedua.</text>
+</svg>
+</figure>
+<h3>Rencana luaran wajib yang tersisa</h3>
  <p>Target dua artikel Scopus tinggal kurang satu. Untuk memenuhinya kita merencanakan dua naskah yang menjawab pertanyaan berbeda dari satu kampanye komputasi yang sama. <b>Naskah pertama</b> menyasar protein virus &mdash; neuraminidase dan endonuklease PA &mdash; dengan klaim kandidat antivirus, sesuai judul penelitian. <b>Naskah kedua</b> menyasar empat protein inang dengan klaim kandidat imunomodulator berbasis inang, bukan antivirus, karena menghambat protein inang tidak menghentikan replikasi virus melainkan mengubah respons imun.</p>
  <p>Pemisahan ini kita tempuh atas pertimbangan keabsahan klaim. Bukti pada jalur inang justru lebih kuat &mdash; sembilan dari sebelas pasangan yang bertahan berada di jalur tersebut, dengan reseptor MIF tervalidasi penuh pada simpangan 0,25 &Aring; &mdash; sehingga menempatkannya di bawah kata &ldquo;antivirus&rdquo; akan mengundang keberatan penelaah pada paragraf pertama. Landasan biologis naskah kedua telah kita draf dari penelusuran literatur dan sedang diperiksa anggota tim berlatar virologi dan farmasi.</p>
  <p>Dengan urutan di atas, dan bila penulisan bagian metode berjalan bersamaan dengan simulasi, naskah kedua kita perkirakan siap dikirim dalam empat sampai enam minggu.</p>
