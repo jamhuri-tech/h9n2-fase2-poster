@@ -803,6 +803,8 @@ table.tbl td.n,table.tbl th.n{text-align:right;font-family:"IBM Plex Mono",monos
   });
 
   addEventListener('resize',skala);
+  addEventListener('orientationchange',skala);
+  if(window.ResizeObserver) new ResizeObserver(skala).observe(document.documentElement);
   addEventListener('mousemove',function(){
     kendali.classList.remove('sepi'); clearTimeout(jeda);
     jeda=setTimeout(function(){kendali.classList.add('sepi');},2600);
