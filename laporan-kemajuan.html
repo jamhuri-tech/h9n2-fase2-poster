@@ -53,9 +53,9 @@ body{margin:0;background:var(--meja);color:var(--tinta);
   font-family:"Source Serif 4",Georgia,"Times New Roman",serif;
   font-size:16px;line-height:1.66;-webkit-font-smoothing:antialiased}
 
-.lembar{max-width:840px;margin:36px auto 72px;background:var(--lembar);
+.lembar{max-width:788px;margin:36px auto 72px;background:var(--lembar);
   border:1px solid var(--garis);border-radius:3px;box-shadow:var(--bayang);
-  padding:64px 72px 76px}
+  padding:60px 64px 72px}
 
 /* ---------- kop ---------- */
 .kop{border-bottom:2.5px solid var(--institusi);padding-bottom:26px;
@@ -67,7 +67,7 @@ body{margin:0;background:var(--meja);color:var(--tinta);
 h1{font-family:"Libre Franklin",-apple-system,"Segoe UI",sans-serif;
   font-weight:700;font-size:clamp(1.45rem,3.2vw,1.95rem);line-height:1.24;
   letter-spacing:-.014em;margin:0;text-wrap:balance;max-width:30ch}
-.subjudul{margin:0;font-size:1.02rem;color:var(--tinta2);max-width:64ch;text-align:left}
+.subjudul{margin:0;font-size:1.02rem;color:var(--tinta2);text-align:left}
 
 .identitas{display:grid;grid-template-columns:auto 1fr;gap:7px 22px;
   font-family:"Libre Franklin",sans-serif;font-size:13.5px;line-height:1.55}
@@ -98,8 +98,8 @@ h3{font-family:"Libre Franklin",sans-serif;font-weight:600;font-size:.97rem;
   margin:30px 0 9px;color:var(--tinta);letter-spacing:.005em}
 h3 .no{font-family:"IBM Plex Mono",monospace;color:var(--institusi);
   font-weight:500;margin-right:.55em}
-p{margin:0 0 13px;max-width:68ch;text-align:justify;hyphens:auto}
-ul,ol{max-width:68ch;padding-left:1.25em;margin:0 0 14px}
+p{margin:0 0 13px;text-align:justify;hyphens:auto}
+ul,ol{padding-left:1.25em;margin:0 0 14px}
 li{margin-bottom:6px}
 strong{font-weight:600}
 em{font-style:italic}
@@ -137,7 +137,7 @@ tr.gol td{background:var(--lembar2);font-weight:600;font-size:10.5px;
 .gbr .no{font-family:"Libre Franklin",sans-serif;font-size:10px;font-weight:700;
   letter-spacing:.11em;text-transform:uppercase;color:var(--institusi)}
 .gbr .jdl{font-family:"Libre Franklin",sans-serif;font-weight:600;font-size:.95rem;color:var(--tinta)}
-.gbr .ket{font-size:12.5px;color:var(--samar);font-style:italic;max-width:68ch;line-height:1.5}
+.gbr .ket{font-size:12.5px;color:var(--samar);font-style:italic;line-height:1.5}
 .gbr svg{display:block;width:100%;height:auto;
   border:1px solid var(--garis);border-radius:3px;background:var(--lembar)}
 .g-t{font-family:"Libre Franklin",sans-serif;font-size:11px;fill:var(--tinta)}
@@ -146,7 +146,8 @@ tr.gol td{background:var(--lembar2);font-weight:600;font-size:10.5px;
   letter-spacing:.1em;fill:var(--samar)}
 .g-n{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;fill:var(--tinta)}
 .g-p{font-family:"IBM Plex Mono",monospace;font-size:8px;font-weight:600;letter-spacing:.07em}
-.g-b{font-family:"IBM Plex Mono",monospace;font-size:17px;font-weight:600;fill:var(--tinta);
+.g-x{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600}
+.g-b{font-family:"IBM Plex Mono",monospace;font-size:19px;font-weight:600;fill:var(--tinta);
   font-variant-numeric:tabular-nums}
 
 /* ---------- kutipan angka ---------- */
@@ -567,57 +568,93 @@ tr.gol td{background:var(--lembar2);font-weight:600;font-size:10.5px;
  <p>Dasar pemilihan ketiganya adalah hasil validasi pose, bukan skor mentah. Bila skor yang dipakai, ketiganya akan didominasi molekul berukuran terbesar, karena fungsi penilai <i>docking</i> bersifat ekstensif terhadap jumlah atom. Untuk itu kita juga melaporkan efisiensi ligan, yaitu afinitas per atom berat, sebagai ukuran yang tidak memihak molekul besar.</p>
 
  <figure class="gbr">
- <figcaption><span class="no">Gambar 5</span><span class="jdl">Penyusutan bertahap dari 832 entri menjadi tujuh pasangan</span><span class="ket">Setiap tahap menyebutkan penyaring yang diterapkan. Perhatikan bahwa satuannya berubah di tengah alur: lima tahap pertama menghitung senyawa, tiga tahap terakhir menghitung pasangan senyawa&ndash;reseptor.</span></figcaption>
-<svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Penyusutan bertahap dari 832 senyawa menjadi tujuh pasangan">
-<text x="24" y="26" style="text-anchor:start" class="g-l">PENYARINGAN SENYAWA</text>
-<text x="414" y="26" style="text-anchor:start" class="g-l">PENYARINGAN PASANGAN SENYAWA&#8211;RESEPTOR</text>
-<line x1="392" y1="14" x2="392" y2="286" stroke="var(--garis)" stroke-width="1" stroke-dasharray="4 4"/>
-<rect x="24" y="46" width="344" height="40" rx="3" fill="var(--lembar2)" stroke="var(--garis2)" stroke-width="1"/>
-<text x="38" y="72" style="text-anchor:start" class="g-b" fill="var(--institusi)">832</text>
-<text x="98" y="64" style="text-anchor:start" class="g-t">entri terjaring</text>
-<text x="98" y="78" style="text-anchor:start" class="g-s">KnapSack, enam tanaman</text>
-<path d="M54 88 l0 6.5 M50.4 91.5 l3.6 4 l3.6 -4" fill="none" stroke="var(--garis2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="24" y="100" width="344" height="40" rx="3" fill="var(--lembar2)" stroke="var(--garis2)" stroke-width="1"/>
-<text x="38" y="126" style="text-anchor:start" class="g-b" fill="var(--institusi)">625</text>
-<text x="98" y="118" style="text-anchor:start" class="g-t">struktur valid</text>
-<text x="98" y="132" style="text-anchor:start" class="g-s">kanonikalisasi SMILES, duplikat disingkirkan</text>
-<path d="M54 142 l0 6.5 M50.4 145.5 l3.6 4 l3.6 -4" fill="none" stroke="var(--garis2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="24" y="154" width="344" height="40" rx="3" fill="var(--lembar2)" stroke="var(--garis2)" stroke-width="1"/>
-<text x="38" y="180" style="text-anchor:start" class="g-b" fill="var(--institusi)">104</text>
-<text x="98" y="172" style="text-anchor:start" class="g-t">lolos ambang 0,9</text>
-<text x="98" y="186" style="text-anchor:start" class="g-s">pada ketiga <tspan>fingerprint</tspan> sekaligus</text>
-<path d="M54 196 l0 6.5 M50.4 199.5 l3.6 4 l3.6 -4" fill="none" stroke="var(--garis2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="24" y="208" width="344" height="40" rx="3" fill="var(--lembar2)" stroke="var(--garis2)" stroke-width="1"/>
-<text x="38" y="234" style="text-anchor:start" class="g-b" fill="var(--institusi)">9</text>
-<text x="98" y="226" style="text-anchor:start" class="g-t">lolos ADMET</text>
-<text x="98" y="240" style="text-anchor:start" class="g-s">rancangan inhalasi; dua juga lolos oral</text>
-<path d="M54 250 l0 6.5 M50.4 253.5 l3.6 4 l3.6 -4" fill="none" stroke="var(--garis2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="24" y="262" width="344" height="40" rx="3" fill="var(--institusi-samar)" stroke="var(--institusi)" stroke-width="1.6"/>
-<text x="38" y="288" style="text-anchor:start" class="g-b" fill="var(--institusi)">7</text>
-<text x="98" y="280" style="text-anchor:start" class="g-t">ligan didocking</text>
-<text x="98" y="294" style="text-anchor:start" class="g-s">dua dikeluarkan: torsi 32 dan 33 melampaui batas Vina</text>
-<rect x="414" y="46" width="322" height="40" rx="3" fill="var(--lembar2)" stroke="var(--garis2)" stroke-width="1"/>
-<text x="428" y="72" style="text-anchor:start" class="g-b" fill="var(--institusi)">35</text>
-<text x="488" y="64" style="text-anchor:start" class="g-t">pasangan diuji</text>
-<text x="488" y="78" style="text-anchor:start" class="g-s">7 ligan &#215; 5 reseptor yang lolos kendali</text>
-<path d="M444 88 l0 6.5 M440.4 91.5 l3.6 4 l3.6 -4" fill="none" stroke="var(--garis2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="414" y="100" width="322" height="40" rx="3" fill="var(--lembar2)" stroke="var(--garis2)" stroke-width="1"/>
-<text x="428" y="126" style="text-anchor:start" class="g-b" fill="var(--institusi)">20</text>
-<text x="488" y="118" style="text-anchor:start" class="g-t">memenuhi ambang</text>
-<text x="488" y="132" style="text-anchor:start" class="g-s">&#916;G &#8804; &#8722;6,5 kkal/mol</text>
-<path d="M444 142 l0 6.5 M440.4 145.5 l3.6 4 l3.6 -4" fill="none" stroke="var(--garis2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="414" y="154" width="322" height="40" rx="3" fill="var(--lembar2)" stroke="var(--garis2)" stroke-width="1"/>
-<text x="428" y="180" style="text-anchor:start" class="g-b" fill="var(--institusi)">11</text>
-<text x="488" y="172" style="text-anchor:start" class="g-t">pose sahih</text>
-<text x="488" y="186" style="text-anchor:start" class="g-s">irisan residu kontak terhadap kantong rujukan</text>
-<path d="M444 196 l0 6.5 M440.4 199.5 l3.6 4 l3.6 -4" fill="none" stroke="var(--garis2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="414" y="208" width="322" height="40" rx="3" fill="var(--institusi-samar)" stroke="var(--institusi)" stroke-width="1.6"/>
-<text x="428" y="234" style="text-anchor:start" class="g-b" fill="var(--institusi)">7</text>
-<text x="488" y="226" style="text-anchor:start" class="g-t">lolos keduanya</text>
-<text x="488" y="240" style="text-anchor:start" class="g-s">13 pasangan gugur karena posenya salah kantong</text>
-<path d="M368 271 C384 271 384 66 410 66" fill="none" stroke="var(--institusi)" stroke-width="1.4" stroke-dasharray="4 3"/>
-<path d="M404 62.5 l6 3.5 l-6 3.5" fill="var(--institusi)"/>
-<text x="394" y="292" style="text-anchor:middle" class="g-s">Satuannya berubah di sini: dari senyawa menjadi pasangan senyawa&#8211;reseptor</text>
+ <figcaption><span class="no">Gambar 5</span><span class="jdl">Penyusutan bertahap dari 832 entri menjadi tujuh pasangan</span><span class="ket">Setiap anak panah merah menyebutkan berapa yang gugur pada tahap itu dan mengapa. Satuannya berubah di tengah alur: panel kiri menghitung senyawa, panel kanan menghitung pasangan senyawa&ndash;reseptor, dan keduanya dijembatani oleh perkalian dengan lima reseptor yang lolos kendali.</span></figcaption>
+<svg viewBox="0 0 760 494" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Alur penyaringan dari 832 entri menjadi tujuh pasangan, beserta jumlah dan alasan yang gugur di tiap tahap">
+<text x="14" y="30" style="text-anchor:start" class="g-l">PENYARINGAN SENYAWA</text>
+<text x="14" y="44" style="text-anchor:start" class="g-s">satuan: senyawa</text>
+<line x1="14" y1="46" x2="350" y2="46" stroke="var(--garis2)" stroke-width="1"/>
+<rect x="14" y="58" width="176" height="46" rx="3" fill="var(--lembar)" stroke="var(--garis2)" stroke-width="1"/>
+<rect x="14" y="58" width="3" height="46" rx="1.5" fill="var(--institusi)" opacity="0.45"/>
+<text x="29" y="83" style="text-anchor:start" class="g-b" fill="var(--institusi)">832</text>
+<text x="29" y="97" style="text-anchor:start" class="g-s">entri terjaring dari KnapSack</text>
+<line x1="48" y1="104" x2="48" y2="137" stroke="var(--garis2)" stroke-width="1.3"/>
+<path d="M44 137 l4 6 l4 -6 z" fill="var(--garis2)"/>
+<line x1="48" y1="124.0" x2="184" y2="124.0" stroke="var(--tegas)" stroke-width="1.1" stroke-dasharray="3 2.5"/>
+<path d="M184 120.4 l6 3.6 l-6 3.6 z" fill="var(--tegas)"/>
+<text x="202" y="123.0" style="text-anchor:start" class="g-x" fill="var(--tegas)">&#8722;207</text>
+<text x="240" y="123.0" style="text-anchor:start" class="g-s">duplikat dan struktur tidak valid</text>
+<text x="202" y="137.0" style="text-anchor:start" class="g-s">tersisa 75,1%</text>
+<rect x="14" y="144" width="176" height="46" rx="3" fill="var(--lembar)" stroke="var(--garis2)" stroke-width="1"/>
+<rect x="14" y="144" width="3" height="46" rx="1.5" fill="var(--institusi)" opacity="0.45"/>
+<text x="29" y="169" style="text-anchor:start" class="g-b" fill="var(--institusi)">625</text>
+<text x="29" y="183" style="text-anchor:start" class="g-s">struktur unik dan valid</text>
+<line x1="48" y1="190" x2="48" y2="223" stroke="var(--garis2)" stroke-width="1.3"/>
+<path d="M44 223 l4 6 l4 -6 z" fill="var(--garis2)"/>
+<line x1="48" y1="210.0" x2="184" y2="210.0" stroke="var(--tegas)" stroke-width="1.1" stroke-dasharray="3 2.5"/>
+<path d="M184 206.4 l6 3.6 l-6 3.6 z" fill="var(--tegas)"/>
+<text x="202" y="209.0" style="text-anchor:start" class="g-x" fill="var(--tegas)">&#8722;521</text>
+<text x="240" y="209.0" style="text-anchor:start" class="g-s">probabilitas &lt; 0,9 pada salah satu <tspan font-style="italic">fingerprint</tspan></text>
+<text x="202" y="223.0" style="text-anchor:start" class="g-s">tersisa 16,6%</text>
+<rect x="14" y="230" width="176" height="46" rx="3" fill="var(--lembar)" stroke="var(--garis2)" stroke-width="1"/>
+<rect x="14" y="230" width="3" height="46" rx="1.5" fill="var(--institusi)" opacity="0.45"/>
+<text x="29" y="255" style="text-anchor:start" class="g-b" fill="var(--institusi)">104</text>
+<text x="29" y="269" style="text-anchor:start" class="g-s">lolos ambang probabilitas 0,9</text>
+<line x1="48" y1="276" x2="48" y2="309" stroke="var(--garis2)" stroke-width="1.3"/>
+<path d="M44 309 l4 6 l4 -6 z" fill="var(--garis2)"/>
+<line x1="48" y1="296.0" x2="184" y2="296.0" stroke="var(--tegas)" stroke-width="1.1" stroke-dasharray="3 2.5"/>
+<path d="M184 292.4 l6 3.6 l-6 3.6 z" fill="var(--tegas)"/>
+<text x="202" y="295.0" style="text-anchor:start" class="g-x" fill="var(--tegas)">&#8722;95</text>
+<text x="232" y="295.0" style="text-anchor:start" class="g-s">gagal kriteria ADMET</text>
+<text x="202" y="309.0" style="text-anchor:start" class="g-s">tersisa 8,7%</text>
+<rect x="14" y="316" width="176" height="46" rx="3" fill="var(--lembar)" stroke="var(--garis2)" stroke-width="1"/>
+<rect x="14" y="316" width="3" height="46" rx="1.5" fill="var(--institusi)" opacity="0.45"/>
+<text x="29" y="341" style="text-anchor:start" class="g-b" fill="var(--institusi)">9</text>
+<text x="29" y="355" style="text-anchor:start" class="g-s">lolos kriteria ADMET inhalasi</text>
+<line x1="48" y1="362" x2="48" y2="395" stroke="var(--garis2)" stroke-width="1.3"/>
+<path d="M44 395 l4 6 l4 -6 z" fill="var(--garis2)"/>
+<line x1="48" y1="382.0" x2="184" y2="382.0" stroke="var(--tegas)" stroke-width="1.1" stroke-dasharray="3 2.5"/>
+<path d="M184 378.4 l6 3.6 l-6 3.6 z" fill="var(--tegas)"/>
+<text x="202" y="381.0" style="text-anchor:start" class="g-x" fill="var(--tegas)">&#8722;2</text>
+<text x="224" y="381.0" style="text-anchor:start" class="g-s">torsi 32 dan 33 melampaui batas Vina</text>
+<text x="202" y="395.0" style="text-anchor:start" class="g-s">tersisa 77,8%</text>
+<rect x="14" y="402" width="176" height="46" rx="3" fill="var(--institusi-samar)" stroke="var(--institusi)" stroke-width="1.8"/>
+<rect x="14" y="402" width="3" height="46" rx="1.5" fill="var(--institusi)" opacity="1"/>
+<text x="29" y="427" style="text-anchor:start" class="g-b" fill="var(--institusi)">7</text>
+<text x="29" y="441" style="text-anchor:start" class="g-s">ligan masuk kampanye docking</text>
+<text x="404" y="30" style="text-anchor:start" class="g-l">PENYARINGAN PASANGAN</text>
+<text x="404" y="44" style="text-anchor:start" class="g-s">satuan: pasangan senyawa&#8211;reseptor</text>
+<line x1="404" y1="46" x2="740" y2="46" stroke="var(--garis2)" stroke-width="1"/>
+<rect x="404" y="58" width="176" height="46" rx="3" fill="var(--lembar)" stroke="var(--garis2)" stroke-width="1"/>
+<rect x="404" y="58" width="3" height="46" rx="1.5" fill="var(--institusi)" opacity="0.45"/>
+<text x="419" y="83" style="text-anchor:start" class="g-b" fill="var(--institusi)">35</text>
+<text x="419" y="97" style="text-anchor:start" class="g-s">pasangan diuji</text>
+<line x1="438" y1="104" x2="438" y2="137" stroke="var(--garis2)" stroke-width="1.3"/>
+<path d="M434 137 l4 6 l4 -6 z" fill="var(--garis2)"/>
+<line x1="438" y1="124.0" x2="574" y2="124.0" stroke="var(--tegas)" stroke-width="1.1" stroke-dasharray="3 2.5"/>
+<path d="M574 120.4 l6 3.6 l-6 3.6 z" fill="var(--tegas)"/>
+<text x="592" y="123.0" style="text-anchor:start" class="g-x" fill="var(--tegas)">&#8722;24</text>
+<text x="622" y="123.0" style="text-anchor:start" class="g-s">pose tidak menempati kantong yang benar</text>
+<text x="592" y="137.0" style="text-anchor:start" class="g-s">tersisa 31,4%</text>
+<rect x="404" y="144" width="176" height="46" rx="3" fill="var(--lembar)" stroke="var(--garis2)" stroke-width="1"/>
+<rect x="404" y="144" width="3" height="46" rx="1.5" fill="var(--institusi)" opacity="0.45"/>
+<text x="419" y="169" style="text-anchor:start" class="g-b" fill="var(--institusi)">11</text>
+<text x="419" y="183" style="text-anchor:start" class="g-s">pose sahih terhadap kantong rujukan</text>
+<line x1="438" y1="190" x2="438" y2="223" stroke="var(--garis2)" stroke-width="1.3"/>
+<path d="M434 223 l4 6 l4 -6 z" fill="var(--garis2)"/>
+<line x1="438" y1="210.0" x2="574" y2="210.0" stroke="var(--tegas)" stroke-width="1.1" stroke-dasharray="3 2.5"/>
+<path d="M574 206.4 l6 3.6 l-6 3.6 z" fill="var(--tegas)"/>
+<text x="592" y="209.0" style="text-anchor:start" class="g-x" fill="var(--tegas)">&#8722;4</text>
+<text x="614" y="209.0" style="text-anchor:start" class="g-s">&#916;G tidak memenuhi ambang &#8722;6,5</text>
+<text x="592" y="223.0" style="text-anchor:start" class="g-s">tersisa 63,6%</text>
+<rect x="404" y="230" width="176" height="46" rx="3" fill="var(--institusi-samar)" stroke="var(--institusi)" stroke-width="1.8"/>
+<rect x="404" y="230" width="3" height="46" rx="1.5" fill="var(--institusi)" opacity="1"/>
+<text x="419" y="255" style="text-anchor:start" class="g-b" fill="var(--institusi)">7</text>
+<text x="419" y="269" style="text-anchor:start" class="g-s">lolos pose sekaligus ambang afinitas</text>
+<path d="M190 425.0 L358 425.0 L358 81.0 L395 81.0" fill="none" stroke="var(--institusi)" stroke-width="1.5"/>
+<path d="M395 77.0 l6 4 l-6 4 z" fill="var(--institusi)"/>
+<text x="352" y="415.0" style="text-anchor:end" class="g-t" fill="var(--institusi)">&#215; 5 reseptor</text>
+<text x="352" y="429.0" style="text-anchor:end" class="g-s">yang lolos kendali</text>
+<text x="14" y="478" style="text-anchor:start" class="g-s">Angka di sebelah kanan setiap anak panah merah adalah banyaknya yang gugur pada tahap itu beserta alasannya; persentase menyatakan bagian yang tersisa terhadap tahap sebelumnya.</text>
 </svg>
 </figure>
 <h3><span class="no">C.7</span>Simulasi dinamika molekuler</h3>
