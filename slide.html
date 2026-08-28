@@ -28,11 +28,14 @@
 *{box-sizing:border-box}
 html,body{height:100%}
 body{margin:0;background:var(--meja);color:var(--tinta);overflow:hidden;
+  overscroll-behavior:none;touch-action:manipulation;
   font-family:"Libre Franklin",-apple-system,"Segoe UI",sans-serif;
   -webkit-font-smoothing:antialiased}
 
 /* ---------- panggung berskala ---------- */
-#panggung{position:fixed;inset:0;display:grid;place-items:center}
+#panggung{position:fixed;left:0;top:0;width:100vw;height:100vh;
+  display:grid;place-items:center}
+@supports (height:100dvh){#panggung{height:100dvh}}
 #dek{position:relative;width:1280px;height:800px;transform-origin:center center;
   background:var(--lembar);box-shadow:0 30px 90px -30px rgba(0,0,0,.7)}
 .slide{position:absolute;inset:0;padding:62px 76px 74px;
@@ -154,7 +157,7 @@ table.tbl td.n,table.tbl th.n{text-align:right;font-family:"IBM Plex Mono",monos
 /* ---------- kendali ---------- */
 #maju{position:fixed;left:0;top:0;bottom:0;width:100%;border:0;background:transparent;
   cursor:default;z-index:1}
-#kendali{position:fixed;right:18px;bottom:16px;display:flex;align-items:center;gap:4px;
+#kendali{position:fixed;right:14px;bottom:calc(12px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:4px;
   background:rgba(255,255,255,.09);backdrop-filter:blur(6px);border-radius:9px;
   padding:5px;z-index:5;transition:opacity .3s}
 #kendali.sepi{opacity:.12}
@@ -167,12 +170,12 @@ table.tbl td.n,table.tbl th.n{text-align:right;font-family:"IBM Plex Mono",monos
 #lajur{position:fixed;left:0;top:0;height:3px;background:#5C7FC7;z-index:6;
   transition:width .22s ease}
 #daftar{position:fixed;inset:0;background:rgba(10,13,19,.94);z-index:9;
-  display:none;padding:56px 60px;overflow:auto}
+  display:none;padding:48px 32px;overflow:auto;-webkit-overflow-scrolling:touch}
 #daftar.buka{display:block}
 #daftar h4{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.15em;
   text-transform:uppercase;color:#8B93A6;margin:0 0 22px;font-weight:600}
 #daftar ol{list-style:none;padding:0;margin:0;
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:2px}
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:2px}
 #daftar li{margin:0}
 #daftar button{width:100%;text-align:left;background:transparent;border:0;cursor:pointer;
   color:#D8DCE6;font-family:"Libre Franklin",sans-serif;font-size:16px;
@@ -752,9 +755,17 @@ table.tbl td.n,table.tbl th.n{text-align:right;font-family:"IBM Plex Mono",monos
       kendali=document.getElementById('kendali'),
       jeda;
 
+  var panggung=document.getElementById('panggung');
+  function ukur(){
+    var v=window.visualViewport;
+    return { w:(v&&v.width)||innerWidth, h:(v&&v.height)||innerHeight };
+  }
   function skala(){
-    var m = document.fullscreenElement ? 0 : 28;
-    var k = Math.min((innerWidth-m)/1280, (innerHeight-m)/800);
+    var u=ukur();
+    panggung.style.width  = u.w+'px';
+    panggung.style.height = u.h+'px';
+    var m = document.fullscreenElement ? 0 : (u.w<760 ? 10 : 28);
+    var k = Math.min((u.w-m)/1280, (u.h-m)/800);
     dek.style.transform = 'scale('+k+')';
   }
   function tampil(k,sorot){
@@ -789,6 +800,7 @@ table.tbl td.n,table.tbl th.n{text-align:right;font-family:"IBM Plex Mono",monos
     else document.documentElement.requestFullscreen().catch(function(){});
   }
   document.addEventListener('fullscreenchange',skala);
+  if(!document.documentElement.requestFullscreen) document.getElementById('penuh').style.display='none';
 
   addEventListener('keydown',function(e){
     var k=e.key;
@@ -803,8 +815,25 @@ table.tbl td.n,table.tbl th.n{text-align:right;font-family:"IBM Plex Mono",monos
   });
 
   addEventListener('resize',skala);
-  addEventListener('orientationchange',skala);
+  addEventListener('orientationchange',function(){ skala(); setTimeout(skala,320); });
+  if(window.visualViewport){
+    visualViewport.addEventListener('resize',skala);
+    visualViewport.addEventListener('scroll',skala);
+  }
   if(window.ResizeObserver) new ResizeObserver(skala).observe(document.documentElement);
+  addEventListener('load',skala);
+
+  var tx=0,ty=0,tt=0;
+  addEventListener('touchstart',function(e){
+    var t=e.changedTouches[0]; tx=t.clientX; ty=t.clientY; tt=e.timeStamp;
+  },{passive:true});
+  addEventListener('touchend',function(e){
+    if(daftar.classList.contains('buka')) return;
+    var t=e.changedTouches[0], dx=t.clientX-tx, dy=t.clientY-ty;
+    if(e.timeStamp-tt>700) return;
+    if(Math.abs(dx)<44 || Math.abs(dx)<Math.abs(dy)*1.4) return;
+    tampil(dx<0 ? i+1 : i-1);
+  },{passive:true});
   addEventListener('mousemove',function(){
     kendali.classList.remove('sepi'); clearTimeout(jeda);
     jeda=setTimeout(function(){kendali.classList.add('sepi');},2600);
