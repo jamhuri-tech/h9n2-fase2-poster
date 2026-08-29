@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monev Tahun Pertama</title>
+<meta name="description" content="Slide monitoring dan evaluasi laporan kemajuan tahun pertama, tujuh slide, dapat dijalankan layar penuh.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Monev Tahun Pertama">
+<meta property="og:description" content="Slide monitoring dan evaluasi laporan kemajuan tahun pertama, tujuh slide, dapat dijalankan layar penuh.">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --meja:#0E1117; --lembar:#FFFFFF; --lembar2:#F3F5F9;
+  --tinta:#14171F; --tinta2:#3F4658; --samar:#6E7587;
+  --garis:#DBDFE7; --garis2:#B4BAC8;
+  --institusi:#1E3A6B; --institusi-samar:#E7ECF6;
+  --capai:#2C6543; --capai-samar:#E4EEE8;
+  --proses:#8A5A12; --proses-samar:#F6EEDD;
+  --belum:#6E7587; --belum-samar:#EDEFF3;
+  --tegas:#A63D2B;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--meja);color:var(--tinta);overflow:hidden;
+  overscroll-behavior:none;touch-action:manipulation;
+  font-family:"Libre Franklin",-apple-system,"Segoe UI",sans-serif;
+  -webkit-font-smoothing:antialiased}
+
+/* ---------- panggung berskala ---------- */
+#panggung{position:fixed;left:0;top:0;width:100vw;height:100vh;overflow:hidden}
+@supports (height:100dvh){#panggung{height:100dvh}}
+#dek{position:absolute;left:50%;top:50%;width:1280px;height:720px;transform-origin:center center;
+  background:var(--lembar);box-shadow:0 30px 90px -30px rgba(0,0,0,.7)}
+.slide{position:absolute;inset:0;padding:62px 76px 74px;
+  display:flex;flex-direction:column;
+  opacity:0;visibility:hidden;transition:opacity .22s ease}
+.slide.aktif{opacity:1;visibility:visible}
+@media (prefers-reduced-motion:reduce){.slide{transition:none}}
+
+/* ---------- tipografi slide ---------- */
+.mata{margin:0 0 26px;font-size:14px;font-weight:700;letter-spacing:.17em;
+  text-transform:uppercase;color:var(--institusi);
+  padding-bottom:12px;border-bottom:2px solid var(--institusi)}
+h1{font-size:52px;line-height:1.14;letter-spacing:-.022em;font-weight:800;
+  margin:0 0 22px;max-width:22ch;text-wrap:balance}
+h1 .tekan{color:var(--institusi)}
+h2{font-size:40px;line-height:1.18;letter-spacing:-.018em;font-weight:700;
+  margin:0 0 26px;max-width:26ch;text-wrap:balance}
+h3{font-size:21px;font-weight:700;margin:0 0 9px;letter-spacing:-.006em}
+p{margin:0 0 14px;font-size:19px;line-height:1.55;color:var(--tinta2)}
+ul{margin:0;padding-left:1.15em;font-size:19px;line-height:1.5;color:var(--tinta2)}
+li{margin-bottom:10px}
+b.baik{color:var(--capai)} b.buruk{color:var(--tegas)}
+i{font-style:italic}
+
+/* ---------- slide judul ---------- */
+.judul{justify-content:center;background:
+  linear-gradient(180deg,var(--lembar) 0%,var(--lembar2) 100%)}
+.judul .sub{font-family:"Source Serif 4",Georgia,serif;font-size:21px;
+  max-width:64ch;color:var(--tinta2);margin-bottom:38px}
+.tim{border-top:1px solid var(--garis);padding-top:20px;margin-bottom:14px}
+.tim p{margin:0 0 5px;font-size:17px;color:var(--tinta2)}
+.tim p:first-child{color:var(--tinta)}
+.tgl{font-family:"IBM Plex Mono",monospace;font-size:14px;color:var(--samar);margin:0}
+
+/* ---------- kartu angka ---------- */
+.kartu{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:auto 0 26px}
+.kartu>div{background:var(--lembar2);border:1px solid var(--garis);
+  border-radius:5px;padding:26px 26px 24px;display:flex;flex-direction:column;gap:7px}
+.kartu b{font-family:"IBM Plex Mono",monospace;font-size:58px;font-weight:600;
+  line-height:1;letter-spacing:-.03em;color:var(--institusi);font-variant-numeric:tabular-nums}
+.kartu b.baik{color:var(--capai)}
+.kartu span{font-size:18px;font-weight:600;color:var(--tinta)}
+.kartu em{font-style:normal;font-size:15px;color:var(--samar);line-height:1.45}
+
+/* ---------- tiga kolom bernomor ---------- */
+.tigakolom{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;margin-top:8px}
+.tigakolom .ang{font-family:"IBM Plex Mono",monospace;font-size:15px;font-weight:700;
+  color:var(--institusi);display:block;margin-bottom:14px;
+  border-top:2px solid var(--institusi);padding-top:12px}
+.tigakolom p{font-size:17px}
+
+/* ---------- dua kolom ---------- */
+.duakolom{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:4px}
+.duakolom.rapat{gap:34px;margin-top:18px}
+.duakolom.rapat p{font-size:17px}
+.kotak{background:var(--lembar2);border:1px solid var(--garis);
+  border-left:4px solid var(--institusi);border-radius:0 5px 5px 0;padding:24px 26px}
+.kotak p{font-size:17px}
+.mata2{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--institusi);margin-bottom:6px}
+.nilai{margin-bottom:0!important;padding-top:12px;border-top:1px solid var(--garis);
+  font-size:16px!important}
+
+/* ---------- sorot ---------- */
+.sorot{background:var(--proses-samar);border-left:4px solid var(--proses);
+  border-radius:0 5px 5px 0;padding:24px 28px;margin-bottom:4px}
+.sorot .besar{font-size:26px;font-weight:700;color:var(--tinta);margin-bottom:10px}
+.sorot p{font-size:18px}
+.sorot p:last-child{margin-bottom:0}
+
+/* ---------- kalimat penegas ---------- */
+.tegas{margin-top:auto;margin-bottom:0;padding-top:20px;
+  border-top:1px solid var(--garis);font-size:20px;color:var(--tinta)}
+
+/* ---------- tabel ---------- */
+table.tbl{border-collapse:collapse;width:100%;font-size:17px}
+table.tbl thead th{font-size:12px;font-weight:700;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--samar);text-align:left;padding:9px 14px;
+  border-top:2px solid var(--tinta);border-bottom:1px solid var(--garis2);white-space:nowrap}
+table.tbl tbody td{padding:13px 14px;border-bottom:1px solid var(--garis);
+  color:var(--tinta2);vertical-align:top}
+table.tbl tbody tr:last-child td{border-bottom:2px solid var(--tinta)}
+table.tbl td.n,table.tbl th.n{text-align:right;font-family:"IBM Plex Mono",monospace;
+  font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--tinta)}
+.pil{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:11.5px;
+  font-weight:700;letter-spacing:.06em;padding:3px 9px;border-radius:3px;white-space:nowrap}
+.pil.baik{background:var(--capai-samar);color:var(--capai)}
+.pil.jalan{background:var(--proses-samar);color:var(--proses)}
+.pil.sepi{background:var(--belum-samar);color:var(--belum)}
+
+/* ---------- gambar ---------- */
+.slide.gambar h2{font-size:33px;margin-bottom:18px}
+.slide.gambar .mata{margin-bottom:18px}
+.gbr.samping{display:grid;grid-template-columns:1.5fr 1fr;gap:46px;align-items:center}
+.gbr.samping svg{max-height:none}
+.gbr.samping .baca{align-self:center}
+.gbr.samping .baca h3{font-size:19px;margin-bottom:7px}
+.gbr.samping .baca p{font-size:17px;margin-bottom:18px}
+.gbr.samping .baca p:last-child{margin-bottom:0}
+.gbr{flex:1;display:flex;align-items:center;justify-content:center;min-height:0}
+.gbr svg{display:block;width:100%;height:auto;max-height:100%}
+.gket{margin:16px 0 0;font-size:16px;color:var(--samar);font-style:italic;max-width:96ch}
+.g-t{font-family:"Libre Franklin",sans-serif;font-size:11px;fill:var(--tinta)}
+.g-s{font-family:"Libre Franklin",sans-serif;font-size:9.5px;fill:var(--samar)}
+.g-l{font-family:"Libre Franklin",sans-serif;font-size:9px;font-weight:700;
+  letter-spacing:.1em;fill:var(--samar)}
+.g-n{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;fill:var(--tinta)}
+.g-p{font-family:"IBM Plex Mono",monospace;font-size:8px;font-weight:600;letter-spacing:.07em}
+.g-x{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600}
+.g-b{font-family:"IBM Plex Mono",monospace;font-size:19px;font-weight:600;fill:var(--tinta);
+  font-variant-numeric:tabular-nums}
+.s-ang{font-family:"IBM Plex Mono",monospace;font-size:31px;font-weight:600;
+  font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.s-ang2{font-family:"IBM Plex Mono",monospace;font-size:19px;font-weight:700}
+.s-t{font-family:"Libre Franklin",sans-serif;font-size:15px;fill:var(--tinta)}
+.s-s2{font-family:"Libre Franklin",sans-serif;font-size:14px;fill:var(--tinta2)}
+.s-s{font-family:"Libre Franklin",sans-serif;font-size:13px;fill:var(--samar)}
+.s-s3{font-family:"Libre Franklin",sans-serif;font-size:13px;fill:var(--tinta2)}
+.s-l{font-family:"Libre Franklin",sans-serif;font-size:12px;font-weight:700;
+  letter-spacing:.13em;fill:var(--samar)}
+
+.isian{margin:26px 0 0;font-family:"IBM Plex Mono",monospace;font-size:14px;
+  color:var(--proses);background:var(--proses-samar);border:1px dashed var(--proses);
+  border-radius:5px;padding:10px 14px;display:inline-block}
+.alur{display:flex;align-items:stretch;gap:10px;margin:4px 0 26px}
+.alur>div{flex:1;background:var(--lembar2);border:1px solid var(--garis);border-radius:5px;
+  padding:16px 14px;display:flex;flex-direction:column;gap:4px;text-align:center}
+.alur>div.akhir{background:var(--institusi-samar);border-color:var(--institusi);border-width:2px}
+.alur b{font-family:"IBM Plex Mono",monospace;font-size:34px;font-weight:600;line-height:1;
+  color:var(--institusi);font-variant-numeric:tabular-nums}
+.alur span{font-size:13.5px;color:var(--samar);line-height:1.35}
+.alur i{align-self:center;font-style:normal;color:var(--garis2);font-size:22px}
+.tkt{background:var(--capai-samar);border-left:4px solid var(--capai);border-radius:0 5px 5px 0;
+  padding:16px 18px;margin-bottom:14px;display:flex;flex-direction:column;gap:5px}
+.tkt b{font-family:"IBM Plex Mono",monospace;font-size:30px;color:var(--capai);line-height:1}
+.tkt span{font-size:14.5px;color:var(--tinta2);line-height:1.4}
+.kotak.besar{margin-bottom:20px}
+.kotak.besar h3{font-size:19px;line-height:1.35;margin-bottom:10px}
+.slide table.tbl{font-size:15.5px}
+.slide table.tbl tbody td{padding:10px 13px}
+.duakolom ul{font-size:17px}
+.duakolom h3{margin-bottom:12px}
+
+/* ---------- penutup ---------- */
+.tutup{justify-content:center}
+.poin{font-size:20px;margin-bottom:34px}
+.tautan{border-top:1px solid var(--garis);padding-top:20px}
+.tautan p{margin:0 0 5px;font-family:"IBM Plex Mono",monospace;font-size:17px;color:var(--institusi)}
+
+/* ---------- kendali ---------- */
+#maju{position:fixed;left:0;top:0;bottom:0;width:100%;border:0;background:transparent;
+  cursor:default;z-index:1}
+#kendali{position:fixed;right:14px;bottom:calc(12px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:4px;
+  background:rgba(255,255,255,.09);backdrop-filter:blur(6px);border-radius:9px;
+  padding:5px;z-index:5;transition:opacity .3s}
+#kendali.sepi{opacity:.12}
+#kendali button{font-family:"IBM Plex Mono",monospace;font-size:13px;color:#D3D8E4;
+  background:transparent;border:0;padding:7px 11px;border-radius:6px;cursor:pointer;line-height:1}
+#kendali button:hover,#kendali button:focus-visible{background:rgba(255,255,255,.16);
+  color:#fff;outline:none}
+#hitung{font-family:"IBM Plex Mono",monospace;font-size:13px;color:#9AA2B4;
+  padding:0 10px;font-variant-numeric:tabular-nums}
+#lajur{position:fixed;left:0;top:0;height:3px;background:#5C7FC7;z-index:6;
+  transition:width .22s ease}
+#daftar{position:fixed;inset:0;background:rgba(10,13,19,.94);z-index:9;
+  display:none;padding:48px 32px;overflow:auto;-webkit-overflow-scrolling:touch}
+#daftar.buka{display:block}
+#daftar h4{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.15em;
+  text-transform:uppercase;color:#8B93A6;margin:0 0 22px;font-weight:600}
+#daftar ol{list-style:none;padding:0;margin:0;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:2px}
+#daftar li{margin:0}
+#daftar button{width:100%;text-align:left;background:transparent;border:0;cursor:pointer;
+  color:#D8DCE6;font-family:"Libre Franklin",sans-serif;font-size:16px;
+  padding:11px 14px;border-radius:6px;display:flex;gap:14px;align-items:baseline}
+#daftar button:hover,#daftar button:focus-visible{background:rgba(255,255,255,.09);
+  color:#fff;outline:none}
+#daftar button span{font-family:"IBM Plex Mono",monospace;font-size:12px;color:#7C8496;min-width:22px}
+#daftar button.kini{background:rgba(92,127,199,.22);color:#fff}
+
+@media print{
+  @page{size:A4 landscape;margin:0}
+  body{overflow:visible;background:#fff}
+  #panggung{position:static;width:auto;height:auto;overflow:visible}
+  #dek{position:static;left:auto;top:auto;width:100%;height:auto;transform:none!important;box-shadow:none}
+  .slide{position:relative;inset:auto;opacity:1;visibility:visible;
+    width:297mm;height:185.6mm;padding:15mm 18mm;break-after:page}
+  #kendali,#lajur,#daftar,#maju{display:none}
+}
+</style>
+
+<div id="panggung"><div id="dek">
+<section class="slide judul" data-judul="Judul">
+ <p class="mata">Laporan Kemajuan &middot; Monitoring dan Evaluasi</p>
+ <h1>Skrining <i>in silico</i> senyawa herbal sebagai kandidat antivirus terhadap <span class="tekan">Avian Influenza A/H9N2</span></h1>
+ <p class="sub">Tahun pertama pelaksanaan &middot; Skema Penelitian BIMA 2026</p>
+ <div class="tim">
+  <p><b>Dr. Siti Amiroch, S.Si., M.Si.</b> &mdash; ketua peneliti</p>
+  <p>Awawin Mustana Rohmah, S.Si., M.Si. &middot; Moh. Hamim Zajuli Al Faroby, S.Si., M.Si.<br>
+     Prof. Dr. drh. Chairul Anwar Nidom, M.S. &middot; Dr. Reviany Vibrianita N., Apt., M.Farm.</p>
+ </div>
+ <p class="isian">Nomor SK &middot; Nomor Kontrak &middot; Perguruan Tinggi &mdash; <b>lengkapi sebelum dipresentasikan</b></p>
+</section>
+<section class="slide" data-judul="Latar belakang">
+ <p class="mata">Latar belakang</p><h2>Permasalahan</h2>
+ <div class="tigakolom">
+  <div><span class="ang">1</span><h3>H9N2 belum tertangani tuntas</h3>
+   <p>Subtipe ini beredar luas pada unggas dan berpotensi zoonosis. Vaksin dan antivirus sintetis tidak selalu melindungi jangka panjang karena dinamika mutasi dan risiko resistensi.</p></div>
+  <div><span class="ang">2</span><h3>Senyawa herbal belum terjelajahi</h3>
+   <p>Penelitian sebelumnya berhenti pada senyawa sintetik. Pustaka senyawa herbal Indonesia belum pernah disaring secara sistematis terhadap sasaran A/H9N2.</p></div>
+  <div><span class="ang">3</span><h3>Pelatihan model berbiaya mahal</h3>
+   <p>Representasi molekul berdimensi tinggi dan jarang. Metode optimasi orde dua yang lazim menuntut pembentukan matriks Hesse yang tidak terjangkau secara komputasi.</p></div>
+ </div>
+ <p class="tegas">Penelitian ini menjawab ketiganya sekaligus: <b>metode optimasi baru</b> untuk melatih model, lalu <b>penyaringan bertahap</b> pustaka herbal Indonesia terhadap sasaran H9N2.</p>
+</section>
+<section class="slide gambar" data-judul="Metode">
+ <p class="mata">Metode</p><h2>Tahun pertama: dua tahap</h2>
+ <div class="gbr"><svg viewBox="0 0 1180 766" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Peta jalan dua tahun menurut tahap Persiapan dan Pelaksanaan pada usulan penelitian">
+<rect x="24" y="22" width="1132" height="674" rx="18" fill="var(--surface-2)" opacity=".55"/>
+<text x="42" y="62" style="text-anchor:start" font-family="Instrument Sans,sans-serif" font-size="21" font-weight="700" fill="var(--ink)">TAHUN PERTAMA &#183; 2026</text>
+<text x="42" y="83" style="text-anchor:start" font-family="Instrument Sans,sans-serif" font-size="13.5" fill="var(--muted)">Pembangunan model dan penyaringan awal senyawa herbal</text>
+<line x1="42" y1="100" x2="1172" y2="100" stroke="var(--border-strong)" stroke-width="1"/>
+<text x="42" y="116" style="text-anchor:start" font-family="JetBrains Mono,monospace" font-size="12" font-weight="700" letter-spacing=".14em" fill="var(--muted)">TAHAP PERSIAPAN</text>
+<text x="1172" y="116" style="text-anchor:end" font-family="Instrument Sans,sans-serif" font-size="12" fill="var(--muted)">2 kegiatan</text>
+<rect x="42" y="132" width="272" height="250" rx="13" fill="var(--surface)" stroke="var(--border)" stroke-width="1"/>
+<path d="M42 145 a13 13 0 0 1 13-13 h246 a13 13 0 0 1 13 13 v99 h-272 z" fill="var(--good-soft)"/>
+<g transform="translate(178.0 184.0) scale(0.94)">
+<path d="M-86 30 q12-62 56-74 q19 49-22 71 q-19 10-34 3 z" fill="var(--good)" opacity=".2"/>
+<path d="M-82 28 q26-44 53-71" stroke="var(--good)" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+<path d="M-66 13 l14 5" stroke="var(--good)" stroke-width="2" opacity=".6"/>
+<path d="M-56 -1 l12 6" stroke="var(--good)" stroke-width="2" opacity=".6"/>
+<path d="M-45 -15 l10 7" stroke="var(--good)" stroke-width="2" opacity=".6"/>
+<ellipse cx="44" cy="-32" rx="30" ry="10" fill="none" stroke="var(--good)" stroke-width="3.2"/>
+<path d="M14 -32 v50 a30 10 0 0 0 60 0 v-50" fill="var(--good)" opacity=".12" stroke="var(--good)" stroke-width="3.2"/>
+<ellipse cx="44" cy="-9" rx="30" ry="10" fill="none" stroke="var(--good)" stroke-width="2" opacity=".55"/>
+<ellipse cx="44" cy="12" rx="30" ry="10" fill="none" stroke="var(--good)" stroke-width="2" opacity=".55"/></g>
+<circle cx="72" cy="230" r="15" fill="var(--good)"/>
+<text x="72" y="235" style="text-anchor:middle" font-family="JetBrains Mono,monospace" font-size="15" font-weight="700" fill="var(--surface)">a</text>
+<text x="59" y="270" style="text-anchor:start" font-family="Instrument Sans,sans-serif" font-size="15" font-weight="600" fill="var(--ink)">Pengumpulan data senyawa</text>
+<text x="59" y="292" style="text-anchor:start" font-family="Instrument Sans,sans-serif" font-size="12" fill="var(--ink-soft)">PubChem, ChEMBL, TCMD, KnapSack;</text>
+<text x="59" y="307" style="text-anchor:start" font-family="Instrument Sans,sans-serif" font-size="12" fill="var(--ink-soft)">protein dari Protein Data Bank</text>
+<text x="59" y="366" style="text-anchor:start" font-family="JetBrains Mono,monospace" font-size="12.5" fill="var(--muted)">PIC Awawin</text>
+<rect x="230" y="353" width="70" height="19" rx="9.5" fill="var(--good)" opacity=".15"/>
+<text x="265" y="366" style="text-anchor:middle" font-family="JetBrains Mono,monospace" font-size="13" font-weight="700" letter-spacing=".04em" fill="var(--good)">SELESAI</text>
+<path d="M318.4 184.0 l3.4 4 l-3.4 4" fill="none" stroke="var(--border-strong)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="328" y="132" width="272" height="250" rx="13" fill="var(--surface)" stroke="var(--border)" stroke-width="1"/>
+<path d="M328 145 a13 13 0 0 1 13-13 h246 a13 13 0 0 1 13 13 v99 h-272 z" fill="var(--warn-soft)"/>
+<g transform="translate(464.0 184.0) scale(0.94)">
+<path d="M-92 -34 h64 l-22 30 v34 l-20 10 v-44 z" fill="var(--warn)" opacity=".16" stroke="var(--warn)" stroke-width="3.2" stroke-linejoin="round"/>
+<circle cx="-76" cy="-24" r="4" fill="var(--warn)" opacity=".6"/><circle cx="-62" cy="-22" r="4" fill="var(--warn)" opacity=".6"/>
+<circle cx="-48" cy="-25" r="4" fill="var(--warn)" opacity=".6"/>
+<path d="M-14 6 h22" stroke="var(--warn)" stroke-width="2.4" stroke-dasharray="4 4"/>
+<path d="M16 2 q-6-30 18-36 q26-6 34 14 q10 24-10 36 q-22 12-36-2 q-6-6-6-12 z"
+      fill="var(--warn)" opacity=".16" stroke="var(--warn)" stroke-width="3.2"/>
+<path d="M40 -6 q10-10 20-4 q8 6 2 16 q-8 10-18 4 q-8-6-4-16 z" fill="none" stroke="var(--warn)" stroke-width="2.2" opacity=".7"/>
+<circle cx="52" cy="2" r="3.6" fill="var(--warn)"/></g>
+<circle cx="358" cy="230" r="15" fill="var(--warn)"/>
+<text x="358" y="235" style="text-anchor:middle" font-family="JetBrains Mono,monospace" font-size="15" font-weight="700" fill="var(--surface)">b</text>
+<text x="345" y="270" style="text-anchor:start" font-family="Instrument Sans,sans-serif" font-size="15" font-weight="600" fill="var(--ink)">Seleksi data senyawa herbal dan</text>
+<text x="345" y="288" style="text-anchor:start" font-family="Instrument Sans,sans-serif" font-size="15" font-weight="600" fill="var(--ink)">protein target H9N2</text>
+<text x="345" y="310" style="text-anchor:start" font-family="Instrument Sans,sans-serif" font-size="12" fill="var(--ink-soft)">kurasi ligan dan penetapan reseptor</text>
+<text x="345" y="325" style="text-anchor:start" font-family="Instrument Sans,sans-serif" font-size="12" fill="var(--ink-soft)">sasaran</text>
+<text x="345" y="366" style="text-anchor:start" font-family="JetBrains Mono,monospace" font-size="12.5" fill="var(--muted)">PIC Nidom</text>
+<rect x="508" y="353" width="78" height="19" rx="9.5" fill="var(--warn)" opacity=".15"/>
+<text x="547" y="366" style="text-anchor:middle" font-family="JetBrains Mono,monospace" font-size="13" font-weight="700" letter-spacing=".04em" fill="var(--warn)">BERJALAN</text>
+<line x1="42" y1="398" x2="1172" y2="398" stroke="var(--border-strong)" stroke-width="1"/>
+<text x="42" y="414" style="text-anchor:start" font-family="JetBrains Mono,monospace" font-size="12" font-weight="700" letter-spacing=".14em" fill="var(--muted)">TAHAP PELAKSANAAN</text>
+<text x="1172" y="414" style="text-anchor:end" font-family="Instrument Sans,sans-serif" font-size="12" fill="var(--muted)">4 kegiatan</text>
+<rect x="42" y="430" width="272" height="250" rx="13" fill="var(--surface)" stroke="var(--border)" stroke-width="1"/>
+<path d="M42 443 a13 13 0 0 1 13-13 h246 a13 13 0 0 1 13 13 v99 h-272 z" fill="var(--good-soft)"/>
+<g transform="translate(178.0 482.0) scale(0.94)"><path d="M-84 6 l-16-14 l16-14 l16 14 z" fill="var(--good)" opacity=".18" stroke="var(--good)" stroke-width="2.6"/><circle cx="-84" cy="-8" r="5" fill="var(--good)"/><path d="M-84 -3 v26" stroke="var(--good)" stroke-width="2.6"/><circle cx="-84" cy="26" r="5" fill="var(--good)" opacity=".55"/><path d="M-79 -12 l22-12" stroke="var(--good)" stroke-width="2.6"/><circle cx="-53" cy="-26" r="5" fill="var(--good)" opacity=".55"/><path d="M-40 -4 h24" stroke="var(--good)" stroke-width="2.4" stroke-dasharray="4 4"/><rect x="22" y="-30" width="11" height="12" rx="2.5" fill="var(--good)" opacity=".85"/><rect x="36" y="-30" width="11" height="12" rx="2.5" fill="var(--good)" opacity=".14"/><rect x="50" y="-30" width="11" height="12" rx="2.5" fill="var(--good)" opacity=".14"/><rect x="64" y="-30" width="11" height="12" rx="2.5" fill="var(--good)" opacity=".85"/><rect x="78" y="-30" width="11" height="12" rx="2.5" fill="var(--good)" opacity=".14"/><rect x="92" y="-30" width="11" height="12" rx="2.5" fill="var(--good)" opacity=".14"/><rect x="22" y="-14" width="11" height="12" rx="2.5" fill="var(--good)" opacity=".85"/><rect x="36" y="-14" width="11" height="12" rx="2.5" fill="var(--good)" opacity=".14"/><rect x="50" y="-14" width="11" height="12" rx="2.5" fill="var(--good)" opacity=".14"/><rect x="64" y="-14" width="11" height="12" rx="2.5" fill="var(--good)" opacity=".85"/><rect x="78" y="-14" width="11" height="12" rx="2.5" fill="var(--good)" opacity=".14"/><rect x="92" y="-14" width="11" height="12" rx="2.5" fill="var(--good)" opacity=".14"/><rect x="22" y="2" width="11" height="12" rx="2.5" fill="var(--good)" opacity=".85"/><rect x="36" y="2" width="11" height="12" rx="2.5" fill="var(--good)" opacity=".14"/><rect x="50" y="2" width="11" height="12" rx="2.5" fill="var(--good)" opacity=".14"/><rect x="64" y="2" width="11" height="12" rx="2.5" fill="var(--good)" opacity=".85"/><rect x="78" y="2" width="11" height="12" rx="2.5" fill="var(--good)" opacity=".14"/><rect x="92" y="2" width="11" height="12" rx="2.5" fill="var(--good)" opacity=".14"/><rect x="22" y="18" width="11" height="12" rx="2.5" fill="var(--good)" opacity=".85"/><rect x="36" y="18" width="11" height="12" rx="2.5" fill="var(--good)" opacity=".14"/><rect x="50" y="18" width="11" height="12" rx="2.5" fill="var(--good)" opacity=".14"/><rect x="64" y="18" width="11" height="12" rx="2.5" fill="var(--good)" opacity=".85"/><rect x="78" y="18" width="11" height="12" rx="2.5" fill="var(--good)" opacity=".14"/><rect x="92" y="18" width="11" height="12" rx="2.5" fill="var(--good)" opacity=".14"/></g>
+<circle cx="72" cy="528" r="15" fill="var(--good)"/>
+<text x="72" y="533" style="text-anchor:middle" font-family="JetBrains Mono,monospace" font-size="15" font-weight="700" fill="var(--surface)">a</text>
+<text x="59" y="568" style="text-anchor:start" font-family="Instrument Sans,sans-serif" font-size="15" font-weight="600" fill="var(--ink)">Pra-pemrosesan data dan</text>
+<text x="59" y="586" style="text-anchor:start" font-family="Instrument Sans,sans-serif" font-size="15" font-weight="600" fill="var(--ink)">ekstraksi fitur molekul</text>
+<text x="59" y="608" style="text-anchor:start" font-family="Instrument Sans,sans-serif" font-size="12" fill="var(--ink-soft)">SMILES baku, fingerprint, seleksi fitur</text>
+<text x="59" y="664" style="text-anchor:start" font-family="JetBrains Mono,monospace" font-size="12.5" fill="var(--muted)">PIC Awawin</text>
+<rect x="230" y="651" width="70" height="19" rx="9.5" fill="var(--good)" opacity=".15"/>
+<text x="265" y="664" style="text-anchor:middle" font-family="JetBrains Mono,monospace" font-size="13" font-weight="700" letter-spacing=".04em" fill="var(--good)">SELESAI</text>
+<path d="M318.4 482.0 l3.4 4 l-3.4 4" fill="none" stroke="var(--border-strong)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="328" y="430" width="272" height="250" rx="13" fill="var(--surface)" stroke="var(--border)" stroke-width="1"/>
+<path d="M328 443 a13 13 0 0 1 13-13 h246 a13 13 0 0 1 13 13 v99 h-272 z" fill="var(--good-soft)"/>
+<g transform="translate(464.0 482.0) scale(0.94)"><circle cx="-78" cy="-28" r="6" fill="var(--good)" opacity="0.5"/><circle cx="-78" cy="0" r="6" fill="var(--good)" opacity="0.5"/><circle cx="-78" cy="28" r="6" fill="var(--good)" opacity="0.5"/><line x1="-72" y1="-28" x2="-44" y2="-38" stroke="var(--good)" stroke-width="1.1" opacity=".28"/><line x1="-72" y1="-28" x2="-44" y2="-13" stroke="var(--good)" stroke-width="1.1" opacity=".28"/><line x1="-72" y1="-28" x2="-44" y2="13" stroke="var(--good)" stroke-width="1.1" opacity=".28"/><line x1="-72" y1="-28" x2="-44" y2="38" stroke="var(--good)" stroke-width="1.1" opacity=".28"/><line x1="-72" y1="0" x2="-44" y2="-38" stroke="var(--good)" stroke-width="1.1" opacity=".28"/><line x1="-72" y1="0" x2="-44" y2="-13" stroke="var(--good)" stroke-width="1.1" opacity=".28"/><line x1="-72" y1="0" x2="-44" y2="13" stroke="var(--good)" stroke-width="1.1" opacity=".28"/><line x1="-72" y1="0" x2="-44" y2="38" stroke="var(--good)" stroke-width="1.1" opacity=".28"/><line x1="-72" y1="28" x2="-44" y2="-38" stroke="var(--good)" stroke-width="1.1" opacity=".28"/><line x1="-72" y1="28" x2="-44" y2="-13" stroke="var(--good)" stroke-width="1.1" opacity=".28"/><line x1="-72" y1="28" x2="-44" y2="13" stroke="var(--good)" stroke-width="1.1" opacity=".28"/><line x1="-72" y1="28" x2="-44" y2="38" stroke="var(--good)" stroke-width="1.1" opacity=".28"/><circle cx="-38" cy="-38" r="6" fill="var(--good)" opacity="0.9"/><circle cx="-38" cy="-13" r="6" fill="var(--good)" opacity="0.9"/><circle cx="-38" cy="13" r="6" fill="var(--good)" opacity="0.9"/><circle cx="-38" cy="38" r="6" fill="var(--good)" opacity="0.9"/><line x1="-32" y1="-38" x2="-4" y2="-28" stroke="var(--good)" stroke-width="1.1" opacity=".28"/><line x1="-32" y1="-38" x2="-4" y2="0" stroke="var(--good)" stroke-width="1.1" opacity=".28"/><line x1="-32" y1="-38" x2="-4" y2="28" stroke="var(--good)" stroke-width="1.1" opacity=".28"/><line x1="-32" y1="-13" x2="-4" y2="-28" stroke="var(--good)" stroke-width="1.1" opacity=".28"/><line x1="-32" y1="-13" x2="-4" y2="0" stroke="var(--good)" stroke-width="1.1" opacity=".28"/><line x1="-32" y1="-13" x2="-4" y2="28" stroke="var(--good)" stroke-width="1.1" opacity=".28"/><line x1="-32" y1="13" x2="-4" y2="-28" stroke="var(--good)" stroke-width="1.1" opacity=".28"/><line x1="-32" y1="13" x2="-4" y2="0" stroke="var(--good)" stroke-width="1.1" opacity=".28"/><line x1="-32" y1="13" x2="-4" y2="28" stroke="var(--good)" stroke-width="1.1" opacity=".28"/><line x1="-32" y1="38" x2="-4" y2="-28" stroke="var(--good)" stroke-width="1.1" opacity=".28"/><line x1="-32" y1="38" x2="-4" y2="0" stroke="var(--good)" stroke-width="1.1" opacity=".28"/><line x1="-32" y1="38" x2="-4" y2="28" stroke="var(--good)" stroke-width="1.1" opacity=".28"/><circle cx="2" cy="-28" r="6" fill="var(--good)" opacity="0.5"/><circle cx="2" cy="0" r="6" fill="var(--good)" opacity="0.5"/><circle cx="2" cy="28" r="6" fill="var(--good)" opacity="0.5"/><path d="M40 -34 v66 h56" stroke="var(--good)" stroke-width="2.4" fill="none" opacity=".6"/><path d="M44 -26 q18 50 50 54" stroke="var(--good)" stroke-width="3.4" fill="none" stroke-linecap="round"/><circle cx="94" cy="28" r="4.5" fill="var(--good)"/></g>
+<circle cx="358" cy="528" r="15" fill="var(--good)"/>
+<text x="358" y="533" style="text-anchor:middle" font-family="JetBrains Mono,monospace" font-size="15" font-weight="700" fill="var(--surface)">b</text>
+<text x="345" y="568" style="text-anchor:start" font-family="Instrument Sans,sans-serif" font-size="15" font-weight="600" fill="var(--ink)">Pengembangan arsitektur dan</text>
+<text x="345" y="586" style="text-anchor:start" font-family="Instrument Sans,sans-serif" font-size="15" font-weight="600" fill="var(--ink)">pelatihan model DNN&#8211;NDD</text>
+<text x="345" y="608" style="text-anchor:start" font-family="Instrument Sans,sans-serif" font-size="12" fill="var(--ink-soft)">optimasi Newton Divided Difference</text>
+<text x="345" y="664" style="text-anchor:start" font-family="JetBrains Mono,monospace" font-size="12.5" fill="var(--muted)">PIC Amiroch</text>
+<rect x="516" y="651" width="70" height="19" rx="9.5" fill="var(--good)" opacity=".15"/>
+<text x="551" y="664" style="text-anchor:middle" font-family="JetBrains Mono,monospace" font-size="13" font-weight="700" letter-spacing=".04em" fill="var(--good)">SELESAI</text>
+<path d="M604.4 482.0 l3.4 4 l-3.4 4" fill="none" stroke="var(--border-strong)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="614" y="430" width="272" height="250" rx="13" fill="var(--surface)" stroke="var(--border)" stroke-width="1"/>
+<path d="M614 443 a13 13 0 0 1 13-13 h246 a13 13 0 0 1 13 13 v99 h-272 z" fill="var(--good-soft)"/>
+<g transform="translate(750.0 482.0) scale(0.94)"><path d="M-88 34 v-66" stroke="var(--good)" stroke-width="2.2" opacity=".55"/><path d="M-88 34 h72" stroke="var(--good)" stroke-width="2.2" opacity=".55"/><path d="M-88 34 l72-66" stroke="var(--good)" stroke-width="1.8" stroke-dasharray="5 4" opacity=".45"/><path d="M-88 34 q6-52 34-58 q22-5 38-8" stroke="var(--good)" stroke-width="3.4" fill="none" stroke-linecap="round"/><path d="M-88 34 q6-52 34-58 q22-5 38-8 v66 z" fill="var(--good)" opacity=".13"/><rect x="34" y="-34" width="54" height="9" rx="4.5" fill="var(--good)" opacity="0.3"/><rect x="34" y="-19" width="54" height="9" rx="4.5" fill="var(--good)" opacity="0.3"/><rect x="34" y="-4" width="30" height="9" rx="4.5" fill="var(--good)" opacity="0.75"/><rect x="34" y="11" width="54" height="9" rx="4.5" fill="var(--good)" opacity="0.3"/><rect x="34" y="26" width="54" height="9" rx="4.5" fill="var(--good)" opacity="0.3"/></g>
+<circle cx="644" cy="528" r="15" fill="var(--good)"/>
+<text x="644" y="533" style="text-anchor:middle" font-family="JetBrains Mono,monospace" font-size="15" font-weight="700" fill="var(--surface)">c</text>
+<text x="631" y="568" style="text-anchor:start" font-family="Instrument Sans,sans-serif" font-size="15" font-weight="600" fill="var(--ink)">Evaluasi performa model dan</text>
+<text x="631" y="586" style="text-anchor:start" font-family="Instrument Sans,sans-serif" font-size="15" font-weight="600" fill="var(--ink)">validasi silang</text>
+<text x="631" y="608" style="text-anchor:start" font-family="Instrument Sans,sans-serif" font-size="12" fill="var(--ink-soft)">AUC, sensitivitas, spesifisitas</text>
+<text x="631" y="664" style="text-anchor:start" font-family="JetBrains Mono,monospace" font-size="12.5" fill="var(--muted)">PIC Amiroch</text>
+<rect x="802" y="651" width="70" height="19" rx="9.5" fill="var(--good)" opacity=".15"/>
+<text x="837" y="664" style="text-anchor:middle" font-family="JetBrains Mono,monospace" font-size="13" font-weight="700" letter-spacing=".04em" fill="var(--good)">SELESAI</text>
+<path d="M890.4 482.0 l3.4 4 l-3.4 4" fill="none" stroke="var(--border-strong)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="900" y="430" width="272" height="250" rx="13" fill="var(--surface)" stroke="var(--border)" stroke-width="1"/>
+<path d="M900 443 a13 13 0 0 1 13-13 h246 a13 13 0 0 1 13 13 v99 h-272 z" fill="var(--good-soft)"/>
+<g transform="translate(1036.0 482.0) scale(0.94)"><path d="M-64 -36 h128 l-46 52 v30 l-36 16 v-46 z" fill="var(--good)" opacity=".14" stroke="var(--good)" stroke-width="3.2" stroke-linejoin="round"/><circle cx="-46" cy="-26" r="4.2" fill="var(--good)" opacity=".55"/><circle cx="-24" cy="-22" r="4.2" fill="var(--good)" opacity=".55"/><circle cx="-2" cy="-27" r="4.2" fill="var(--good)" opacity=".55"/><circle cx="20" cy="-23" r="4.2" fill="var(--good)" opacity=".55"/><circle cx="42" cy="-26" r="4.2" fill="var(--good)" opacity=".55"/><circle cx="-34" cy="-9" r="4.2" fill="var(--good)" opacity=".55"/><circle cx="-8" cy="-8" r="4.2" fill="var(--good)" opacity=".55"/><circle cx="18" cy="-10" r="4.2" fill="var(--good)" opacity=".55"/><circle cx="38" cy="-6" r="4.2" fill="var(--good)" opacity=".55"/><circle cx="-18" cy="40" r="5" fill="var(--good)"/><circle cx="0" cy="46" r="5" fill="var(--good)"/></g>
+<circle cx="930" cy="528" r="15" fill="var(--good)"/>
+<text x="930" y="533" style="text-anchor:middle" font-family="JetBrains Mono,monospace" font-size="15" font-weight="700" fill="var(--surface)">d</text>
+<text x="917" y="568" style="text-anchor:start" font-family="Instrument Sans,sans-serif" font-size="15" font-weight="600" fill="var(--ink)">Virtual screening senyawa</text>
+<text x="917" y="586" style="text-anchor:start" font-family="Instrument Sans,sans-serif" font-size="15" font-weight="600" fill="var(--ink)">herbal</text>
+<text x="917" y="608" style="text-anchor:start" font-family="Instrument Sans,sans-serif" font-size="12" fill="var(--ink-soft)">ambang probabilitas aktivitas &#8805;</text>
+<text x="917" y="623" style="text-anchor:start" font-family="Instrument Sans,sans-serif" font-size="12" fill="var(--ink-soft)">0,8</text>
+<text x="917" y="664" style="text-anchor:start" font-family="JetBrains Mono,monospace" font-size="12.5" fill="var(--muted)">PIC Hamim</text>
+<rect x="1088" y="651" width="70" height="19" rx="9.5" fill="var(--good)" opacity=".15"/>
+<text x="1123" y="664" style="text-anchor:middle" font-family="JetBrains Mono,monospace" font-size="13" font-weight="700" letter-spacing=".04em" fill="var(--good)">SELESAI</text>
+<rect x="42" y="727" width="17" height="17" rx="5" fill="var(--good)" opacity=".18" stroke="var(--good)" stroke-width="2"/>
+<text x="68" y="740" style="text-anchor:start" font-family="Instrument Sans,sans-serif" font-size="14" fill="var(--muted)">selesai</text>
+<rect x="232" y="727" width="17" height="17" rx="5" fill="var(--warn)" opacity=".18" stroke="var(--warn)" stroke-width="2"/>
+<text x="258" y="740" style="text-anchor:start" font-family="Instrument Sans,sans-serif" font-size="14" fill="var(--muted)">sedang dikerjakan</text>
+<rect x="422" y="727" width="17" height="17" rx="5" fill="var(--muted)" opacity=".18" stroke="var(--muted)" stroke-width="2"/>
+<text x="448" y="740" style="text-anchor:start" font-family="Instrument Sans,sans-serif" font-size="14" fill="var(--muted)">belum dimulai</text>
+<text x="612" y="740" style="text-anchor:start" font-family="Instrument Sans,sans-serif" font-size="13.5" fill="var(--muted)">Urutan dan penanggung jawab mengikuti usulan penelitian.</text>
+</svg></div>
+</section>
+<section class="slide" data-judul="Progres">
+ <p class="mata">Progres pelaksanaan</p><h2>Capaian sampai kriteria ADMET</h2>
+ <div class="alur">
+  <div><b>832</b><span>entri terjaring</span></div><i>&rarr;</i>
+  <div><b>625</b><span>senyawa terkurasi</span></div><i>&rarr;</i>
+  <div><b>5.820</b><span>fitur molekul</span></div><i>&rarr;</i>
+  <div><b>104</b><span>lolos ambang 0,9</span></div><i>&rarr;</i>
+  <div class="akhir"><b>9</b><span>lolos kriteria ADMET</span></div>
+ </div>
+ <div class="duakolom">
+  <div><h3>Yang sudah dituntaskan</h3>
+   <ul>
+    <li>Kurasi 625 senyawa herbal dari basis data publik</li>
+    <li>Tiga representasi <i>fingerprint</i>: EState, PubChem, Klekota-Roth</li>
+    <li>Model DNN&ndash;NDD dilatih dan diverifikasi; selisih AUC 0,0025 terhadap hasil terbit</li>
+    <li><i>Virtual screening</i> memakai ambang <b>0,9</b> &mdash; lebih ketat daripada 0,8 yang dijanjikan usulan</li>
+    <li>Skrining ADMET: 9 kandidat jalur inhalasi, 2 di antaranya juga lolos jalur oral</li>
+   </ul></div>
+  <div><h3>Kesiapterapan teknologi</h3>
+   <div class="tkt"><b>TKT 3</b><span>Pembuktian konsep fungsi dan karakteristik penting secara analitis dan eksperimental</span></div>
+   <p>Usulan menargetkan peningkatan TKT dari level 2 ke level 3. Model prediktif sudah terbukti bekerja pada data uji dan sudah menghasilkan daftar kandidat yang tersaring, sehingga <b>target TKT tahun pertama tercapai</b>.</p>
+  </div>
+ </div>
+ <p class="tegas">Progres pelaksanaan <b>80%</b>, selaras dengan realisasi anggaran tahap pertama.</p>
+</section>
+<section class="slide" data-judul="Luaran">
+ <p class="mata">Luaran</p><h2>Luaran yang dicapai</h2>
+ <div class="kotak besar">
+  <p class="mata2">Luaran wajib &mdash; jurnal internasional bereputasi</p>
+  <h3>Newton Divided Difference Optimization for Fingerprint-Based Neural Virtual Screening against Avian Influenza A/H9N2</h3>
+  <p>Amiroch S., Jamhuri M., Rohmah A. M., Al Faroby M. H. Z., Nidom C. A., Nidom R. V.<br>
+     <i>Journal of Applied Data Sciences</i>, Vol.&nbsp;7 No.&nbsp;3 (2026) &mdash; terindeks <b>Scopus</b></p>
+  <p class="nilai">DOI 10.47738/jads.v7i3.1416 &nbsp;&middot;&nbsp; <span class="pil baik">Terbit</span></p>
+ </div>
+ <table class="tbl">
+  <thead><tr><th>Luaran</th><th>Rencana pada usulan</th><th>Keadaan</th></tr></thead>
+  <tbody>
+   <tr><td>Jurnal internasional Scopus</td><td><i>System and Soft Computing</i> (Q3)</td><td>Dipenuhi melalui <i>Journal of Applied Data Sciences</i> &mdash; <span class="pil baik">Terbit</span></td></tr>
+   <tr><td>Jurnal nasional Sinta 2</td><td>CAUCHY: Jurnal Matematika Murni dan Aplikasi</td><td><span class="pil jalan">Penyusunan naskah</span></td></tr>
+   <tr><td>Poster penelitian</td><td>Bulan ke-10</td><td><span class="pil baik">Tersedia</span></td></tr>
+  </tbody>
+ </table>
+ <p class="tegas">Publikasi ini <b>melampaui batas tahap pertama</b> pada usulan &mdash; hasil tahap 1 dan sebagian tahap 2 sudah termuat di dalamnya.</p>
+</section>
+<section class="slide" data-judul="Kendala">
+ <p class="mata">Kendala</p><h2>Kendala pelaksanaan dan penanganannya</h2>
+ <table class="tbl">
+  <thead><tr><th class="n">No</th><th>Kendala</th><th>Penanganan</th><th>Status</th></tr></thead>
+  <tbody>
+   <tr><td class="n">1</td><td>Cacat keselarasan identitas senyawa pada tahap kanonikalisasi struktur &mdash; nama, pengenal PubChem, dan tanaman asal tertukar pada sekitar 75% baris</td><td>Identitas dibangun ulang dari berkas sumber terverifikasi lalu dicocokkan ke PubChem: <b>104 dari 104 cocok</b>. Nilai prediksi tidak terpengaruh karena model menilai struktur, bukan nama.</td><td><span class="pil baik">Tertangani</span></td></tr>
+   <tr><td class="n">2</td><td>Keterbatasan perangkat komputasi untuk pelatihan model pada representasi berdimensi tinggi</td><td>Pelatihan dan penyaringan dipindahkan ke layanan komputasi awan berbasis GPU dengan mekanisme lanjut antar-sesi.</td><td><span class="pil baik">Tertangani</span></td></tr>
+   <tr><td class="n">3</td><td>Struktur protein galur H9N2 belum lengkap tersedia pada Protein Data Bank</td><td>Penetapan reseptor sasaran masih berjalan; substitusi struktur akan didukung pengukuran konservasi residu kantong pengikatan.</td><td><span class="pil jalan">Berjalan</span></td></tr>
+  </tbody>
+ </table>
+ <p class="tegas">Secara keseluruhan kegiatan berjalan sesuai tahapan yang direncanakan pada usulan penelitian.</p>
+</section>
+<section class="slide tutup" data-judul="Rencana selanjutnya">
+ <p class="mata">Rencana tahapan selanjutnya</p>
+ <h2>Menuntaskan tahun pertama, lalu masuk validasi biofisika</h2>
+ <div class="duakolom">
+  <div><h3>Sisa tahun pertama</h3>
+   <ul>
+    <li>Menuntaskan penetapan protein target A/H9N2</li>
+    <li>Menyusun naskah jurnal nasional Sinta 2</li>
+    <li>Penyusunan laporan akhir tahun pertama</li>
+   </ul></div>
+  <div><h3>Tahun kedua</h3>
+   <ul>
+    <li>Optimasi struktur ligan dan persiapan protein target</li>
+    <li><i>Molecular docking</i> dan analisis afinitas ikatan</li>
+    <li>Optimasi metaheuristik atas hasil <i>docking</i></li>
+    <li>Simulasi dinamika molekuler dan evaluasi kestabilan kompleks</li>
+   </ul></div>
+ </div>
+ <p class="tegas">Kandidat hasil penyaringan tahun pertama menjadi masukan langsung bagi validasi biofisika pada tahun kedua.</p>
+</section>
+</div></div>
+
+<button id="maju" aria-label="Slide berikutnya"></button>
+<div id="lajur"></div>
+<div id="kendali">
+  <button id="prev" title="Sebelumnya (&larr;)">&#8249;</button>
+  <span id="hitung">1 / 1</span>
+  <button id="next" title="Berikutnya (&rarr;)">&#8250;</button>
+  <button id="indeks" title="Daftar slide (D)">daftar</button>
+  <button id="penuh" title="Layar penuh (F)">layar penuh</button>
+</div>
+<div id="daftar" role="dialog" aria-label="Daftar slide"><h4>Daftar slide &mdash; tekan Esc untuk menutup</h4><ol id="daftarisi"></ol></div>
+
+<script>
+(function(){
+  var dek=document.getElementById('dek'),
+      slide=[].slice.call(dek.querySelectorAll('.slide')),
+      n=slide.length, i=0,
+      hitung=document.getElementById('hitung'),
+      lajur=document.getElementById('lajur'),
+      daftar=document.getElementById('daftar'),
+      daftarisi=document.getElementById('daftarisi'),
+      kendali=document.getElementById('kendali'),
+      jeda;
+
+  var panggung=document.getElementById('panggung');
+  function ukur(){
+    var v=window.visualViewport;
+    return { w:(v&&v.width)||innerWidth, h:(v&&v.height)||innerHeight };
+  }
+  function skala(){
+    var u=ukur();
+    panggung.style.width  = u.w+'px';
+    panggung.style.height = u.h+'px';
+    var m = document.fullscreenElement ? 0 : (u.w<760 ? 10 : 28);
+    var k = Math.min((u.w-m)/1280, (u.h-m)/720);
+    dek.style.transform = 'translate(-50%,-50%) scale('+k+')';
+  }
+  function tampil(k,sorot){
+    i = Math.max(0, Math.min(n-1, k));
+    slide.forEach(function(s,j){ s.classList.toggle('aktif', j===i); });
+    hitung.textContent = (i+1)+' / '+n;
+    lajur.style.width = ((i+1)/n*100)+'%';
+    if(location.hash!=='#'+(i+1)) history.replaceState(null,'','#'+(i+1));
+    [].forEach.call(daftarisi.querySelectorAll('button'),function(b,j){
+      b.classList.toggle('kini', j===i);
+    });
+  }
+  slide.forEach(function(s,j){
+    var li=document.createElement('li'), b=document.createElement('button');
+    b.innerHTML='<span>'+(j+1)+'</span>'+(s.dataset.judul||'Slide '+(j+1));
+    b.onclick=function(){ tutupDaftar(); tampil(j); };
+    li.appendChild(b); daftarisi.appendChild(li);
+  });
+  function bukaDaftar(){ daftar.classList.add('buka');
+    var b=daftarisi.querySelectorAll('button')[i]; if(b) b.focus(); }
+  function tutupDaftar(){ daftar.classList.remove('buka'); }
+
+  document.getElementById('next').onclick=function(e){e.stopPropagation();tampil(i+1);};
+  document.getElementById('prev').onclick=function(e){e.stopPropagation();tampil(i-1);};
+  document.getElementById('indeks').onclick=function(e){e.stopPropagation();
+    daftar.classList.contains('buka')?tutupDaftar():bukaDaftar();};
+  document.getElementById('penuh').onclick=function(e){e.stopPropagation();penuh();};
+  document.getElementById('maju').onclick=function(){ tampil(i+1); };
+
+  function penuh(){
+    if(document.fullscreenElement) document.exitFullscreen();
+    else document.documentElement.requestFullscreen().catch(function(){});
+  }
+  document.addEventListener('fullscreenchange',skala);
+  if(!document.documentElement.requestFullscreen) document.getElementById('penuh').style.display='none';
+
+  addEventListener('keydown',function(e){
+    var k=e.key;
+    if(k==='Escape'){ if(daftar.classList.contains('buka')){tutupDaftar();e.preventDefault();} return; }
+    if(daftar.classList.contains('buka') && k!=='d' && k!=='D') return;
+    if(k==='ArrowRight'||k==='PageDown'||k===' '||k==='Enter'){ tampil(i+1); e.preventDefault(); }
+    else if(k==='ArrowLeft'||k==='PageUp'||k==='Backspace'){ tampil(i-1); e.preventDefault(); }
+    else if(k==='Home'){ tampil(0); e.preventDefault(); }
+    else if(k==='End'){ tampil(n-1); e.preventDefault(); }
+    else if(k==='f'||k==='F'){ penuh(); e.preventDefault(); }
+    else if(k==='d'||k==='D'){ daftar.classList.contains('buka')?tutupDaftar():bukaDaftar(); e.preventDefault(); }
+  });
+
+  addEventListener('resize',skala);
+  addEventListener('orientationchange',function(){ skala(); setTimeout(skala,320); });
+  if(window.visualViewport){
+    visualViewport.addEventListener('resize',skala);
+    visualViewport.addEventListener('scroll',skala);
+  }
+  if(window.ResizeObserver) new ResizeObserver(skala).observe(document.documentElement);
+  addEventListener('load',skala);
+
+  var tx=0,ty=0,tt=0;
+  addEventListener('touchstart',function(e){
+    var t=e.changedTouches[0]; tx=t.clientX; ty=t.clientY; tt=e.timeStamp;
+  },{passive:true});
+  addEventListener('touchend',function(e){
+    if(daftar.classList.contains('buka')) return;
+    var t=e.changedTouches[0], dx=t.clientX-tx, dy=t.clientY-ty;
+    if(e.timeStamp-tt>700) return;
+    if(Math.abs(dx)<44 || Math.abs(dx)<Math.abs(dy)*1.4) return;
+    tampil(dx<0 ? i+1 : i-1);
+  },{passive:true});
+  addEventListener('mousemove',function(){
+    kendali.classList.remove('sepi'); clearTimeout(jeda);
+    jeda=setTimeout(function(){kendali.classList.add('sepi');},2600);
+  });
+
+  var awal=parseInt((location.hash||'').slice(1),10);
+  skala(); tampil(isFinite(awal)&&awal>0?awal-1:0);
+  jeda=setTimeout(function(){kendali.classList.add('sepi');},2600);
+})();
+</script>
