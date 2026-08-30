@@ -86,6 +86,49 @@ h1{font-family:"Libre Franklin",-apple-system,"Segoe UI",sans-serif;
 .perlu li:last-child{margin-bottom:0}
 .perlu p{margin:10px 0 0;font-size:13px;color:var(--samar)}
 
+/* ---------- daftar isi ---------- */
+.daftarisi{margin-top:38px;padding:24px 28px 22px;border:1px solid var(--garis);border-radius:4px;
+  background:var(--lembar2);break-inside:avoid}
+.daftarisi h2{font-family:"Libre Franklin",sans-serif;font-size:.92rem;font-weight:700;
+  letter-spacing:.11em;text-transform:uppercase;color:var(--samar);margin:0 0 14px}
+.daftarisi ol{list-style:none;margin:0;padding:0}
+.daftarisi ul{list-style:none;margin:2px 0 2px 26px;padding:0}
+.daftarisi a{display:flex;gap:14px;align-items:baseline;padding:5px 0;text-decoration:none;
+  color:var(--tinta);font-size:15px}
+.daftarisi ul a{color:var(--tinta2);font-size:14px;padding:3px 0}
+.daftarisi a:hover .jdl,.daftarisi a:focus-visible .jdl{color:var(--institusi);
+  text-decoration:underline;text-underline-offset:3px;outline:none}
+.daftarisi .hrf{font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;
+  color:var(--institusi);min-width:30px;flex:none}
+.daftarisi ul .hrf{min-width:34px;font-size:11.5px;color:var(--samar)}
+
+/* ---------- navigasi melayang ---------- */
+section{scroll-margin-top:22px}
+#lajur{position:fixed;left:0;top:0;height:3px;width:0;background:var(--institusi);z-index:60}
+#tombolisi{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom));z-index:62;
+  display:flex;align-items:center;gap:9px;padding:11px 16px 11px 13px;background:var(--tinta);
+  color:var(--lembar);border:0;border-radius:999px;cursor:pointer;font-family:"IBM Plex Mono",monospace;
+  font-size:12.5px;font-weight:600;letter-spacing:.08em;box-shadow:0 4px 18px -4px rgba(0,0,0,.4)}
+#tombolisi:hover,#tombolisi:focus-visible{background:var(--institusi);outline:none}
+#tombolisi .grs{display:flex;flex-direction:column;gap:3px}
+#tombolisi .grs i{display:block;width:15px;height:2px;background:currentColor;border-radius:1px}
+#tombolisi .grs i:nth-child(2){width:10px}
+#panelisi{position:fixed;inset:0;z-index:61;display:none;background:rgba(16,18,25,.5)}
+#panelisi.buka{display:block}
+#panelisi .kotak{position:absolute;right:20px;bottom:78px;width:min(400px,calc(100vw - 40px));
+  max-height:min(74vh,660px);overflow:auto;background:var(--lembar);border:1px solid var(--garis);
+  border-radius:12px;box-shadow:0 18px 50px -12px rgba(0,0,0,.45);padding:20px 22px 18px}
+#panelisi h4{font-family:"IBM Plex Mono",monospace;font-size:10.5px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--samar);margin:0 0 14px}
+#panelisi a{display:flex;gap:12px;align-items:baseline;padding:7px 9px;border-radius:7px;
+  text-decoration:none;color:var(--tinta2);font-size:14.5px;line-height:1.4}
+#panelisi a b{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--samar);
+  min-width:24px;flex:none;font-weight:600}
+#panelisi a:hover,#panelisi a:focus-visible{background:var(--lembar2);color:var(--tinta);outline:none}
+#panelisi a.kini{background:var(--institusi-samar);color:var(--institusi);font-weight:600}
+#panelisi a.kini b{color:var(--institusi)}
+@media print{#lajur,#tombolisi,#panelisi{display:none!important}}
+
 /* ---------- bagian ---------- */
 section{margin-top:46px}
 .bagian{display:flex;gap:20px;align-items:baseline;
@@ -223,9 +266,14 @@ tr.gol td{background:var(--lembar2);font-weight:600;font-size:10.5px;
   <p>Kotak ini hanya tampil di layar dan tidak ikut tercetak.</p>
 </div>
 
+<nav class="daftarisi" aria-label="Daftar isi">
+ <h2>Daftar Isi</h2>
+ <ol><li><a href="#bag-A"><span class="hrf">A</span><span class="jdl">Ringkasan</span></a></li><li><a href="#bag-B"><span class="hrf">B</span><span class="jdl">Kata Pengantar</span></a></li><li><a href="#bag-C"><span class="hrf">C</span><span class="jdl">Hasil Pelaksanaan Penelitian</span></a><ul><li><a href="#sub-C-1"><span class="hrf">C.1</span><span class="jdl">Tahapan pelaksanaan dan keadaannya</span></a></li><li><a href="#sub-C-2"><span class="hrf">C.2</span><span class="jdl">Kurasi dataset dan ekstraksi fitur molekul</span></a></li><li><a href="#sub-C-3"><span class="hrf">C.3</span><span class="jdl">Prediksi memakai model DNN&ndash;NDD</span></a></li><li><a href="#sub-C-4"><span class="hrf">C.4</span><span class="jdl">Skrining farmakokinetik ADMET</span></a></li><li><a href="#sub-C-5"><span class="hrf">C.5</span><span class="jdl">Penetapan protein sasaran dan analisis jaringan</span></a></li><li><a href="#sub-C-6"><span class="hrf">C.6</span><span class="jdl">Kampanye <i>molecular docking</i> dan validasinya</span></a></li><li><a href="#sub-C-7"><span class="hrf">C.7</span><span class="jdl">Simulasi dinamika molekuler</span></a></li></ul></li><li><a href="#bag-D"><span class="hrf">D</span><span class="jdl">Status Luaran</span></a></li><li><a href="#bag-E"><span class="hrf">E</span><span class="jdl">Peran Mitra</span></a></li><li><a href="#bag-F"><span class="hrf">F</span><span class="jdl">Kendala Pelaksanaan Penelitian</span></a></li><li><a href="#bag-G"><span class="hrf">G</span><span class="jdl">Rencana Tahapan Selanjutnya</span></a></li><li><a href="#bag-H"><span class="hrf">H</span><span class="jdl">Daftar Pustaka</span></a></li><li><a href="#bag-I"><span class="hrf">I</span><span class="jdl">Lampiran</span></a></li></ol>
+</nav>
+
 <!-- ============ A ============ -->
 <section>
- <div class="bagian"><span class="huruf">A</span><h2>Ringkasan</h2></div>
+ <div class="bagian" id="bag-A"><span class="huruf">A</span><h2>Ringkasan</h2></div>
  <p>Avian Influenza A/H9N2 beredar luas pada unggas dan memiliki potensi zoonosis, sementara vaksin dan antivirus sintetis tidak selalu memberi perlindungan jangka panjang karena dinamika mutasi dan risiko resistensi. Penelitian ini mencari kandidat antivirus dari senyawa herbal Indonesia melalui pendekatan <i>in silico</i>, dengan kebaruan pada sisi metode optimasi pelatihan model dan pada cara memeringkat protein sasaran.</p>
  <p>Sampai tanggal pelaporan, kita telah menuntaskan kurasi <b>625 senyawa herbal</b> dari basis data KnapSack, mengubahnya menjadi tiga representasi <i>molecular fingerprint</i> berjumlah 5.820 fitur, dan menjalankan prediksi memakai model <i>deep neural network</i> dengan optimasi <i>Newton Divided Difference</i> (DNN&ndash;NDD). Sebanyak <b>104 struktur</b> lolos ambang probabilitas 0,9 pada ketiga representasi sekaligus &mdash; lebih ketat daripada ambang 0,8 yang dijanjikan usulan. Penyaringan farmakokinetik ADMET menyisakan <b>9 kandidat</b> untuk rancangan inhalasi, dua di antaranya juga memenuhi syarat rancangan oral.</p>
  <p>Penetapan protein sasaran kita lakukan melalui irisan prediksi target inang dan basis data gen terkait influenza, kemudian jaringan interaksi protein&ndash;protein disusun untuk memeringkatnya. Kampanye <i>molecular docking</i> sebanyak <b>231 <i>run</i></b> dijalankan atas pasangan senyawa dan reseptor, seluruhnya disertai kendali <i>re-docking</i>. Lima dari sembilan reseptor lolos kendali tersebut. Dari 35 pasangan yang diuji, <b>11 pasangan</b> lolos pemeriksaan kesahihan pose dan <b>7 di antaranya</b> sekaligus memenuhi ambang afinitas &minus;6,5 kkal/mol.</p>
@@ -241,7 +289,7 @@ tr.gol td{background:var(--lembar2);font-weight:600;font-size:10.5px;
 
 <!-- ============ B ============ -->
 <section>
- <div class="bagian"><span class="huruf">B</span><h2>Kata Pengantar</h2></div>
+ <div class="bagian" id="bag-B"><span class="huruf">B</span><h2>Kata Pengantar</h2></div>
  <p>Laporan ini kita susun sebagai pertanggungjawaban kemajuan pelaksanaan penelitian skema BIMA tahun anggaran 2026 sampai dengan 28 Agustus 2026. Isinya memuat tahapan yang telah dilaksanakan beserta hasil yang dapat diperiksa, status luaran yang dijanjikan, kendala yang dihadapi beserta penanganannya, dan rencana tahapan berikutnya.</p>
  <p>Seluruh angka yang disebut pada laporan ini berasal dari berkas hasil yang tersimpan terbuka pada repositori penelitian, sehingga dapat ditelusuri sumbernya dan dijalankan ulang. Rujukan berkasnya kita cantumkan pada bagian I.</p>
  <p>Kita menyampaikan terima kasih kepada Direktorat Riset dan Pengabdian Masyarakat atas pendanaan yang diberikan, serta kepada lembaga penelitian dan pengabdian kepada masyarakat perguruan tinggi atas pendampingan administratif selama pelaksanaan.</p>
@@ -249,9 +297,9 @@ tr.gol td{background:var(--lembar2);font-weight:600;font-size:10.5px;
 
 <!-- ============ C ============ -->
 <section>
- <div class="bagian"><span class="huruf">C</span><h2>Hasil Pelaksanaan Penelitian</h2></div>
+ <div class="bagian" id="bag-C"><span class="huruf">C</span><h2>Hasil Pelaksanaan Penelitian</h2></div>
 
- <h3><span class="no">C.1</span>Tahapan pelaksanaan dan keadaannya</h3>
+ <h3 id="sub-C-1"><span class="no">C.1</span>Tahapan pelaksanaan dan keadaannya</h3>
  <p>Usulan penelitian membagi pelaksanaan menjadi dua belas tahap dalam dua tahun, enam tahap pada setiap tahun. Tahun pertama berakhir pada analisis graf jaringan interaksi protein&ndash;protein sampai diperoleh protein inti; tahun kedua memuat <i>docking</i>, optimasi metaheuristik, serta simulasi dinamika molekuler beserta analisis kestabilannya.</p>
  <p>Keadaan sampai tanggal pelaporan adalah sebagai berikut: <b>lima dari enam tahap tahun pertama telah selesai</b> dan satu tahap sedang berjalan, sementara <b>tiga dari enam tahap tahun kedua telah selesai mendahului jadwal</b>. Dengan demikian lingkup pelaksanaan tidak melebar; yang terjadi adalah sebagian pekerjaan tahun berikutnya sudah dapat dikerjakan lebih awal.</p>
 <figure class="gbr">
@@ -387,18 +435,18 @@ tr.gol td{background:var(--lembar2);font-weight:600;font-size:10.5px;
   </tbody>
  </table></div>
 
- <h3><span class="no">C.2</span>Kurasi dataset dan ekstraksi fitur molekul</h3>
+ <h3 id="sub-C-2"><span class="no">C.2</span>Kurasi dataset dan ekstraksi fitur molekul</h3>
  <p>Senyawa herbal kita kumpulkan dari basis data KnapSack dengan fokus pada tanaman obat Indonesia. Dari 832 entri yang terjaring, 625 struktur dinyatakan valid setelah kanonikalisasi <i>Simplified Molecular Input Line Entry System</i> (SMILES) dan penyingkiran duplikat. Setiap struktur kemudian diubah menjadi tiga representasi <i>molecular fingerprint</i> dengan cakupan berbeda &mdash; EState 79 dimensi, PubChem 881 dimensi, dan Klekota-Roth 4.860 dimensi &mdash; sehingga hasil prediksi dapat diperiksa konsistensinya lintas representasi, bukan bergantung pada satu cara pengkodean saja.</p>
 
- <h3><span class="no">C.3</span>Prediksi memakai model DNN&ndash;NDD</h3>
+ <h3 id="sub-C-3"><span class="no">C.3</span>Prediksi memakai model DNN&ndash;NDD</h3>
  <p>Model yang kita pakai adalah <i>deep neural network</i> yang dilatih dengan optimasi <i>Newton Divided Difference</i>, yaitu metode kuasi-Newton diagonal yang menaksir kelengkungan setiap parameter dari jejak dua langkah terakhir. Pendekatan ini menghindari pembentukan matriks Hesse penuh yang untuk arsitektur kita akan menuntut ruang penyimpanan berukuran terabita, sekaligus mempertahankan ketelitian yang setara dengan metode berbasis kelengkungan yang jauh lebih mahal.</p>
  <p>Sebelum dipakai untuk menyaring, model kita reproduksi lebih dahulu terhadap hasil yang telah terbit sebagai kendali. Selisih AUC terbesar antara reproduksi dan hasil terbit adalah 0,0025, sehingga model dinyatakan sahih untuk dipakai pada tahap berikutnya. Prediksi kemudian dijalankan atas seluruh 625 senyawa pada ketiga <i>fingerprint</i>, dan hanya struktur yang lolos ambang probabilitas 0,9 pada ketiganya sekaligus yang diteruskan &mdash; menghasilkan <b>104 struktur unik</b>.</p>
  <p>Seluruh identitas 104 struktur tersebut kita verifikasi silang terhadap basis data PubChem dengan hasil cocok 104 dari 104. Skrining struktur bermasalah <i>Pan-Assay Interference Compounds</i> (PAINS) tidak menemukan satu pun senyawa bermasalah, dan pemeriksaan jangkauan penerapan model menempatkan 103 dari 104 struktur di dalam ruang latih.</p>
 
- <h3><span class="no">C.4</span>Skrining farmakokinetik ADMET</h3>
+ <h3 id="sub-C-4"><span class="no">C.4</span>Skrining farmakokinetik ADMET</h3>
  <p>Penyaringan sifat absorpsi, distribusi, metabolisme, ekskresi, dan toksisitas kita terapkan untuk dua rancangan pemberian yang berbeda. Rancangan inhalasi menyisakan <b>9 kandidat</b>, sedangkan rancangan oral yang syaratnya lebih ketat menyisakan <b>2 kandidat</b> &mdash; keduanya merupakan bagian dari sembilan kandidat inhalasi tersebut, bukan tambahan di luarnya. Rancangan inhalasi kita utamakan karena sasaran infeksinya adalah saluran pernapasan.</p>
 
- <h3><span class="no">C.5</span>Penetapan protein sasaran dan analisis jaringan</h3>
+ <h3 id="sub-C-5"><span class="no">C.5</span>Penetapan protein sasaran dan analisis jaringan</h3>
  <p>Protein sasaran kita tetapkan melalui irisan dua sumber yang saling bebas: prediksi target inang dari struktur senyawa, dan basis data gen yang berkaitan dengan infeksi influenza A. Irisan keduanya menghasilkan empat protein inang &mdash; DPP4, MMP9, MMP2, dan MIF &mdash; yang kemudian kita rangkai menjadi jaringan interaksi protein&ndash;protein memakai basis data STRING, dengan penambahan tetangga terdekat sehingga jaringannya memuat sembilan simpul.</p>
  <p>Peringkat sentralitas pada jaringan tersebut menempatkan MMP9 sebagai simpul terpadat, disusul MMP2, DPP4, dan MIF. Perlu kita catat secara terbuka bahwa peringkat ini memiliki keterbatasan: kelima tetangga yang tertarik masuk ke dalam jaringan seluruhnya berkerabat metaloproteinase, sehingga sebagian dari yang diukur adalah kelengkapan anotasi sebuah protein, bukan semata kepentingan biologisnya. Pengembangan metode perangkingan yang tidak bertumpu pada sentralitas baku merupakan bagian penelitian yang sedang kita kerjakan.</p>
  <figure class="gbr">
@@ -439,7 +487,7 @@ tr.gol td{background:var(--lembar2);font-weight:600;font-size:10.5px;
 </figure>
 <p>Selain protein inang, kita juga menyertakan protein virus sebagai sasaran, yaitu neuraminidase dan endonuklease PA. Karena tidak tersedia struktur kristal neuraminidase galur H9N2 pada Protein Data Bank, kita memakai struktur N2 dari galur lain, disertai pengukuran pendukung: 15 dari 16 residu kantong pengikatan terkonservasi seratus persen pada 60 galur H9N2, termasuk 20 galur asal Indonesia.</p>
 
- <h3><span class="no">C.6</span>Kampanye <i>molecular docking</i> dan validasinya</h3>
+ <h3 id="sub-C-6"><span class="no">C.6</span>Kampanye <i>molecular docking</i> dan validasinya</h3>
  <p><i>Docking</i> kita jalankan memakai AutoDock Vina versi 1.2.7 dengan tiga benih acak per pasangan dan <i>exhaustiveness</i> 32. Simpangan baku antar-benih rata-rata 0,03 kkal/mol, yang menunjukkan pencarian telah konvergen. Seluruhnya berjumlah 231 <i>run</i>. Kotak pencarian ditetapkan melalui pengelompokan salinan ligan rujukan dan pertimbangan ion logam katalitik pada metaloprotein.</p>
  <p>Setiap reseptor kita uji lebih dahulu melalui kendali <i>re-docking</i>: ligan rujukan yang posisinya sudah diketahui dari struktur kristal ditambatkan ulang, lalu simpangannya diukur dengan memperhitungkan kesetangkupan molekul. Reseptor dinyatakan sahih bila simpangannya di bawah 2 &Aring;. <b>Lima dari sembilan reseptor lolos</b>, dan hanya reseptor yang lolos inilah yang hasilnya kita laporkan.</p>
  <div class="tbl"><table>
@@ -659,14 +707,14 @@ tr.gol td{background:var(--lembar2);font-weight:600;font-size:10.5px;
 <text x="14" y="492" style="text-anchor:start" class="g-s">Persentase menyatakan bagian yang tersisa terhadap tahap sebelumnya.</text>
 </svg>
 </figure>
-<h3><span class="no">C.7</span>Simulasi dinamika molekuler</h3>
+<h3 id="sub-C-7"><span class="no">C.7</span>Simulasi dinamika molekuler</h3>
  <p>Tiga kompleks pada Tabel 3 kita siapkan untuk simulasi dinamika molekuler selama 50 nanodetik, memakai medan gaya ff14SB untuk protein, GAFF2 dengan muatan AM1&ndash;BCC untuk ligan, dan model air TIP3P. Penyiapan sistem mencakup pelengkapan 33 atom rantai samping yang hilang pada 12 residu struktur kristal.</p>
  <p>Sampai tanggal pelaporan <b>belum ada satu pun lintasan produksi yang selesai</b>. Enam protokol penyetimbangan berturut-turut berakhir dengan divergensi numerik, dan penanganannya kita uraikan pada bagian F. Karena tahap ini menjadi penentu bagi luaran Scopus kedua, penyelesaiannya kita tempatkan sebagai prioritas pada rencana tahapan berikutnya.</p>
 </section>
 
 <!-- ============ D ============ -->
 <section>
- <div class="bagian"><span class="huruf">D</span><h2>Status Luaran</h2></div>
+ <div class="bagian" id="bag-D"><span class="huruf">D</span><h2>Status Luaran</h2></div>
  <div class="tbl"><table>
   <caption>Tabel 4. Luaran yang dijanjikan pada usulan penelitian dan keadaannya.</caption>
   <thead><tr><th>Jenis luaran</th><th>Rencana pada usulan</th><th>Keadaan sekarang</th><th>Status</th></tr></thead>
@@ -685,14 +733,14 @@ tr.gol td{background:var(--lembar2);font-weight:600;font-size:10.5px;
 
 <!-- ============ E ============ -->
 <section>
- <div class="bagian"><span class="huruf">E</span><h2>Peran Mitra</h2></div>
+ <div class="bagian" id="bag-E"><span class="huruf">E</span><h2>Peran Mitra</h2></div>
  <p>Penelitian ini dilaksanakan oleh tim pengusul yang keahliannya sudah mencakup seluruh tahapan yang direncanakan, yaitu matematika dan optimasi, sains data, virologi molekular, serta farmasi. Pembagian tanggung jawab kita atur menurut tahapan: kurasi data dan ekstraksi fitur, pemodelan dan optimasi, penyaringan farmakokinetik, penetapan sasaran virologis, serta komputasi <i>docking</i> dan simulasi.</p>
  <p>Pada periode pelaporan ini tidak terdapat kegiatan yang dilaksanakan bersama mitra eksternal. Rencana pelibatan pihak luar baru muncul pada pertimbangan uji penghambatan enzim skala terbatas yang kita uraikan pada bagian G, dan pelaksanaannya masih menunggu keputusan tim.</p>
 </section>
 
 <!-- ============ F ============ -->
 <section>
- <div class="bagian"><span class="huruf">F</span><h2>Kendala Pelaksanaan Penelitian</h2></div>
+ <div class="bagian" id="bag-F"><span class="huruf">F</span><h2>Kendala Pelaksanaan Penelitian</h2></div>
  <p>Enam kendala berpengaruh nyata terhadap capaian. Empat sudah tertangani dan dua masih berjalan. Kita mencatatnya beserta penanganannya karena sebagian di antaranya berpotensi terulang pada penelitian sejenis.</p>
  <div class="tbl"><table>
   <caption>Tabel 5. Kendala pelaksanaan, dampaknya, dan penanganannya.</caption>
@@ -710,7 +758,7 @@ tr.gol td{background:var(--lembar2);font-weight:600;font-size:10.5px;
 
 <!-- ============ G ============ -->
 <section>
- <div class="bagian"><span class="huruf">G</span><h2>Rencana Tahapan Selanjutnya</h2></div>
+ <div class="bagian" id="bag-G"><span class="huruf">G</span><h2>Rencana Tahapan Selanjutnya</h2></div>
  <p>Rencana berikut kita susun menurut apa yang paling menentukan bagi tercapainya luaran, bukan menurut apa yang paling mudah dikerjakan. Empat butir teratas tidak menunggu komputasi panjang.</p>
  <div class="tbl"><table>
   <caption>Tabel 6. Rencana tahapan selanjutnya beserta perkiraan waktu dan penanggung jawabnya.</caption>
@@ -785,7 +833,7 @@ tr.gol td{background:var(--lembar2);font-weight:600;font-size:10.5px;
 
 <!-- ============ H ============ -->
 <section>
- <div class="bagian"><span class="huruf">H</span><h2>Daftar Pustaka</h2></div>
+ <div class="bagian" id="bag-H"><span class="huruf">H</span><h2>Daftar Pustaka</h2></div>
  <ol class="pustaka">
   <li>Amiroch S., Jamhuri M., Rohmah A. M., Al Faroby M. H. Z., Nidom C. A., Nidom R. V. Newton Divided Difference Optimization for Fingerprint-Based Neural Virtual Screening against Avian Influenza A/H9N2. <i>Journal of Applied Data Sciences</i>, 7(3), 2026.</li>
   <li>Song W., Qin K. Human-infecting influenza A (H9N2) virus: A forgotten potential pandemic strain? <i>Zoonoses and Public Health</i>, 67(3), 203&ndash;212, 2020.</li>
@@ -810,7 +858,7 @@ tr.gol td{background:var(--lembar2);font-weight:600;font-size:10.5px;
 
 <!-- ============ I ============ -->
 <section>
- <div class="bagian"><span class="huruf">I</span><h2>Lampiran</h2></div>
+ <div class="bagian" id="bag-I"><span class="huruf">I</span><h2>Lampiran</h2></div>
  <p>Seluruh berkas hasil beserta skrip yang menghasilkannya tersimpan terbuka, sehingga setiap angka pada laporan ini dapat ditelusuri sumbernya dan setiap tahap dapat dijalankan ulang tanpa perlu akun maupun undangan.</p>
  <div class="tbl"><table>
   <caption>Tabel 7. Berkas hasil utama beserta isinya.</caption>
