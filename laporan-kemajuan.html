@@ -893,3 +893,53 @@ tr.gol td{background:var(--lembar2);font-weight:600;font-size:10.5px;
 </footer>
 
 </div>
+
+<div id="lajur"></div>
+<button id="tombolisi" aria-expanded="false" aria-controls="panelisi">
+  <span class="grs"><i></i><i></i><i></i></span>ISI
+</button>
+<div id="panelisi" role="dialog" aria-label="Daftar isi">
+  <div class="kotak"><h4>Lompat ke bagian</h4><div id="isipanel"></div></div>
+</div>
+<script>
+(function(){
+  var tombol=document.getElementById('tombolisi'), panel=document.getElementById('panelisi'),
+      wadah=document.getElementById('isipanel'), lajur=document.getElementById('lajur'),
+      daftar=document.querySelector('nav.daftarisi');
+  if(!daftar) return;
+  [].forEach.call(daftar.querySelectorAll('a'), function(a){
+    var t=document.createElement('a');
+    t.href=a.getAttribute('href');
+    var b=document.createElement('b'); b.textContent=a.querySelector('.hrf').textContent;
+    t.appendChild(b);
+    t.appendChild(document.createTextNode(a.querySelector('.jdl').textContent));
+    if(a.parentNode.parentNode.tagName==='UL') t.style.paddingLeft='22px';
+    wadah.appendChild(t);
+  });
+  var tautan=[].slice.call(wadah.querySelectorAll('a'));
+  var sasaran=tautan.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  function buka(b){
+    panel.classList.toggle('buka', b);
+    tombol.setAttribute('aria-expanded', b?'true':'false');
+    if(b){ var k=wadah.querySelector('a.kini'); if(k) k.scrollIntoView({block:'nearest'}); }
+  }
+  tombol.onclick=function(){ buka(!panel.classList.contains('buka')); };
+  panel.onclick=function(e){ if(e.target===panel) buka(false); };
+  wadah.onclick=function(e){ if(e.target.closest('a')) setTimeout(function(){buka(false);},80); };
+  addEventListener('keydown', function(e){
+    if(e.key==='Escape' && panel.classList.contains('buka')) buka(false);
+    else if((e.key==='i'||e.key==='I') && !/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName))
+      buka(!panel.classList.contains('buka'));
+  });
+  function sorot(){
+    var h=document.documentElement, maks=h.scrollHeight-h.clientHeight;
+    lajur.style.width=(maks>0? h.scrollTop/maks*100 : 0)+'%';
+    var kini=0, batas=h.scrollTop + h.clientHeight*0.26;
+    sasaran.forEach(function(el,i){ if(el && el.getBoundingClientRect().top+h.scrollTop<=batas) kini=i; });
+    tautan.forEach(function(a,i){ a.classList.toggle('kini', i===kini); });
+  }
+  addEventListener('scroll', sorot, {passive:true});
+  addEventListener('resize', sorot);
+  sorot();
+})();
+</script>
