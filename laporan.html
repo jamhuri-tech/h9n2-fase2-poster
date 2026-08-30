@@ -181,6 +181,39 @@ mtable{border-spacing:0.35em 0.25em}
 footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--border);
   font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 20px}
 @media (max-width:620px){.wrap{padding:0 18px 72px}.masthead{padding:40px 0 26px}}
+
+/* ---------- navigasi melayang ---------- */
+section{scroll-margin-top:24px}
+#lajur{position:fixed;left:0;top:0;height:3px;width:0;background:var(--accent);z-index:60}
+#tombolisi{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom));z-index:62;
+  display:flex;align-items:center;gap:9px;padding:11px 16px 11px 13px;
+  background:var(--ink);color:var(--surface);border:0;border-radius:999px;cursor:pointer;
+  font-family:"JetBrains Mono",monospace;font-size:12.5px;font-weight:700;letter-spacing:.08em;
+  box-shadow:0 4px 18px -4px rgba(0,0,0,.45)}
+#tombolisi:hover,#tombolisi:focus-visible{background:var(--accent);outline:none}
+#tombolisi .grs{display:flex;flex-direction:column;gap:3px}
+#tombolisi .grs i{display:block;width:15px;height:2px;background:currentColor;border-radius:1px}
+#tombolisi .grs i:nth-child(2){width:10px}
+#panelisi{position:fixed;inset:0;z-index:61;display:none;background:rgba(16,18,25,.5)}
+#panelisi.buka{display:block}
+#panelisi .kotak{position:absolute;right:20px;bottom:78px;width:min(420px,calc(100vw - 40px));
+  max-height:min(76vh,700px);overflow:auto;background:var(--surface);border:1px solid var(--border);
+  border-radius:13px;box-shadow:0 18px 50px -12px rgba(0,0,0,.5);padding:22px 24px 20px}
+#panelisi h4{font-family:"JetBrains Mono",monospace;font-size:10.5px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 16px}
+#panelisi .grup{margin-bottom:18px}
+#panelisi .grup:last-child{margin-bottom:0}
+#panelisi .grup>b{display:block;font-family:"JetBrains Mono",monospace;font-size:10px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:7px}
+#panelisi a{display:flex;gap:10px;align-items:baseline;padding:7px 9px;border-radius:7px;
+  text-decoration:none;color:var(--ink-soft);font-size:14.6px;line-height:1.4}
+#panelisi a span{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--muted);
+  min-width:18px;flex:none;padding-top:.2em}
+#panelisi a:hover,#panelisi a:focus-visible{background:var(--surface-2);color:var(--ink);outline:none}
+#panelisi a.kini{background:var(--accent-soft);color:var(--accent);font-weight:600}
+#panelisi a.kini span{color:var(--accent)}
+@media print{#lajur,#tombolisi,#panelisi{display:none!important}}
+@media (max-width:620px){#tombolisi{right:14px;padding:10px 14px 10px 12px}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 
@@ -1129,3 +1162,64 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--border);
  <span>Laporan kemajuan &middot; 26 Agustus 2026</span>
 </footer>
 </div>
+
+<div id="lajur"></div>
+<button id="tombolisi" aria-expanded="false" aria-controls="panelisi">
+  <span class="grs"><i></i><i></i><i></i></span>ISI
+</button>
+<div id="panelisi" role="dialog" aria-label="Daftar isi laporan">
+  <div class="kotak"><h4>Lompat ke bagian</h4><div id="daftarisi"></div></div>
+</div>
+<script>
+(function(){
+  var tombol=document.getElementById('tombolisi'),
+      panel=document.getElementById('panelisi'),
+      wadah=document.getElementById('daftarisi'),
+      lajur=document.getElementById('lajur'),
+      isi=document.querySelector('nav.isi');
+  if(!isi) return;
+
+  // daftar disalin dari daftar isi yang sudah ada, supaya selalu sinkron
+  [].forEach.call(isi.querySelectorAll('.isikol > div'), function(kol){
+    var g=document.createElement('div'); g.className='grup';
+    var b=document.createElement('b');
+    var h=kol.querySelector('h3');
+    b.textContent=(h? h.childNodes[0].textContent.trim()+' \u00b7 '+(h.querySelector('em')?h.querySelector('em').textContent:'') : '');
+    g.appendChild(b);
+    [].forEach.call(kol.querySelectorAll('a'), function(a){
+      var t=a.cloneNode(true); t.className='';
+      g.appendChild(t);
+    });
+    wadah.appendChild(g);
+  });
+
+  var tautan=[].slice.call(wadah.querySelectorAll('a'));
+  var bagian=tautan.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+
+  function buka(b){
+    panel.classList.toggle('buka', b);
+    tombol.setAttribute('aria-expanded', b?'true':'false');
+    if(b){ var k=wadah.querySelector('a.kini'); if(k) k.scrollIntoView({block:'nearest'}); }
+  }
+  tombol.onclick=function(){ buka(!panel.classList.contains('buka')); };
+  panel.onclick=function(e){ if(e.target===panel) buka(false); };
+  wadah.onclick=function(e){ if(e.target.closest('a')) setTimeout(function(){buka(false);},80); };
+  addEventListener('keydown', function(e){
+    if(e.key==='Escape' && panel.classList.contains('buka')){ buka(false); }
+    else if((e.key==='i'||e.key==='I') && !/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName)){
+      buka(!panel.classList.contains('buka')); }
+  });
+
+  function sorot(){
+    var h=document.documentElement;
+    var maks=h.scrollHeight-h.clientHeight;
+    lajur.style.width=(maks>0? (h.scrollTop/maks*100):0)+'%';
+    var kini=0, batas=h.scrollTop + h.clientHeight*0.28;
+    bagian.forEach(function(b,i){ if(b && b.offsetTop<=batas) kini=i; });
+    tautan.forEach(function(a,i){ a.classList.toggle('kini', i===kini); });
+  }
+  addEventListener('scroll', sorot, {passive:true});
+  addEventListener('resize', sorot);
+  sorot();
+})();
+</script>
